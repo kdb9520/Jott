@@ -1,4 +1,6 @@
-package testers;
+// package testers;
+
+import provided.*;
 
 /*
  * Tester for phase 1 of the Jott Translator
