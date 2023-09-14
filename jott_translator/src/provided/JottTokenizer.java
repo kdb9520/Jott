@@ -24,6 +24,8 @@ public class JottTokenizer {
 		
     File file = new File(filename);
     Scanner sc = new Scanner(System.in);
+    ArrayList<Token> tokens = new ArrayList<>();
+
     try {
       sc = new Scanner(file);
     } catch (FileNotFoundException e) {
@@ -34,6 +36,7 @@ public class JottTokenizer {
       String str = sc.nextLine();
       for (int i = 0; i < str.length(); i++) {
         System.out.println(str.charAt(i));
+        // make new tokens and add them to the ArrayList token
       }
     }
     sc.close();
