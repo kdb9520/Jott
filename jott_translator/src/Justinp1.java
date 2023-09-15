@@ -24,6 +24,14 @@ public class Justinp1 {
             }
         } else if (str.charAt(i) == ';') {
             Token token = new Token(";", filename, lineNum, TokenType.SEMICOLON);
+        } else if (str.charAt(i) == '/') {
+            Token token = new Token("/", filename, lineNum, TokenType.MATH_OP);
+        } else if (str.charAt(i) == '+') {
+            Token token = new Token("+", filename, lineNum, TokenType.MATH_OP);
+        } else if (str.charAt(i) == '-') {
+            Token token = new Token("-", filename, lineNum, TokenType.MATH_OP);
+        } else if (str.charAt(i) == '*') {
+            Token token = new Token("*", filename, lineNum, TokenType.MATH_OP);
         }
 
 
