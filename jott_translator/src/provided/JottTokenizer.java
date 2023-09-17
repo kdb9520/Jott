@@ -23,13 +23,14 @@ public class JottTokenizer {
   public static ArrayList<Token> tokenize(String filename){
 		
     File file = new File(filename);
-    Scanner sc = new Scanner(System.in);
+    Scanner sc;
     ArrayList<Token> tokens = new ArrayList<>();
 
     try {
       sc = new Scanner(file);
     } catch (FileNotFoundException e) {
-      System.out.println("File " + filename + " not found.");
+      System.err.println("File " + filename + " not found.");
+      return null;
     }
     
     while (sc.hasNext()) {
@@ -41,6 +42,6 @@ public class JottTokenizer {
     }
     sc.close();
     
-    return null;
+    return tokens;
 	}
 }
