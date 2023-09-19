@@ -1,5 +1,8 @@
 // package testers;
 
+/**
+ * MODIFICATIONS MADE FOR PHASE 1 TO RUN
+ */
 import provided.*;
 
 /*
@@ -43,7 +46,7 @@ public class JottTokenizerTester {
     private void createTestCases(){
         this.testCases = new ArrayList<>();
         ArrayList<Token> numTestTokens = new ArrayList<>();
-        String filename = "tokenizerTestCases/number.jott";
+        String filename = "jott_translator/src/tokenizerTestCases/number.jott";
         numTestTokens.add(new Token("5", filename, 1, TokenType.NUMBER));
         numTestTokens.add(new Token("5.5", filename, 1, TokenType.NUMBER));
         numTestTokens.add(new Token(".5", filename, 1, TokenType.NUMBER));
@@ -52,14 +55,14 @@ public class JottTokenizerTester {
 
         ArrayList<Token> mathOpTokens = new ArrayList<>();
         String mathOps = "+-*/";
-        filename = "tokenizerTestCases/mathOpsTest.jott";
+        filename = "jott_translator/src/tokenizerTestCases/mathOpsTest.jott";
         for(char c: mathOps.toCharArray()){
             mathOpTokens.add(new Token("" + c, filename, 1, TokenType.MATH_OP));
         }
         testCases.add(new TestCase("MathOps", filename, mathOpTokens, false));
 
         ArrayList<Token> singleCharTokens = new ArrayList<>();
-        filename = "tokenizerTestCases/singleCharTokens.jott";
+        filename = "jott_translator/src/tokenizerTestCases/singleCharTokens.jott";
         singleCharTokens.add(new Token(",", filename, 1, TokenType.COMMA));
         singleCharTokens.add(new Token("[", filename, 1, TokenType.L_BRACKET));
         singleCharTokens.add(new Token("]", filename, 1, TokenType.R_BRACKET));
@@ -71,7 +74,7 @@ public class JottTokenizerTester {
         testCases.add(new TestCase("SingleCharTokens", filename, singleCharTokens, false));
 
         ArrayList<Token> relOpsTokens = new ArrayList<>();
-        filename = "tokenizerTestCases/relOpsTokens.jott";
+        filename = "jott_translator/src/tokenizerTestCases/relOpsTokens.jott";
         relOpsTokens.add(new Token("<", filename, 1, TokenType.REL_OP));
         relOpsTokens.add(new Token("<=", filename, 1, TokenType.REL_OP));
         relOpsTokens.add(new Token(">", filename, 1, TokenType.REL_OP));
@@ -92,27 +95,27 @@ public class JottTokenizerTester {
         testCases.add(new TestCase("IdKeywordTokens", filename, idKeywordTokens, false));
 
         ArrayList<Token> stringTokens = new ArrayList<>();
-        filename = "tokenizerTestCases/strings.jott";
+        filename = "jott_translator/src/tokenizerTestCases/strings.jott";
         stringTokens.add(new Token("\"foobar\"", filename, 1, TokenType.STRING));
         stringTokens.add(new Token("\"abc1\"", filename, 1, TokenType.STRING));
         stringTokens.add(new Token("\"Hello World\"", filename, 1, TokenType.STRING));
         stringTokens.add(new Token("\"123 abc\"", filename, 1, TokenType.STRING));
         testCases.add(new TestCase("StringTokens", filename, stringTokens, false));
 
-        filename = "tokenizerTestCases/errorTokens1.jott";
+        filename = "jott_translator/src/tokenizerTestCases/errorTokens1.jott";
         testCases.add(new TestCase("ErrorTokens1", filename, null, true));
 
-        filename = "tokenizerTestCases/errorTokens2.jott";
+        filename = "jott_translator/src/tokenizerTestCases/errorTokens2.jott";
         testCases.add(new TestCase("ErrorTokens2", filename, null, true));
 
-        filename = "tokenizerTestCases/errorTokens3.jott";
+        filename = "jott_translator/src/tokenizerTestCases/errorTokens3.jott";
         testCases.add(new TestCase("ErrorTokens3", filename, null, true));
 
-        filename = "tokenizerTestCases/stringMissingClosing.jott";
+        filename = "jott_translator/src/tokenizerTestCases/stringMissingClosing.jott";
         testCases.add(new TestCase("StringMissingClosing", filename, null, true));
 
         ArrayList<Token> phase1ExampleTokens = new ArrayList<>();
-        filename = "tokenizerTestCases/phase1Example.jott";
+        filename = "jott_translator/src/tokenizerTestCases/phase1Example.jott";
         phase1ExampleTokens.add(new Token("def", filename, 2, TokenType.ID_KEYWORD));
         phase1ExampleTokens.add(new Token("main", filename, 2, TokenType.ID_KEYWORD));
         phase1ExampleTokens.add(new Token("[", filename, 2, TokenType.L_BRACKET));
@@ -135,7 +138,7 @@ public class JottTokenizerTester {
         phase1ExampleTokens.add(new Token("}", filename, 6, TokenType.R_BRACE));
         testCases.add(new TestCase("Phase1ExampleTest", filename, phase1ExampleTokens, false));
 
-        filename = "tokenizerTestCases/phase1ErrorExample.jott";
+        filename = "jott_translator/src/tokenizerTestCases/phase1ErrorExample.jott";
         testCases.add(new TestCase("Phase1ErrorExampleTest", filename, null, true));
 
     }
