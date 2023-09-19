@@ -21,6 +21,10 @@ import provided.TokenType;
 
 public class MaxP1 {
 
+    // The below values will be from outside of the loop in the JottTokenizer
+    static String filename = "Placeholder";
+    static int lineNum = 1;
+
     
     public static ArrayList<Token> readLetterTokens(String str){
         // To ease importing into JottTokenizer, I should try and keep the variable names the same
@@ -31,6 +35,42 @@ public class MaxP1 {
         // This for replicates the inner loop of the while loop inside of tokenize
         for(int i = 0; i < str.length(); i++) {
             // Two main outer cases, either a letter or a "
+
+            // If this is the case, dealing with a letter 
+            if(Character.isLetter(str.charAt(i))){
+                // Minimally, the current token will be made up of just this character 
+                String currentString = new String();
+                // Using this to loop over the characters to add as many to the current id
+                while(i < str.length()){
+                    // Check if you're dealing with a character, if so, continue to loop
+                    char currentChar = str.charAt(i);
+                    if(Character.isLetter(currentChar) || Character.isDigit(currentChar)){
+                        // If either is true, then the value is valid for an id/keyword
+                        // In that case append the character to the end of the current string
+                        currentString = currentString.concat(Character.toString(currentChar));
+
+                        // Iterate i to look at the next character 
+                        i++;
+                    }
+                    else {
+                        // Found a non letter/digit so break the loop.
+                        // Also decrement so that this character can be looked at by the outer loop
+                        i--;
+                        break;
+                    }
+                }
+
+                System.out.println("The token to add: " +  currentString);
+                // Now that all the characters with the current id are found, construct the token
+                Token currentToken = new Token(currentString, filename, lineNum, TokenType.ID_KEYWORD);
+                // Append the token to the list
+                tokens.add(currentToken);
+            }
+
+            // This is the token to be built in this loop
+           
+
+            // After the above, if no error occured, check if the 
         }
 
         return tokens;
@@ -40,7 +80,10 @@ public class MaxP1 {
     public static void main(String[] args){
         // Need to handle the letter and "" case 
         // Will eventually do some testing of it here
-
+        readLetterTokens("something");
+        readLetterTokens("UPPER CASE");
+        readLetterTokens("Sta11");
+        readLetterTokens("Tes1ing");
         
     }
     
