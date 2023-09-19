@@ -187,9 +187,11 @@ public class JottTokenizer {
         }
         ///////////////////////////////////////////////// Eligh
         if (str.charAt(i) == ':') {
+          build_token += str.charAt(i);
 
           // if it has another colon it is a function header
           if (str.charAt(i + 1) == ':') {
+            build_token += str.charAt(i + 1);
             Token fcHeader = new Token(str, filename, i, TokenType.FC_HEADER);
             tokens.add(fcHeader);
           }
@@ -203,16 +205,20 @@ public class JottTokenizer {
 
         // if there is a ! it is potentially a relOp
         if (str.charAt(i) == '!') {
+          build_token += str.charAt(i);
 
           // must have an = to be valid
           if (str.charAt(i + 1) == '=') {
+            build_token += str.charAt(i + 1);
             Token nEqRelOp = new Token(str, filename, i, TokenType.REL_OP);
             tokens.add(nEqRelOp);
           }
 
           // not valid case
           else {
-            formattedTokenizerError(currentString, lineNum, filename);
+            build_token = "";
+            String errMessage = "Invalid token \"" + str.charAt(i + 1) + "\"";
+            formattedTokenizerError(errMessage, lineNum, filename);
           }
         }
         ////////////////////////////////////////////// Kellen
