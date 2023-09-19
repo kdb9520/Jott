@@ -199,3 +199,13 @@ public class MaxP1 {
  * Based on page 2 of hte Jott write up, yes.  
  * Strings are NOT allowed to wrap lines
  */
+
+ /**
+Cases handled 
+Justin: Handled comma, brackets, braces, commma, assign, mathOp, semicolon
+Kellen: relop (<>), fcHeader, colon, not equals relOp
+Elligh: number and . 
+Max: id, keyword, string 
+
+
+  */
