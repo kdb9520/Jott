@@ -123,6 +123,9 @@ public class MaxP1 {
 
     public static void printTokenList(ArrayList<Token> tokenList){
         System.out.println("Printing a token list in order: ");
+        for(int i = 0; i < tokenList.size(); i++){
+            System.out.println(i + ":" + tokenList.get(i).getToken());
+        }
     }
 
     public static void formattedTokenizerError(String errorMessage, int lineNumber, String filename){
@@ -160,6 +163,10 @@ public class MaxP1 {
         // Combined testing
         readLetterTokens("id \"string\"");
         readLetterTokens(" key\" str1ng \" ");
+        ArrayList<Token> result = readLetterTokens("first \"Sec0nd\" third");
+        printTokenList(result);
+        ArrayList<Token> secondResult = readLetterTokens("\" Testing this again\" id key ");
+        printTokenList(secondResult);
         
         
     }
