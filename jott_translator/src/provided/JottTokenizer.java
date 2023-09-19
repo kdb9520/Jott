@@ -44,6 +44,179 @@ public class JottTokenizer {
         System.out.println(str.charAt(i));
         // make new tokens and add them to the ArrayList token
 
+        while (str.charAt(i) == ' ') { // loop on white spaces
+          continue;
+        }
+        if (str.charAt(i) == '#') { // handle comments throw away everything until /n
+          while (str.charAt(i) != '\n') {
+            System.out.println(str.charAt(i));
+            if (i + 1 < str.length()) {
+              i++;
+            } else {
+              break;
+            }
+          }
+        }
+        // handle single comma, brack, and brace cases
+        if (str.charAt(i) == ',') {
+          Token comma = new Token(str, filename, i, TokenType.COMMA);
+          tokens.add(comma);
+        } else if (str.charAt(i) == ']') {
+          Token rbracket = new Token(str, filename, i, TokenType.R_BRACKET);
+          tokens.add(rbracket);
+        } else if (str.charAt(i) == '[') {
+          Token lbracket = new Token(str, filename, i, TokenType.L_BRACKET);
+          tokens.add(lbracket);
+        } else if (str.charAt(i) == '}') {
+          Token rbrace = new Token(str, filename, i, TokenType.R_BRACE);
+          tokens.add(rbrace);
+        } else if (str.charAt(i) == '{') {
+          Token lbrace = new Token(str, filename, i, TokenType.L_BRACE);
+          tokens.add(lbrace);
+        }
+        ///////////////////////////////////////////////////////////////////////// Derek
+        if (str.charAt(i) == '=') {
+          if (i + 1 < str.length() && str.charAt(i + 1) == '=') {
+            i++; // increases iterator to unread part of string
+            Token token = new Token("==", filename, lineNum, TokenType.REL_OP);
+            tokens.add(token);
+          } else {
+            Token token = new Token("=", filename, lineNum, TokenType.ASSIGN);
+            tokens.add(token);
+          }
+        } else if (str.charAt(i) == '>') {
+          if (i + 1 < str.length() && str.charAt(i + 1) == '=') {
+            i++; // increases iterator to unread part of string
+            Token token = new Token(">=", filename, lineNum, TokenType.REL_OP);
+            tokens.add(token);
+          } else {
+            Token token = new Token(">", filename, lineNum, TokenType.REL_OP);
+            tokens.add(token);
+          }
+        } else if (str.charAt(i) == '<') {
+          if (i + 1 < str.length() && str.charAt(i + 1) == '=') {
+            i++; // increases iterator to unread part of string
+            Token token = new Token("<=", filename, lineNum, TokenType.REL_OP);
+            tokens.add(token);
+          } else {
+            Token token = new Token("<", filename, lineNum, TokenType.REL_OP);
+            tokens.add(token);
+          }
+
+          // handle semi-colon case
+        } else if (str.charAt(i) == ';') {
+          Token token = new Token(";", filename, lineNum, TokenType.SEMICOLON);
+          tokens.add(token);
+
+          // handle arithmetic cases
+        } else if (str.charAt(i) == '/') {
+          Token token = new Token("/", filename, lineNum, TokenType.MATH_OP);
+          tokens.add(token);
+        } else if (str.charAt(i) == '+') {
+          Token token = new Token("+", filename, lineNum, TokenType.MATH_OP);
+          tokens.add(token);
+        } else if (str.charAt(i) == '-') {
+          Token token = new Token("-", filename, lineNum, TokenType.MATH_OP);
+          tokens.add(token);
+        } else if (str.charAt(i) == '*') {
+          Token token = new Token("*", filename, lineNum, TokenType.MATH_OP);
+          tokens.add(token);
+        }
+        ////////////////////////////// Justin
+        String build_token = new String(); // initialize string to build token
+        boolean first_decimal = true; // set boolean to check if multiple decimals are found in the same string
+        if ((Character.isDigit(str.charAt(i))) || (str.charAt(i) == '.')) { // if first char of token is digit or
+                                                                            // decimal enter digit loop
+          while (i < str.length()) { // check so that you don't go out of bounds
+            if (Character.isDigit((str.charAt(i)))) { // if digit, add to token string
+              build_token += str.charAt(i);
+            } else if (str.charAt(i) == '.' && first_decimal) { // if first decimal in current token
+              if ((i != 0)) {
+                if (Character.isDigit(str.charAt(i - 1))) { // check if there was a number beforehand
+                  build_token += str.charAt(i);
+                  first_decimal = false;
+                } else if (i < str.length() - 1) { // else check if there is a number afterwards
+                  if (Character.isDigit(str.charAt(i + 1))) {
+                    build_token += str.charAt(i);
+                    first_decimal = false;
+                  }
+                } else { // else error out because there is a decimal by itself
+                  System.out.println("Error: Cannot take a decimal by itself");
+                  break;
+                }
+              } else if (i < str.length() - 1) { // if there is no existing character before the decimal
+                if (Character.isDigit(str.charAt(i + 1))) { // check if the decimal is followed by a number
+                  build_token += str.charAt(i);
+                  first_decimal = false;
+                } else { // else error out because there is a decimal by itself
+                  System.out.println("Error: Cannot take a decimal by itself");
+                  break;
+                }
+              }
+            } else if (str.charAt(i) == '.' && !first_decimal) { // if there is a decimal but it isn't the first
+              if (i < str.length() - 1) {
+                if (Character.isDigit(str.charAt(+1))) { // check if followed by a digit, if so then
+                                                         // complete current token and start a new one with this decimal
+                  i--;
+                  break;
+                } else { // else return error for trying to put 2 decimals in the same number
+                  System.out.println("Error: Cannot have 2 decimals in one number");
+                  build_token = "";
+                  break;
+                }
+              } else { // else return error for trying to put 2 decimals in the same number
+                System.out.println("Error: Cannot have 2 decimals in one number");
+                build_token = "";
+                break;
+              }
+            } else if (str.charAt(i) == ' ') { // if space ignore
+              break;
+            } else { // if non-digit or decimal then go back to loop with current character to try
+                     // something else
+              i--;
+              break;
+            }
+            i++;
+          }
+        }
+        if (!build_token.isEmpty()) { // if build token isn't empty and loop ends then add token
+          System.out.println(build_token);
+          Token curr_token = new Token(build_token, str, 0, null);
+          tokens.add(curr_token);
+
+        }
+        ///////////////////////////////////////////////// Eligh
+        if (str.charAt(i) == ':') {
+
+          // if it has another colon it is a function header
+          if (str.charAt(i + 1) == ':') {
+            Token fcHeader = new Token(str, filename, i, TokenType.FC_HEADER);
+            tokens.add(fcHeader);
+          }
+
+          // if it doesn't have a colon it is simply a colon
+          else {
+            Token colon = new Token(str, filename, i, TokenType.COLON);
+            tokens.add(colon);
+          }
+        }
+
+        // if there is a ! it is potentially a relOp
+        if (str.charAt(i) == '!') {
+
+          // must have an = to be valid
+          if (str.charAt(i + 1) == '=') {
+            Token nEqRelOp = new Token(str, filename, i, TokenType.REL_OP);
+            tokens.add(nEqRelOp);
+          }
+
+          // not valid case
+          else {
+            formattedTokenizerError(currentString, lineNum, filename);
+          }
+        }
+        ////////////////////////////////////////////// Kellen
+
         // If this is the case, dealing with a letter
         if (Character.isLetter(str.charAt(i))) {
           // Minimally, the current token will be made up of just this character
@@ -126,11 +299,12 @@ public class JottTokenizer {
     sc.close();
 
     return tokens;
+
   }
 
-  private static void formattedTokenizerError(String errorMessage, int lineNumber, String filename){
-    System.err.println("Syntax Error"); 
+  private static void formattedTokenizerError(String errorMessage, int lineNumber, String filename) {
+    System.err.println("Syntax Error");
     System.err.println(errorMessage);
     System.err.println(filename + ":" + lineNumber);
-}
+  }
 }
