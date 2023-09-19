@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import provided.Token;
 
-public class NumberFunction {
+public class ElighP1 {
 
     public static ArrayList<Token> read_numToken(String str) {
         
