@@ -81,7 +81,7 @@ public class JottTokenizerTester {
         testCases.add(new TestCase("RelOpTokens", filename, relOpsTokens, false));
 
         ArrayList<Token> idKeywordTokens = new ArrayList<>();
-        filename = "tokenizerTestCases/idKeywords.jott";
+        filename = "jott_translator/src/tokenizerTestCases/idKeywords.jott";
         idKeywordTokens.add(new Token("hello", filename, 1, TokenType.ID_KEYWORD));
         idKeywordTokens.add(new Token("Hello", filename, 1, TokenType.ID_KEYWORD));
         idKeywordTokens.add(new Token("Integer", filename, 1, TokenType.ID_KEYWORD));

@@ -35,8 +35,11 @@ public class JottTokenizer {
       return null;
     }
 
+    int lineNum = 0;
+
     while (sc.hasNext()) {
       String str = sc.nextLine();
+      lineNum++;
       for (int i = 0; i < str.length(); i++) {
         System.out.println(str.charAt(i));
         // make new tokens and add them to the ArrayList token
@@ -124,4 +127,10 @@ public class JottTokenizer {
 
     return tokens;
   }
+
+  private static void formattedTokenizerError(String errorMessage, int lineNumber, String filename){
+    System.err.println("Syntax Error"); 
+    System.err.println(errorMessage);
+    System.err.println(filename + ":" + lineNumber);
+}
 }
