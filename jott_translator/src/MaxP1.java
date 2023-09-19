@@ -60,34 +60,96 @@ public class MaxP1 {
                     }
                 }
 
-                System.out.println("The token to add: " +  currentString);
+                System.out.println("The id token to add: " +  currentString);
                 // Now that all the characters with the current id are found, construct the token
                 Token currentToken = new Token(currentString, filename, lineNum, TokenType.ID_KEYWORD);
                 // Append the token to the list
                 tokens.add(currentToken);
             }
+            else if(str.charAt(i) == '"'){
+                String currentString = "\"";
+                // Check to ensure that the string will end in a "
+                boolean stringEndsWithQuote = false;
+                
+                // Increment i by 1 since the first " is already added to the currentString
+                i++;
 
-            // This is the token to be built in this loop
-           
+                // if(i + 1 < str.length()){
+                //     i++;
+                // }
+                // else{
+                //     // Hit an error in this case because the line ends before the string is completed
+                //     System.err.println("A string token on line " + lineNum + " did not end in a '\"' character.");
+                //     return null;
+                // }
+                while(i < str.length()){
+                    char currentChar = str.charAt(i);
+                    if(currentChar == '"'){
+                        // Means that you reached the end of the string
+                        // Mark the string as ending properly then finish the loop
+                        stringEndsWithQuote = true;
+                        currentString = currentString.concat(Character.toString(currentChar));
+                        break;
+                    }
+                    else if(Character.isLetter(currentChar) || Character.isDigit(currentChar) || currentChar == ' '){
+                        // If above is true, you still have a valid string
+                        currentString = currentString.concat(Character.toString(currentChar));
 
-            // After the above, if no error occured, check if the 
+                        // Iterate i to look at the next character 
+                        i++;
+                    }
+                    else{
+                        // In this case you hit a invalid follow up in a string, break to hit the below error
+                        System.err.println("ERROR: A string token included the invalid character: " + currentChar);
+                        System.err.println("On line number: " + lineNum);
+                        break;
+                    }
+
+                    // Figure out how to add a check to see if you didn't end the string before the line ended
+                }
+
+                if(!stringEndsWithQuote){
+                    // Means that you hit an error as the string never ended properly
+                    System.err.println("ERROR: A string token did not end in a '\"' character on line: " + lineNum);
+                    // System.err.println("String included invalid character: " + str.charAt(i));
+                    return null;
+                }
+
+                System.out.println("The string token to add: " +  currentString);
+                // No errors found for the string, so make a new token
+                Token currentToken = new Token(currentString, filename, lineNum, TokenType.STRING);
+                // Append the token to the list
+                tokens.add(currentToken);
+            }
+
         }
 
         return tokens;
 
     }
 
+
+
     public static void main(String[] args){
         // Need to handle the letter and "" case 
         // Will eventually do some testing of it here
+
+        // id/keyword testing
+        readLetterTokens("A");
         readLetterTokens("something");
         readLetterTokens("UPPER CASE");
         readLetterTokens("Sta11");
         readLetterTokens("Tes1ing");
+        readLetterTokens("a b C D");
+        readLetterTokens("First\nSecond");
+
+        // string testing
+        readLetterTokens("\"Sample\"");
         
     }
     
 }
+
 
 
 /*
@@ -106,5 +168,11 @@ public class MaxP1 {
  * Ask Scott about if the letters only include the 26 alphanumeric letters for upper and lower case
  * or if it includes other symbolds like & $ ! ?
  * 
+ * For a string, do we still consider the string valid if you just have a " followed by nothing with a 
+ * " after?  It seems like it SHOULD work but I don't know that for certain.
  * 
+ * 
+ * Can I assume there are no multi line strings?
+ * Based on page 2 of hte Jott write up, yes.  
+ * Strings are NOT allowed to wrap lines
  */
