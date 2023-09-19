@@ -74,14 +74,6 @@ public class MaxP1 {
                 // Increment i by 1 since the first " is already added to the currentString
                 i++;
 
-                // if(i + 1 < str.length()){
-                //     i++;
-                // }
-                // else{
-                //     // Hit an error in this case because the line ends before the string is completed
-                //     System.err.println("A string token on line " + lineNum + " did not end in a '\"' character.");
-                //     return null;
-                // }
                 while(i < str.length()){
                     char currentChar = str.charAt(i);
                     if(currentChar == '"'){
@@ -100,9 +92,9 @@ public class MaxP1 {
                     }
                     else{
                         // In this case you hit a invalid follow up in a string, break to hit the below error
-                        System.err.println("ERROR: A string token included the invalid character: " + currentChar);
-                        System.err.println("On line number: " + lineNum);
-                        break;
+                        String errMessage = "Invalid token \"" + currentChar + "\"";
+                        formattedTokenizerError(errMessage, lineNum, filename);
+                        return null;
                     }
 
                     // Figure out how to add a check to see if you didn't end the string before the line ended
@@ -110,8 +102,8 @@ public class MaxP1 {
 
                 if(!stringEndsWithQuote){
                     // Means that you hit an error as the string never ended properly
-                    System.err.println("ERROR: A string token did not end in a '\"' character on line: " + lineNum);
-                    // System.err.println("String included invalid character: " + str.charAt(i));
+                    String errorMessage = "ERROR: A string token did not end in a \" character on line: " + lineNum;
+                    formattedTokenizerError(errorMessage, lineNum, filename);
                     return null;
                 }
 
@@ -129,6 +121,16 @@ public class MaxP1 {
     }
 
 
+    public static void printTokenList(ArrayList<Token> tokenList){
+        System.out.println("Printing a token list in order: ");
+    }
+
+    public static void formattedTokenizerError(String errorMessage, int lineNumber, String filename){
+        System.err.println("Syntax Error"); 
+        System.err.println(errorMessage);
+        System.err.println(filename + ":" + lineNumber);
+    }
+
 
     public static void main(String[] args){
         // Need to handle the letter and "" case 
@@ -143,8 +145,22 @@ public class MaxP1 {
         readLetterTokens("a b C D");
         readLetterTokens("First\nSecond");
 
+        System.out.println("\nString Testing:");
+
         // string testing
         readLetterTokens("\"Sample\"");
+        readLetterTokens("\" Testing Spaces Here \"");
+        readLetterTokens("\"1234567890\"");
+        readLetterTokens("\"All 011a\"");
+        readLetterTokens("\"String ends here");
+        readLetterTokens("\"Invalid?!\"");
+
+        System.out.println("\nCombined Testing:");
+
+        // Combined testing
+        readLetterTokens("id \"string\"");
+        readLetterTokens(" key\" str1ng \" ");
+        
         
     }
     
