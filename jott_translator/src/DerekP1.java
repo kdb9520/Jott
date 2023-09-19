@@ -32,21 +32,21 @@ public class DerekP1 {
       for (int i = 0; i < str.length(); i++) {
         System.out.println(str.charAt(i));
         // make new tokens and add them to the ArrayList token
-        while (str.charAt(i) == ' ') {
+        while (str.charAt(i) == ' ') { // loop on white spaces 
           continue;
         }
-        if (str.charAt(i) == '#') {
+        if (str.charAt(i) == '#') { // handle comments throw away everything until /n
           while (str.charAt(i) != '\n') {
             System.out.println(str.charAt(i));
-            if (i + 1 < str.length()){
+            if (i + 1 < str.length()) {
               i++;
-            }
-            else{
+            } else {
               break;
             }
           }
         }
-        if (str.charAt(i) == ',') {
+        // handle single comma, brack, and brace cases
+        if (str.charAt(i) == ',') { 
           Token comma = new Token(str, filename, i, TokenType.COMMA);
           tokens.add(comma);
         } else if (str.charAt(i) == ']') {
