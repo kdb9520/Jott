@@ -284,7 +284,7 @@ continue;
               }
             } else if (str.charAt(i) == '.' && !first_decimal) { // if there is a decimal but it isn't the first
               if (i < str.length() - 1) {
-                if (Character.isDigit(str.charAt(+1))) { // check if followed by a digit, if so then
+                if (Character.isDigit(str.charAt(i + 1))) { // check if followed by a digit, if so then
                                                          // complete current token and start a new one with this decimal
                   i--;
                   break;
