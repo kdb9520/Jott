@@ -152,7 +152,7 @@ public class JottTokenizer {
           // must have an = to be valid
           if (i + 1 < str.length() && str.charAt(i + 1) == '=') {
             build_token += str.charAt(i + 1);
-            Token nEqRelOp = new Token(build_token, filename, i, TokenType.REL_OP);
+            Token nEqRelOp = new Token(build_token, filename, lineNum, TokenType.REL_OP);
             tokens.add(nEqRelOp);
             build_token = "";
           }
@@ -195,7 +195,6 @@ public class JottTokenizer {
             }
           }
 
-          System.out.println("The id token to add: " + currentString);
           // Now that all the characters with the current id are found, construct the
           // token
           Token currentToken = new Token(currentString, filename, lineNum, TokenType.ID_KEYWORD);
@@ -243,7 +242,6 @@ public class JottTokenizer {
             return null;
           }
 
-          System.out.println("The string token to add: " + currentString);
           // No errors found for the string, so make a new token
           Token currentToken = new Token(currentString, filename, lineNum, TokenType.STRING);
           // Append the token to the list
@@ -305,7 +303,6 @@ public class JottTokenizer {
           }
         }
         if (!build_token.isEmpty()) { // if build token isn't empty and loop ends then add token
-          System.out.println(build_token);
           Token curr_token = new Token(build_token, filename, lineNum, TokenType.NUMBER);
           tokens.add(curr_token);
 
