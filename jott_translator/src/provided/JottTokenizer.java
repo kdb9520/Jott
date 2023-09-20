@@ -59,6 +59,7 @@ public class JottTokenizer {
               break;
             }
           }
+          continue;
         }
         // handle single comma, brack, and brace cases
         if (str.charAt(i) == ',') {
