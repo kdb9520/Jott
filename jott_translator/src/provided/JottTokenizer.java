@@ -168,9 +168,10 @@ continue;
               errMessage = "Invalid token \"" + str.charAt(i + 1) + "\"";
             }
             else {
-              errMessage = "Placeholder";
+              errMessage = "Line ends with '!'";
             }
             formattedTokenizerError(errMessage, lineNum, filename);
+            return null;
           }
         }
         ////////////////////////////////////////////// Kellen
