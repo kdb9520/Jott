@@ -195,12 +195,14 @@ public class JottTokenizer {
             build_token += str.charAt(i + 1);
             Token fcHeader = new Token(build_token, filename, i, TokenType.FC_HEADER);
             tokens.add(fcHeader);
+            build_token = "";
           }
 
           // if it doesn't have a colon it is simply a colon
           else {
             Token colon = new Token(build_token, filename, i, TokenType.COLON);
             tokens.add(colon);
+            build_token = "";
           }
         }
 
@@ -213,6 +215,7 @@ public class JottTokenizer {
             build_token += str.charAt(i + 1);
             Token nEqRelOp = new Token(build_token, filename, i, TokenType.REL_OP);
             tokens.add(nEqRelOp);
+            build_token = "";
           }
 
           // not valid case
