@@ -47,9 +47,9 @@ public class JottTokenizer {
         String build_token = new String(); // initialize string to build token
         boolean first_decimal = true; // set boolean to check if multiple decimals are found in the same string
 
-        while (str.charAt(i) == ' ') { // loop on white spaces
-          continue;
-        }
+        // while (str.charAt(i) == ' ') { // loop on white spaces
+        //   continue;
+        // }
         if (str.charAt(i) == '#') { // handle comments throw away everything until /n
           while (str.charAt(i) != '\n') {
             System.out.println(str.charAt(i));
@@ -130,7 +130,7 @@ public class JottTokenizer {
           build_token += str.charAt(i);
 
           // if it has another colon it is a function header
-          if (str.charAt(i + 1) == ':') {
+          if (i + 1 < str.length() && str.charAt(i + 1) == ':') {
             build_token += str.charAt(i + 1);
             Token fcHeader = new Token(build_token, filename, lineNum, TokenType.FC_HEADER);
             tokens.add(fcHeader);
@@ -150,7 +150,7 @@ public class JottTokenizer {
           build_token += str.charAt(i);
 
           // must have an = to be valid
-          if (str.charAt(i + 1) == '=') {
+          if (i + 1 < str.length() && str.charAt(i + 1) == '=') {
             build_token += str.charAt(i + 1);
             Token nEqRelOp = new Token(build_token, filename, i, TokenType.REL_OP);
             tokens.add(nEqRelOp);
@@ -160,7 +160,13 @@ public class JottTokenizer {
           // not valid case
           else {
             build_token = "";
-            String errMessage = "Invalid token \"" + str.charAt(i + 1) + "\"";
+            String errMessage; 
+            if(i + 1 < str.length()){
+              errMessage = "Invalid token \"" + str.charAt(i + 1) + "\"";
+            }
+            else {
+              errMessage = "Placeholder";
+            }
             formattedTokenizerError(errMessage, lineNum, filename);
           }
         }
