@@ -59,7 +59,7 @@ public class JottTokenizer {
               break;
             }
           }
-          continue;
+continue;
         }
         // handle single comma, brack, and brace cases
         if (str.charAt(i) == ',') {
@@ -267,16 +267,18 @@ public class JottTokenizer {
                     first_decimal = false;
                   }
                 } else { // else error out because there is a decimal by itself
-                  System.out.println("Error: Cannot take a decimal by itself");
-                  break;
+                  String errMessage = "Cannot take a decimal by itself";
+                  formattedTokenizerError(errMessage, lineNum, filename);
+                  return null;
                 }
               } else if (i < str.length() - 1) { // if there is no existing character before the decimal
                 if (Character.isDigit(str.charAt(i + 1))) { // check if the decimal is followed by a number
                   build_token += str.charAt(i);
                   first_decimal = false;
                 } else { // else error out because there is a decimal by itself
-                  System.out.println("Error: Cannot take a decimal by itself");
-                  break;
+                  String errMessage = "Cannot take a decimal by itself";
+                  formattedTokenizerError(errMessage, lineNum, filename);
+                  return null;
                 }
               }
             } else if (str.charAt(i) == '.' && !first_decimal) { // if there is a decimal but it isn't the first
@@ -286,14 +288,14 @@ public class JottTokenizer {
                   i--;
                   break;
                 } else { // else return error for trying to put 2 decimals in the same number
-                  System.out.println("Error: Cannot have 2 decimals in one number");
-                  build_token = "";
-                  break;
+                  String errMessage = "Cannot have 2 decimals in one number";
+                  formattedTokenizerError(errMessage, lineNum, filename);
+                  return null;
                 }
               } else { // else return error for trying to put 2 decimals in the same number
-                System.out.println("Error: Cannot have 2 decimals in one number");
-                build_token = "";
-                break;
+                String errMessage = "Cannot have 2 decimals in one number";
+                formattedTokenizerError(errMessage, lineNum, filename);
+                return null;
               }
             } else if (str.charAt(i) == ' ') { // if space ignore
               break;
