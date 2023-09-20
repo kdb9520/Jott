@@ -44,6 +44,9 @@ public class JottTokenizer {
         System.out.println(str.charAt(i));
         // make new tokens and add them to the ArrayList token
 
+        String build_token = new String(); // initialize string to build token
+        boolean first_decimal = true; // set boolean to check if multiple decimals are found in the same string
+
         while (str.charAt(i) == ' ') { // loop on white spaces
           continue;
         }
@@ -75,7 +78,7 @@ public class JottTokenizer {
           tokens.add(lbrace);
         }
         ///////////////////////////////////////////////////////////////////////// Derek
-        if (str.charAt(i) == '=') {
+        else if (str.charAt(i) == '=') {
           if (i + 1 < str.length() && str.charAt(i + 1) == '=') {
             i++; // increases iterator to unread part of string
             Token token = new Token("==", filename, lineNum, TokenType.REL_OP);
@@ -123,9 +126,7 @@ public class JottTokenizer {
           tokens.add(token);
         }
         ////////////////////////////// Justin
-        String build_token = new String(); // initialize string to build token
-        boolean first_decimal = true; // set boolean to check if multiple decimals are found in the same string
-        if ((Character.isDigit(str.charAt(i))) || (str.charAt(i) == '.')) { // if first char of token is digit or
+        else if ((Character.isDigit(str.charAt(i))) || (str.charAt(i) == '.')) { // if first char of token is digit or
                                                                             // decimal enter digit loop
           while (i < str.length()) { // check so that you don't go out of bounds
             if (Character.isDigit((str.charAt(i)))) { // if digit, add to token string
@@ -181,12 +182,12 @@ public class JottTokenizer {
         }
         if (!build_token.isEmpty()) { // if build token isn't empty and loop ends then add token
           System.out.println(build_token);
-          Token curr_token = new Token(build_token, str, 0, null);
+          Token curr_token = new Token(build_token, filename, lineNum, TokenType.NUMBER);
           tokens.add(curr_token);
 
         }
         ///////////////////////////////////////////////// Eligh
-        if (str.charAt(i) == ':') {
+        else if (str.charAt(i) == ':') {
           build_token += str.charAt(i);
 
           // if it has another colon it is a function header
@@ -204,7 +205,7 @@ public class JottTokenizer {
         }
 
         // if there is a ! it is potentially a relOp
-        if (str.charAt(i) == '!') {
+        else if (str.charAt(i) == '!') {
           build_token += str.charAt(i);
 
           // must have an = to be valid
@@ -224,7 +225,7 @@ public class JottTokenizer {
         ////////////////////////////////////////////// Kellen
 
         // If this is the case, dealing with a letter
-        if (Character.isLetter(str.charAt(i))) {
+        else if (Character.isLetter(str.charAt(i))) {
           // Minimally, the current token will be made up of just this character
           String currentString = new String();
           // Using this to loop over the characters to add as many to the current id
@@ -252,7 +253,8 @@ public class JottTokenizer {
           Token currentToken = new Token(currentString, filename, lineNum, TokenType.ID_KEYWORD);
           // Append the token to the list
           tokens.add(currentToken);
-        } else if (str.charAt(i) == '"') {
+        } 
+        else if (str.charAt(i) == '"') {
           String currentString = "\"";
           // Check to ensure that the string will end in a "
           boolean stringEndsWithQuote = false;
