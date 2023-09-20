@@ -193,14 +193,14 @@ public class JottTokenizer {
           // if it has another colon it is a function header
           if (str.charAt(i + 1) == ':') {
             build_token += str.charAt(i + 1);
-            Token fcHeader = new Token(build_token, filename, i, TokenType.FC_HEADER);
+            Token fcHeader = new Token(build_token, filename, lineNum, TokenType.FC_HEADER);
             tokens.add(fcHeader);
             build_token = "";
           }
 
           // if it doesn't have a colon it is simply a colon
           else {
-            Token colon = new Token(build_token, filename, i, TokenType.COLON);
+            Token colon = new Token(build_token, filename, lineNum, TokenType.COLON);
             tokens.add(colon);
             build_token = "";
           }
