@@ -282,6 +282,11 @@ continue;
                   return null;
                 }
               }
+              else { // else error out because there is a decimal by itself
+                String errMessage = "Cannot take a decimal by itself";
+                formattedTokenizerError(errMessage, lineNum, filename);
+                return null;
+              }
             } else if (str.charAt(i) == '.' && !first_decimal) { // if there is a decimal but it isn't the first
               if (i < str.length() - 1) {
                 if (Character.isDigit(str.charAt(i + 1))) { // check if followed by a digit, if so then
