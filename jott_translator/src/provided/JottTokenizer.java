@@ -155,6 +155,7 @@ public class JottTokenizer {
             Token nEqRelOp = new Token(build_token, filename, lineNum, TokenType.REL_OP);
             tokens.add(nEqRelOp);
             build_token = "";
+            i++;
           }
 
           // not valid case
