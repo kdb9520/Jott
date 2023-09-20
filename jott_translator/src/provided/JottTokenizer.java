@@ -136,6 +136,7 @@ public class JottTokenizer {
             Token fcHeader = new Token(build_token, filename, lineNum, TokenType.FC_HEADER);
             tokens.add(fcHeader);
             build_token = "";
+            i++;
           }
 
           // if it doesn't have a colon it is simply a colon
