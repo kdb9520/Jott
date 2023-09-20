@@ -62,19 +62,19 @@ public class JottTokenizer {
         }
         // handle single comma, brack, and brace cases
         if (str.charAt(i) == ',') {
-          Token comma = new Token(str, filename, i, TokenType.COMMA);
+          Token comma = new Token(",", filename, lineNum, TokenType.COMMA);
           tokens.add(comma);
         } else if (str.charAt(i) == ']') {
-          Token rbracket = new Token(str, filename, i, TokenType.R_BRACKET);
+          Token rbracket = new Token("]", filename, lineNum, TokenType.R_BRACKET);
           tokens.add(rbracket);
         } else if (str.charAt(i) == '[') {
-          Token lbracket = new Token(str, filename, i, TokenType.L_BRACKET);
+          Token lbracket = new Token("[", filename, lineNum, TokenType.L_BRACKET);
           tokens.add(lbracket);
         } else if (str.charAt(i) == '}') {
-          Token rbrace = new Token(str, filename, i, TokenType.R_BRACE);
+          Token rbrace = new Token("}", filename, lineNum, TokenType.R_BRACE);
           tokens.add(rbrace);
         } else if (str.charAt(i) == '{') {
-          Token lbrace = new Token(str, filename, i, TokenType.L_BRACE);
+          Token lbrace = new Token("{", filename, lineNum, TokenType.L_BRACE);
           tokens.add(lbrace);
         }
         ///////////////////////////////////////////////////////////////////////// Derek
