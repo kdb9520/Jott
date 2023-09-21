@@ -162,7 +162,7 @@ public class JottTokenizer {
             build_token = "";
             String errMessage; 
             if(i + 1 < str.length()){
-              errMessage = "Invalid token \"" + str.charAt(i + 1) + "\"";
+              errMessage = "Invalid token sequence \"" + str.charAt(i) + str.charAt(i + 1) + "\"";
             }
             else {
               errMessage = "Line ends with '!'";
