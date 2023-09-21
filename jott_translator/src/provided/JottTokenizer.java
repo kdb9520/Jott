@@ -50,7 +50,6 @@ public class JottTokenizer {
         // }
         if (str.charAt(i) == '#') { // handle comments throw away everything until /n
           while (str.charAt(i) != '\n') {
-            System.out.println(str.charAt(i));
             if (i + 1 < str.length()) {
               i++;
             } else {
@@ -239,7 +238,7 @@ public class JottTokenizer {
 
           if (!stringEndsWithQuote) {
             // Means that you hit an error as the string never ended properly
-            String errorMessage = "ERROR: A string token did not end in a \" character on line: " + lineNum;
+            String errorMessage = "A string token did not end in a \" character";
             formattedTokenizerError(errorMessage, lineNum, filename);
             return null;
           }

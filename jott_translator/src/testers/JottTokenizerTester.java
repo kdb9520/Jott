@@ -141,6 +141,8 @@ public class JottTokenizerTester {
         filename = "jott_translator/src/tokenizerTestCases/phase1ErrorExample.jott";
         testCases.add(new TestCase("Phase1ErrorExampleTest", filename, null, true));
 
+
+        // Group 6 test cases
         ArrayList<Token> emptyTokenList = new ArrayList<>();
         filename = "jott_translator/src/tokenizerTestCases/emptyFileTest.jott";
         testCases.add(new TestCase("EmptyFileTest", filename, emptyTokenList, false));
