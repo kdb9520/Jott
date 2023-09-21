@@ -149,6 +149,9 @@ public class JottTokenizerTester {
 
         filename = "jott_translator/src/tokenizerTestCases/commentOnly.jott";
         testCases.add(new TestCase("CommentOnlyTest", filename, emptyTokenList, false));
+
+        filename = "jott_translator/src/tokenizerTestCases/helloWorld.jott";
+        testCases.add(new TestCase("Hello World Test", filename, emptyTokenList, false));
     }
 
     private String tokenToString(Token t){
