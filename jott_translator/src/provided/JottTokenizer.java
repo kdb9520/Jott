@@ -48,7 +48,7 @@ public class JottTokenizer {
         boolean first_decimal = true; // set boolean to check if multiple decimals are found in the same string
 
         // while (str.charAt(i) == ' ') { // loop on white spaces
-        //   continue;
+        // continue;
         // }
         if (str.charAt(i) == '#') { // handle comments throw away everything until /n
           while (str.charAt(i) != '\n') {
@@ -59,7 +59,7 @@ public class JottTokenizer {
               break;
             }
           }
-continue;
+          continue;
         }
         // handle single comma, brack, and brace cases
         if (str.charAt(i) == ',') {
@@ -163,11 +163,10 @@ continue;
           // not valid case
           else {
             build_token = "";
-            String errMessage; 
-            if(i + 1 < str.length()){
+            String errMessage;
+            if (i + 1 < str.length()) {
               errMessage = "Invalid token \"" + str.charAt(i + 1) + "\"";
-            }
-            else {
+            } else {
               errMessage = "Line ends with '!'";
             }
             formattedTokenizerError(errMessage, lineNum, filename);
@@ -204,8 +203,7 @@ continue;
           Token currentToken = new Token(currentString, filename, lineNum, TokenType.ID_KEYWORD);
           // Append the token to the list
           tokens.add(currentToken);
-        } 
-        else if (str.charAt(i) == '"') {
+        } else if (str.charAt(i) == '"') {
           String currentString = "\"";
           // Check to ensure that the string will end in a "
           boolean stringEndsWithQuote = false;
@@ -253,7 +251,7 @@ continue;
         }
         //////////////////////////////////////////// Max
         else if ((Character.isDigit(str.charAt(i))) || (str.charAt(i) == '.')) { // if first char of token is digit or
-                                                                            // decimal enter digit loop
+          // decimal enter digit loop
           while (i < str.length()) { // check so that you don't go out of bounds
             if (Character.isDigit((str.charAt(i)))) { // if digit, add to token string
               build_token += str.charAt(i);
@@ -281,8 +279,7 @@ continue;
                   formattedTokenizerError(errMessage, lineNum, filename);
                   return null;
                 }
-              }
-              else { // else error out because there is a decimal by itself
+              } else { // else error out because there is a decimal by itself
                 String errMessage = "Cannot take a decimal by itself";
                 formattedTokenizerError(errMessage, lineNum, filename);
                 return null;
@@ -290,7 +287,7 @@ continue;
             } else if (str.charAt(i) == '.' && !first_decimal) { // if there is a decimal but it isn't the first
               if (i < str.length() - 1) {
                 if (Character.isDigit(str.charAt(i + 1))) { // check if followed by a digit, if so then
-                                                         // complete current token and start a new one with this decimal
+                  // complete current token and start a new one with this decimal
                   i--;
                   break;
                 } else { // else return error for trying to put 2 decimals in the same number
