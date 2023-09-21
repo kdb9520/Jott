@@ -41,9 +41,7 @@ public class JottTokenizer {
       String str = sc.nextLine();
       lineNum++;
       for (int i = 0; i < str.length(); i++) {
-        System.out.println(str.charAt(i));
         // make new tokens and add them to the ArrayList token
-
         String build_token = new String(); // initialize string to build token
         boolean first_decimal = true; // set boolean to check if multiple decimals are found in the same string
 
@@ -59,7 +57,7 @@ public class JottTokenizer {
               break;
             }
           }
-continue;
+          continue;
         }
         // handle single comma, brack, and brace cases
         if (str.charAt(i) == ',') {

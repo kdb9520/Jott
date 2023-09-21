@@ -141,6 +141,12 @@ public class JottTokenizerTester {
         filename = "jott_translator/src/tokenizerTestCases/phase1ErrorExample.jott";
         testCases.add(new TestCase("Phase1ErrorExampleTest", filename, null, true));
 
+        ArrayList<Token> emptyTokenList = new ArrayList<>();
+        filename = "jott_translator/src/tokenizerTestCases/emptyFileTest.jott";
+        testCases.add(new TestCase("EmptyFileTest", filename, emptyTokenList, false));
+
+        filename = "jott_translator/src/tokenizerTestCases/commentOnly.jott";
+        testCases.add(new TestCase("CommentOnlyTest", filename, emptyTokenList, false));
     }
 
     private String tokenToString(Token t){
