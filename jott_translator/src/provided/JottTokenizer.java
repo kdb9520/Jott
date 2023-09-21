@@ -6,7 +6,7 @@ import java.io.FileNotFoundException;
 /**
  * This class is responsible for tokenizing Jott code.
  * 
- * @author 
+ * @author Max O'Malley, 
  **/
 
 import java.util.ArrayList;
