@@ -45,9 +45,6 @@ public class JottTokenizer {
         String build_token = new String(); // initialize string to build token
         boolean first_decimal = true; // set boolean to check if multiple decimals are found in the same string
 
-        // while (str.charAt(i) == ' ') { // loop on white spaces
-        //   continue;
-        // }
         if (str.charAt(i) == '#') { // handle comments throw away everything until /n
           while (str.charAt(i) != '\n') {
             if (i + 1 < str.length()) {
@@ -75,7 +72,6 @@ public class JottTokenizer {
           Token lbrace = new Token("{", filename, lineNum, TokenType.L_BRACE);
           tokens.add(lbrace);
         }
-        ///////////////////////////////////////////////////////////////////////// Derek
         else if (str.charAt(i) == '=') {
           if (i + 1 < str.length() && str.charAt(i + 1) == '=') {
             i++; // increases iterator to unread part of string
@@ -123,7 +119,6 @@ public class JottTokenizer {
           Token token = new Token("*", filename, lineNum, TokenType.MATH_OP);
           tokens.add(token);
         }
-        ////////////////////////////// Justin
         else if (str.charAt(i) == ':') {
           build_token += str.charAt(i);
 
@@ -171,8 +166,6 @@ public class JottTokenizer {
             return null;
           }
         }
-        ////////////////////////////////////////////// Kellen
-
         // If this is the case, dealing with a letter
         else if (Character.isLetter(str.charAt(i))) {
           // Minimally, the current token will be made up of just this character
@@ -248,7 +241,6 @@ public class JottTokenizer {
           // Append the token to the list
           tokens.add(currentToken);
         }
-        //////////////////////////////////////////// Max
         else if ((Character.isDigit(str.charAt(i))) || (str.charAt(i) == '.')) { // if first char of token is digit or
                                                                             // decimal enter digit loop
           while (i < str.length()) { // check so that you don't go out of bounds
@@ -315,8 +307,6 @@ public class JottTokenizer {
           tokens.add(curr_token);
 
         }
-        ///////////////////////////////////////////////// Eligh
-
       }
     }
     sc.close();
