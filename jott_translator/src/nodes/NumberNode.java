@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
-import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
 
-public class NumberNode implements JottTree {
+public class NumberNode extends ExpressionNode {
     private Token token;
     
     public NumberNode (Token t) {
@@ -35,7 +34,7 @@ public class NumberNode implements JottTree {
         return this.token.getToken();
     }
 
-    static public IDNode partseIDNode(ArrayList<Token> tokens) {
+    static public IDNode parseNumberNode(ArrayList<Token> tokens) {
         if (tokens.get(0).getTokenType() != TokenType.NUMBER) {
             // throw syntax exception
         }

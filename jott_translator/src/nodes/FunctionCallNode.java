@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 
-import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
 
-public class FunctionCallNode implements JottTree {
+public class FunctionCallNode extends ExpressionNode {
     private IDNode funcName;
     private FuncParamNode params;
     
