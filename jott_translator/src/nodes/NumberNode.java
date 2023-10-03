@@ -35,7 +35,7 @@ public class NumberNode implements JottTree {
         return this.token.getToken();
     }
 
-    static public IDNode partseIDNode(ArrayList<Token> tokens) {
+    static public IDNode parseIDNode(ArrayList<Token> tokens) {
         if (tokens.get(0).getTokenType() != TokenType.NUMBER) {
             // throw syntax exception
         }

@@ -35,7 +35,7 @@ public class IDNode implements JottTree {
         return this.token.getToken();
     }
 
-    static public IDNode partseIDNode(ArrayList<Token> tokens) throws SyntaxException {
+    static public IDNode parseIDNode(ArrayList<Token> tokens) throws SyntaxException {
         if (tokens.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token " + tokens.get(0) + 
             "with type " + tokens.get(0).getTokenType() +
