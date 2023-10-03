@@ -34,10 +34,10 @@ public class NumberNode extends ExpressionNode {
         return this.token.getToken();
     }
 
-    static public IDNode parseNumberNode(ArrayList<Token> tokens) {
+    static public NumberNode parseNumberNode(ArrayList<Token> tokens) {
         if (tokens.get(0).getTokenType() != TokenType.NUMBER) {
             // throw syntax exception
         }
-        return new IDNode(tokens.remove(0));
+        return new NumberNode(tokens.remove(0));
     }
 }

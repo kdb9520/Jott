@@ -40,4 +40,21 @@ public class FunctionCallNode extends ExpressionNode {
         output += "]";
         return output;
     }
+
+    public static parseFunctionCallNode(ArrayList<> tokenList):
+        if (tokenList.get(0).getTokenType() != TokenType.FC_HEADER){
+            throw new SyntaxException("Token types don't match");
+        }
+        tokenList.pop();
+        IDNode f_name = IDNode.partseIDNode(tokenList);
+        if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
+            throw new SyntaxException("Token types is not LBrace");
+        }
+        tokenList.pop(0);
+        FuncParamNode f_p = FuncParamNode.parseFunctionParamNode(tokenList);
+        if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
+            throw new SyntaxException("Token types is not RBrace");
+        }
+        tokenList.pop(0);
+        return new FunctionCallNode(f_name, f_p);
 }
