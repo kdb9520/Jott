@@ -6,7 +6,7 @@ import provided.TokenType;
 
 abstract class ExpressionNode implements JottTree {
 
-    static ExpressionNode parseExpression(ArrayList<Token> tokens) {
+    static ExpressionNode parseExpression(ArrayList<Token> tokens) throws SyntaxException{
         if (tokens.get(0).getTokenType() == TokenType.ID_KEYWORD) {
             return IDNode.parseIDNode(tokens);
         }
@@ -15,6 +15,9 @@ abstract class ExpressionNode implements JottTree {
         }
         if (tokens.get(0).getTokenType() == TokenType.FC_HEADER) {
             return FunctionCallNode.parseFunctionCallNode(tokens);
+        }
+        else {
+            throw new SyntaxException("ExpressionNode does not have a valid token type");
         }
     }
     
