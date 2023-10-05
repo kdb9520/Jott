@@ -14,7 +14,7 @@ abstract class ExpressionNode implements JottTree {
             return NumberNode.parseNumberNode(tokens);
         }
         if (tokens.get(0).getTokenType() == TokenType.FC_HEADER) {
-            return FunctionCallNode;
+            return FunctionCallNode.parseFunctionCallNode(tokens);
         }
     }
     
