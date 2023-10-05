@@ -17,7 +17,8 @@ abstract class ExpressionNode implements JottTree {
             return FunctionCallNode.parseFunctionCallNode(tokens);
         }
         else {
-            throw new SyntaxException("ExpressionNode does not have a valid token type");
+            throw new SyntaxException("ExpressionNode does not have a valid token type", 
+            tokens.get(0));
         }
     }
     

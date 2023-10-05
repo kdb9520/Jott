@@ -43,9 +43,9 @@ public class FunctionCallNode extends ExpressionNode {
 
     public static FunctionCallNode parseFunctionCallNode(ArrayList<Token> tokenList){
         if (tokenList.get(0).getTokenType() != TokenType.FC_HEADER){
-            throw new SyntaxException("Token types don't match");
+            throw new SyntaxException("Token types don't match", tokenList.get(0));
         }
-        tokenList.pop();
+        tokenList.pop(0);
         IDNode f_name = IDNode.parseIDNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
             throw new SyntaxException("Token types is not LBrace");
