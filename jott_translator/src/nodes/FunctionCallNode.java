@@ -41,12 +41,12 @@ public class FunctionCallNode extends ExpressionNode {
         return output;
     }
 
-    public static parseFunctionCallNode(ArrayList<> tokenList):
+    public static FunctionCallNode parseFunctionCallNode(ArrayList<Token> tokenList){
         if (tokenList.get(0).getTokenType() != TokenType.FC_HEADER){
             throw new SyntaxException("Token types don't match");
         }
         tokenList.pop();
-        IDNode f_name = IDNode.partseIDNode(tokenList);
+        IDNode f_name = IDNode.parseIDNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
             throw new SyntaxException("Token types is not LBrace");
         }
@@ -57,4 +57,5 @@ public class FunctionCallNode extends ExpressionNode {
         }
         tokenList.pop(0);
         return new FunctionCallNode(f_name, f_p);
+    }
 }
