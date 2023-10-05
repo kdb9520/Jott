@@ -48,12 +48,12 @@ public class FunctionCallNode extends ExpressionNode {
         tokenList.pop(0);
         IDNode f_name = IDNode.parseIDNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
-            throw new SyntaxException("Token types is not LBrace");
+            throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
         tokenList.pop(0);
         FuncParamNode f_p = FuncParamNode.parseFunctionParamNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
-            throw new SyntaxException("Token types is not RBrace");
+            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
         tokenList.pop(0);
         return new FunctionCallNode(f_name, f_p);

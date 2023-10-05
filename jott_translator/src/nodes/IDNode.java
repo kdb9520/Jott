@@ -38,7 +38,7 @@ public class IDNode extends ExpressionNode {
         if (tokens.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token " + tokens.get(0) + 
             "with type " + tokens.get(0).getTokenType() +
-            ".\nExpected Type: " + TokenType.ID_KEYWORD);
+            ".\nExpected Type: " + TokenType.ID_KEYWORD, tokens.get(0));
         }
         return new IDNode(tokens.remove(0));
     }
