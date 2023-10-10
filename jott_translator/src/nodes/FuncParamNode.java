@@ -6,6 +6,9 @@ import provided.JottTree;
 
 public class FuncParamNode implements JottTree {
     private Token token;
+    private ArrayList<ExpressionNode> paramsList;
+
+
     /*
      * What this needs is an array list of tokens as the professor suggested
      * 
@@ -41,7 +44,19 @@ public class FuncParamNode implements JottTree {
     }
 
     static public FuncParamNode parseFuncParamNode(ArrayList<Token> tokens) throws SyntaxException {
+        ArrayList<ExpressionNode> params = new ArrayList<ExpressionNode>(); 
         
+        // Check if the current token is an expression 
+        // If it is, make an expressionNode based on whatever its value is, by calling parseExpressionNode
+
+
+        // Start a while loop which continues while the next token is a , 
+        // 
+
+
+        // if(tokenList.get(0).getTokenType() == )
+
+
         // Here to stop errors for now
         throw new SyntaxException("PLACEHOLDER Error Message", tokens.get(0));
     }
