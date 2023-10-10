@@ -6,6 +6,10 @@ import provided.JottTree;
 
 public class FuncParamNode implements JottTree {
     private Token token;
+    /*
+     * What this needs is an array list of tokens as the professor suggested
+     * 
+     */
     
     public FuncParamNode (Token t) {
         // Confirm what format this needs 
