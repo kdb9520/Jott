@@ -3,14 +3,16 @@ import java.util.ArrayList;
 import provided.Token;
 import provided.TokenType;
 
+import provided.JottTree;
+
 public class FunctionDefNode implements JottTree {
 
-    private String funcName;
-    private String funcDefParams;
-    private String funcReturn;
-    private String body;
+    private IDNode funcName;
+    private FuncDefParamsNode funcDefParams;
+    private FuncReturnNode funcReturn;
+    private BodyNode body;
 
-    public FunctionDefNode (IDNode f_name, FunctionDefParamsNode f_d_p, FunctionReturnNode f_r, BodyNode b) {
+    public FunctionDefNode (IDNode f_name, FuncDefParamsNode f_d_p, FuncReturnNode f_r, BodyNode b) {
         this.funcName = f_name;
         this.funcDefParams = f_d_p;
         this.funcReturn = f_r;
@@ -37,41 +39,41 @@ public class FunctionDefNode implements JottTree {
         output += funcName.convertToJott();
         output += '[';
         output += funcDefParams.convertToJott();
-        output += ']:';
+        output += "]:";
         output += funcReturn.convertToJott();
         output += '{';
         output += body.convertToJott();
-        output += '}'
+        output += '}';
         return output;
     }
 
-    public String parseFunctionDefNode(ArrayList<Token> tokenList) {
+    public FunctionDefNode parseFunctionDefNode(ArrayList<Token> tokenList) {
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD) {
-            throw new SyntaxException("Token type is not ID or Keyword");
+            throw new SyntaxException("Token type is not ID or Keyword", tokenList.get(0));
         }
         tokenList.remove(0);
         funcName = IDNode.parseIDNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET) {
-            throw new SyntaxException("Token type is not Left Bracket");
+            throw new SyntaxException("Token type is not Left Bracket", tokenList.get(0));
         }
-        tokenList.reomve(0);
-        funcDefParams = FunctionDefParamsNode.parseFunctionDefParamsNode(tokenList); // maybe
+        tokenList.remove(0);
+        funcDefParams = FuncDefParamsNode.parseFunctionDefParamsNode(tokenList); // maybe
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET) {
-            throw new SyntaxException("Token type is not Right Bracket");
+            throw new SyntaxException("Token type is not Right Bracket", tokenList.get(0));
         }
         tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.COLON) {
-            throw new SyntaxException("Token type is not Colon");
+            throw new SyntaxException("Token type is not Colon", tokenList.get(0));
         }
         tokenList.remove(0);
-        funcReturn = FunctionReturnNode.parseFunctionReturnNode(tokenList);
+        funcReturn = FuncReturnNode.parseFunctionReturnNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE) {
-            throw new SyntaxException("Token type is not Left Brace");
+            throw new SyntaxException("Token type is not Left Brace", tokenList.get(0));
         }
         tokenList.remove(0);
         body = BodyNode.parseBodyNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE) {
-            throw new SyntaxException("Token type is not Right Brace");
+            throw new SyntaxException("Token type is not Right Brace", tokenList.get(0));
         }
         tokenList.remove(0);
 
