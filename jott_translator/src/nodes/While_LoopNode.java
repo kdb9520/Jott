@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 
+import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
 
-public class While_LoopNode extends ExpressionNode {
+public class While_LoopNode implements JottTree {
     private Token token;
     ExpressionNode exprNode;
     BodyNode bodyNode;
