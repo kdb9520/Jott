@@ -32,18 +32,18 @@ public interface BodyStmtNode extends JottTree {
             }
             else if(currentTokenText.equals("while")){
                 // Dealing with a while loop
-
+                return While_LoopNode.parseWhile_LoopNode(tokens);
             }
             
             // If neither of the above is the case then either have a var dec or asmt
             if(tokens.get(2).getTokenType() == TokenType.SEMICOLON){
                 // Look ahead to see if the semi colon exists, if it does you have a var dec
-
+                return VarDecNode.parseVarDecNode(tokens);
             }
             else if(tokens.get(2).getTokenType() == TokenType.ASSIGN || 
                 tokens.get(1).getTokenType() == TokenType.ASSIGN){
                 // Check if either above look ahead is assignment.  If either is true you have an asmt case
-
+                return AsmtNode.parseAsmtNode(tokens);
             }
             else{
                 // If none of the above is true, then you've run out of valid id_keyword options

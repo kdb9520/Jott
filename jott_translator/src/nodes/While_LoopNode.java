@@ -4,7 +4,7 @@ import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
 
-public class While_LoopNode implements JottTree {
+public class While_LoopNode implements BodyStmtNode {
     private Token token;
     ExpressionNode exprNode;
     BodyNode bodyNode;
