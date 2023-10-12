@@ -6,16 +6,16 @@ import provided.TokenType;
 
 public class VarDecNode implements JottTree {
 
-    private IDNode type;
+    private TypeNode type;
     private IDNode id;
 
-    public VarDecNode(IDNode type, IDNode id) {
+    public VarDecNode(TypeNode type, IDNode id) {
         this.type = type;
         this.id = id;
     }
 
     static public VarDecNode parseVarDecNode(ArrayList<Token> tokens) throws SyntaxException {
-        IDNode typeToken = IDNode.parseIDNode(tokens);
+        TypeNode typeToken = TypeNode.parseTypeNode(tokens);
         IDNode idToken = IDNode.parseIDNode(tokens);
 
         if (tokens.get(0).getTokenType() != TokenType.SEMICOLON) {

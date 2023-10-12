@@ -2,25 +2,23 @@ import java.util.ArrayList;
 
 import provided.JottTree;
 import provided.Token;
-import provided.TokenType;
 
 public class FunctionReturnNode implements JottTree {
 
-    private IDNode type;
+    private TypeNode type;
 
-    public FunctionReturnNode(IDNode type, IDNode id) {
+    public FunctionReturnNode(TypeNode type) {
         this.type = type;
     }
 
     static public FunctionReturnNode parseFunctionReturnNode(ArrayList<Token> tokens) throws SyntaxException {
-        //todo
-        throw new UnsupportedOperationException("Unimplemented method 'parseFunctionReturnNode'");
+        TypeNode type = TypeNode.parseTypeNode(tokens);
+        return new FunctionReturnNode(type);
     }
 
     @Override
     public String convertToJott() {
-        //todo
-        throw new UnsupportedOperationException("Unimplemented method 'convertToJott'");
+        return this.type.convertToJott();
     }
 
     @Override
