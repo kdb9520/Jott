@@ -43,31 +43,32 @@ public class ElifStmtNode extends ExpressionNode {
 
     /// example if stmt token list ["if", "[", "expr", "]", "{", "body", "}", "elif", elif content(handled in elif), "else", else content(handled in else)]
 
-    public static parseElifStmtNode(ArrayList<> tokenList):
+    public static ElifStmtNode parseElifStmtNode(ArrayList<Token> tokenList) throws SyntaxException {
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD){
             throw new SyntaxException("Token types don't match");
         }
         if (tokenList.get(0).getToken() != "elif"){
             throw new SyntaxException("Token string does not match")
         }
-        tokenList.pop();
+        tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET){
             throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
-        tokenList.pop();
-        ExpressionNode expr = ExpressionNode.parseExpressionNode(tokenList);
+        tokenList.remove(0);
+        ExpressionNode expr = ExpressionNode.parseExpression(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET){
             throw new SyntaxException("Token types is not RBrace");
         }
-        tokenList.pop(0);
+        tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
             throw new SyntaxException("Token types is not RBrace");
         }
-        tokenList.pop(0);
+        tokenList.remove(0);
         BodyStmtNode body = BodyStmtNode.parseBodyNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
             throw new SyntaxException("Token types is not RBrace");
         }
-        tokenList.pop(0);
+        tokenList.remove(0);
         return new ElifStmtNode(expr, body);
+    }
 }

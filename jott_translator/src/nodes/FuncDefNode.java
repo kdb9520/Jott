@@ -51,6 +51,9 @@ public class FuncDefNode implements JottTree {
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Token type is not ID or Keyword", tokenList.get(0));
         }
+        if (tokenList.get(0).getToken() != "def") {
+            throw new SyntaxException("Token is not keyword 'def'", tokenList.get(0));
+        }
         tokenList.remove(0);
         IDNode funcName = IDNode.parseIDNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET) {

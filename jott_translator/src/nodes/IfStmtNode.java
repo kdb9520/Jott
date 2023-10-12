@@ -6,10 +6,10 @@ import provided.TokenType;
 public class IfStmtNode extends ExpressionNode {
     private ExpressionNode expr;
     private BodyStmtNode body;
-    private List<ElifStmtNode> elif_nodes;
+    private ArrayList<ElifStmtNode> elif_nodes;
     private ElseStmtNode el;
     
-    public IfStmtNode (ExpressionNode expr, BodyStmtNode body, List<ElifStmtNode> elif_nodes, ElseStmtNode el) {
+    public IfStmtNode (ExpressionNode expr, BodyStmtNode body, ArrayList<ElifStmtNode> elif_nodes, ElseStmtNode el) {
         this.expr = expr;
         this.body = body;
         this.elif_nodes = elif_nodes;
@@ -42,7 +42,7 @@ public class IfStmtNode extends ExpressionNode {
         output  += "]{";
         output += body.convertToJott();
         output += "}";
-        if (elif_nodes.length != 0) {
+        if (elif_nodes.size() != 0) {
             foreach (node in elif_nodes) {
                 output += node.convertToJott();
             }
@@ -55,40 +55,40 @@ public class IfStmtNode extends ExpressionNode {
 
     /// example if stmt token list ["if", "[", "expr", "]", "{", "body", "}", "elif", elif content(handled in elif), "else", else content(handled in else)]
 
-    public static parseIfStmtNode(ArrayList<> tokenList):
-        <ArrayList> elif_nodes = new ArrayList<ElifStmtNode>();
-        ElseStmtNode else_node = new ElseStmtNode();
+    public static IfStmtNode parseIfStmtNode(ArrayList<Token> tokenList) throws SyntaxException {
+        ArrayList<ElifStmtNode> elif_nodes = new ArrayList<ElifStmtNode>();
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD){
             throw new SyntaxException("Token types don't match");
         }
         if (tokenList.get(0).getToken() != "if"){
             throw new SyntaxException("Token string does not match")
         }
-        tokenList.pop();
+        tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET){
             throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
-        tokenList.pop();
-        ExpressionNode expr = ExpressionNode.parseExpressionNode(tokenList);
+        tokenList.remove(0);
+        ExpressionNode expr = ExpressionNode.parseExpression(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET){
             throw new SyntaxException("Token types is not RBrace");
         }
-        tokenList.pop(0);
+        tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
             throw new SyntaxException("Token types is not RBrace");
         }
-        tokenList.pop(0);
+        tokenList.remove(0);
         BodyStmtNode body = BodyStmtNode.parseBodyNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
             throw new SyntaxException("Token types is not RBrace");
         }
-        tokenList.pop(0);
-        while ((tokenList.get(0).getTokenType == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken == "elif")) {
-            ElifStmtNode current_elif = ElifStmtNode.paresElifStmtNode(tokenList);
-            elif_nodes.append(current_elif);
+        tokenList.remove(0);
+        while ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken() == "elif")) {
+            ElifStmtNode current_elif = ElifStmtNode.parseElifStmtNode(tokenList);
+            elif_nodes.add(current_elif);
         }
         if (tokenList.get(0).getToken() == "else"){
             ElseStmtNode el = ElseStmtNode.parseElseStmtNode(tokenList);
         }
         return new IfStmtNode(expr, body, elif_nodes, el);
+    }
 }
