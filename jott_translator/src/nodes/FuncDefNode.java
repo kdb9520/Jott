@@ -5,14 +5,14 @@ import provided.TokenType;
 
 import provided.JottTree;
 
-public class FunctionDefNode implements JottTree {
+public class FuncDefNode implements JottTree {
 
     private IDNode funcName;
     private FuncDefParamsNode funcDefParams;
     private FuncReturnNode funcReturn;
     private BodyNode body;
 
-    public FunctionDefNode (IDNode f_name, FuncDefParamsNode f_d_p, FuncReturnNode f_r, BodyNode b) {
+    public FuncDefNode (IDNode f_name, FuncDefParamsNode f_d_p, FuncReturnNode f_r, BodyNode b) {
         this.funcName = f_name;
         this.funcDefParams = f_d_p;
         this.funcReturn = f_r;
@@ -47,7 +47,7 @@ public class FunctionDefNode implements JottTree {
         return output;
     }
 
-    public static FunctionDefNode parseFunctionDefNode(ArrayList<Token> tokenList) {
+    public static FuncDefNode parseFuncDefNode(ArrayList<Token> tokenList) {
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Token type is not ID or Keyword", tokenList.get(0));
         }
@@ -66,7 +66,7 @@ public class FunctionDefNode implements JottTree {
             throw new SyntaxException("Token type is not Colon", tokenList.get(0));
         }
         tokenList.remove(0);
-        FuncReturnNode funcReturn = FuncReturnNode.parseFunctionReturnNode(tokenList);
+        FuncReturnNode funcReturn = FuncReturnNode.parseFuncReturnNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE) {
             throw new SyntaxException("Token type is not Left Brace", tokenList.get(0));
         }
@@ -77,6 +77,6 @@ public class FunctionDefNode implements JottTree {
         }
         tokenList.remove(0);
 
-        return new FunctionDefNode(funcName, funcDefParams, funcReturn, body);
+        return new FuncDefNode(funcName, funcDefParams, funcReturn, body);
     }
 }
