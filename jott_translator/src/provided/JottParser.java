@@ -18,6 +18,9 @@ public class JottParser {
      *         or null upon an error in parsing.
      */
     public static JottTree parse(ArrayList<Token> tokens){
+      // To my understanding, this would need to have a try catch loop in which 
+      // the token list has the program call 
+
 		return null;
     }
 }
