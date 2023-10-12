@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import provided.Token;
 import provided.TokenType;
 
-public class IfStmtNode extends ExpressionNode {
+public class IfStmtNode implements BodyStmtNode {
     private ExpressionNode expr;
     private BodyStmtNode body;
     private ArrayList<ElifStmtNode> elif_nodes;
@@ -62,7 +62,7 @@ public class IfStmtNode extends ExpressionNode {
             throw new SyntaxException("Token types don't match", tokenList.get(0));
         }
         if (tokenList.get(0).getToken() != "if"){
-            throw new SyntaxException("Token string does not match", tokenList.get(0))
+            throw new SyntaxException("Token string does not match", tokenList.get(0));
         }
         tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET){
