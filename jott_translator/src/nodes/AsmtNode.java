@@ -61,6 +61,12 @@ public class AsmtNode implements JottTree {
         }
         // Now no matter what, call the convert to Jott on the ID
         stringToReturn.concat(varName.convertToJott());
+        stringToReturn.concat("=");
+        // Call the expression node's convert 
+        stringToReturn.concat(exprValue.convertToJott());
+        stringToReturn.concat(";");
+        // The string's constructed
+        return stringToReturn;
 
     }
 
