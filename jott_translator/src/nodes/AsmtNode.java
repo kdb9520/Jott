@@ -5,7 +5,7 @@ import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
 
-public class AsmtNode implements JottTree {
+public class AsmtNode implements BodyStmtNode {
     
     private TypeNode type;
     private IDNode varName;

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import provided.Token;
 import provided.TokenType;
 
-public class FunctionCallNode extends ExpressionNode {
+public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     private IDNode funcName;
     private FuncParamNode params;
     

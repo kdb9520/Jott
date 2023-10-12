@@ -43,7 +43,8 @@ public class IfStmtNode extends ExpressionNode {
         output += body.convertToJott();
         output += "}";
         if (elif_nodes.size() != 0) {
-            foreach (node in elif_nodes) {
+            for (int nodeIndex = 0; nodeIndex < elif_nodes.size(); nodeIndex++){
+                ElifStmtNode node = elif_nodes.get(nodeIndex);
                 output += node.convertToJott();
             }
         }
@@ -58,10 +59,10 @@ public class IfStmtNode extends ExpressionNode {
     public static IfStmtNode parseIfStmtNode(ArrayList<Token> tokenList) throws SyntaxException {
         ArrayList<ElifStmtNode> elif_nodes = new ArrayList<ElifStmtNode>();
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD){
-            throw new SyntaxException("Token types don't match");
+            throw new SyntaxException("Token types don't match", tokenList.get(0));
         }
         if (tokenList.get(0).getToken() != "if"){
-            throw new SyntaxException("Token string does not match")
+            throw new SyntaxException("Token string does not match", tokenList.get(0))
         }
         tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET){
@@ -70,25 +71,29 @@ public class IfStmtNode extends ExpressionNode {
         tokenList.remove(0);
         ExpressionNode expr = ExpressionNode.parseExpression(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET){
-            throw new SyntaxException("Token types is not RBrace");
+            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
         tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
-            throw new SyntaxException("Token types is not RBrace");
+            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
         tokenList.remove(0);
-        BodyStmtNode body = BodyStmtNode.parseBodyNode(tokenList);
+        BodyStmtNode body = BodyStmtNode.parseBodyStmt(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
-            throw new SyntaxException("Token types is not RBrace");
+            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
         tokenList.remove(0);
         while ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken() == "elif")) {
             ElifStmtNode current_elif = ElifStmtNode.parseElifStmtNode(tokenList);
             elif_nodes.add(current_elif);
         }
+
+        ElseStmtNode elseStmt = null;
         if (tokenList.get(0).getToken() == "else"){
-            ElseStmtNode el = ElseStmtNode.parseElseStmtNode(tokenList);
+            elseStmt = ElseStmtNode.parseElseStmtNode(tokenList);
         }
-        return new IfStmtNode(expr, body, elif_nodes, el);
+        // There needs to be a way to handle the else statement here if it does not exist.
+        // If it is null then treat it as not existing
+        return new IfStmtNode(expr, body, elif_nodes, elseStmt);
     }
 }
