@@ -1,5 +1,7 @@
 package provided;
 
+// import nodes;
+
 /**
  * This class is responsible for paring Jott Tokens
  * into a Jott parse tree.
@@ -18,8 +20,18 @@ public class JottParser {
      *         or null upon an error in parsing.
      */
     public static JottTree parse(ArrayList<Token> tokens){
-      // To my understanding, this would need to have a try catch loop in which 
-      // the token list has the program call 
+      // We need to change the nodes to be a package so we can grab the info from it 
+      // In this separate package
+
+      // To my understanding, this would need to have a try catch in which 
+      // the token list just has the top most token look for the program definition
+      try {
+
+      }
+      // WILL BE CHANGED TO SYNTAX ERROR LATER
+      catch (Error e){
+
+      }
 
 		return null;
     }
