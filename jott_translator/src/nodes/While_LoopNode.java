@@ -53,21 +53,21 @@ public class While_LoopNode extends ExpressionNode {
             throw new SyntaxException("Invalid token: ", tokens.get(0));
         }
         tokens.remove(0);
-        if (tokens.get(0).getTokenType() != TokenType.L_BRACE) {
-            throw new SyntaxException("Invalid token ", tokens.get(0));
-        }
-        tokens.remove(0);
-        ExpressionNode expr = ExpressionNode.parseExpression(tokens);
-        if (tokens.get(0).getTokenType() != TokenType.R_BRACE) {
-            throw new SyntaxException("Invalid token", tokens.get(0));
-        }
-        tokens.remove(0);
         if (tokens.get(0).getTokenType() != TokenType.L_BRACKET) {
             throw new SyntaxException("Invalid token ", tokens.get(0));
         }
         tokens.remove(0);
-        BodyNode body = BodyNode.parseBodyNode(tokens);
+        ExpressionNode expr = ExpressionNode.parseExpression(tokens);
         if (tokens.get(0).getTokenType() != TokenType.R_BRACKET) {
+            throw new SyntaxException("Invalid token", tokens.get(0));
+        }
+        tokens.remove(0);
+        if (tokens.get(0).getTokenType() != TokenType.L_BRACE) {
+            throw new SyntaxException("Invalid token ", tokens.get(0));
+        }
+        tokens.remove(0);
+        BodyNode body = BodyNode.parseBodyNode(tokens);
+        if (tokens.get(0).getTokenType() != TokenType.R_BRACE) {
             throw new SyntaxException("Invalid token ", tokens.get(0));
         }
         tokens.remove(0);
