@@ -7,7 +7,6 @@ package nodes;
  * @author Max O'Malley
  */
 
-
 import provided.JottTree;
 
 import java.util.ArrayList;
@@ -17,7 +16,11 @@ import provided.TokenType;
 
 public class ProgramNode implements JottTree {
     // Stubbing this out first
+    ArrayList<FuncDefNode> functionDefinitions;
 
+    public ProgramNode(ArrayList<FuncDefNode> funcDefArray){
+        this.functionDefinitions = funcDefArray;
+    }
 
     public boolean validateTree() {
         // TODO
@@ -40,13 +43,29 @@ public class ProgramNode implements JottTree {
     }
 
     public String convertToJott() {
-        return "PLACEHOLDER, WIP FUNCTION";
+        String stringToReturn = "";
+        String currentFunctionText;
+
+        for(int funcIndex = 0; funcIndex < this.functionDefinitions.size(); funcIndex++){
+            // Iterate through all the function definitions, and call their convert to Jott func
+            currentFunctionText = functionDefinitions.get(funcIndex).convertToJott();
+            stringToReturn.concat(currentFunctionText);
+        }
+
+        return stringToReturn;
     }
 
     
-    public static ProgramNode parseProgramNode(ArrayList<Token> tokens){
+    public static ProgramNode parseProgramNode(ArrayList<Token> tokens) throws SyntaxException {
+        // Create an empty func def array in case you're adding something to it
+        ArrayList<FuncDefNode> funcDefList;
+        FuncDefNode currentFunc;
+        while ((tokens.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokens.get(0).getToken() == "def")) {
+            // Now that we know there's a function definition, add it to the list 
+            currentFunc = FuncDefNode.parseFuncDefNode(tokens);
+            funcDefList.add(currentFunc);
+        }
 
-        // TO DO
-        return null;
+        return new ProgramNode(funcDefList);
     }
 }
