@@ -22,7 +22,7 @@ public class FuncDefParamsNode implements JottTree {
         return "not implemented";
     }
 
-    public String convertToJava() {
+    public String convertToJava(String className) {
         // TODO
         return "not implemented";
     }
@@ -35,15 +35,23 @@ public class FuncDefParamsNode implements JottTree {
     public String convertToJott() {
         String output = "";
 
-        for (int i = 0; i < this.paramIds.length; i++) {
-            output += this.paramIds[i] + ":" + paramTypes[i] + ", ";
+        for (int i = 0; i < this.paramIds.size(); i++) {
+            output += this.paramIds.get(i) + ":" + this.paramTypes.get(i) + ", ";
         }
-        if (output.length != 0) {
+        if (output.length() != 0) {
             output = output.substring(0, output.length()-2);
         }
+
+        // I don't know if this is actually of the proper format?
+        return output;
     }
 
-    public static FuncDefParamsNode parseFuncDefParamsNode(ArrayList<Token> tokenList) {
+    public boolean validateTree(){
+        // TODO
+        return false;
+    }
+
+    public static FuncDefParamsNode parseFuncDefParamsNode(ArrayList<Token> tokenList) throws SyntaxException {
         ArrayList<IDNode> paramIds = new ArrayList<IDNode>();
         ArrayList<TypeNode> paramTypes = new ArrayList<TypeNode>();
 
@@ -82,7 +90,7 @@ public class FuncDefParamsNode implements JottTree {
             tokenList.remove(0);
         }
 
-        return new FuncDefParamsNode(this.paramIds, this.paramTypes);
+        return new FuncDefParamsNode(paramIds, paramTypes);
 
 
         // do checks
