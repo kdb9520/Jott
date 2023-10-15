@@ -1,9 +1,7 @@
 package nodes;
 
-import java.beans.Expression;
 import java.util.ArrayList;
 
-import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
 

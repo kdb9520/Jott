@@ -2,8 +2,6 @@ package nodes;
 
 import java.util.ArrayList;
 
-import javax.xml.crypto.dsig.keyinfo.RetrievalMethod;
-
 import provided.Token;
 import provided.TokenType;
 

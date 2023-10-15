@@ -7,9 +7,9 @@ import provided.TokenType;
 
 public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     private IDNode funcName;
-    private FuncParamNode params;
+    private FuncDefParamsNode params;
     
-    public FunctionCallNode (IDNode f_name, FuncParamNode f_p) {
+    public FunctionCallNode (IDNode f_name, FuncDefParamsNode f_p) {
         this.funcName = f_name;
         this.params = f_p;
     }
@@ -58,7 +58,7 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
         tokenList.remove(0);
-        FuncParamNode f_p = FuncParamNode.parseFuncParamNode(tokenList);
+        FuncDefParamsNode f_p = FuncDefParamsNode.parseFuncDefParamsNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
             throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
