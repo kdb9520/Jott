@@ -58,7 +58,7 @@ public class ProgramNode implements JottTree {
     
     public static ProgramNode parseProgramNode(ArrayList<Token> tokens) throws SyntaxException {
         // Create an empty func def array in case you're adding something to it
-        ArrayList<FuncDefNode> funcDefList;
+        ArrayList<FuncDefNode> funcDefList = new ArrayList<FuncDefNode>();
         FuncDefNode currentFunc;
         while ((tokens.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokens.get(0).getToken() == "def")) {
             // Now that we know there's a function definition, add it to the list 

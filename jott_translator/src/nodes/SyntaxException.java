@@ -1,3 +1,5 @@
+package nodes;
+
 import provided.Token;
 
 public class SyntaxException extends Exception {

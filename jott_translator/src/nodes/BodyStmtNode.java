@@ -1,3 +1,5 @@
+package nodes;
+
 /**
  * An interface representing the body statement, primarily used to give 
  * access to the static function parseBodyStmt for use in other nodes. 
