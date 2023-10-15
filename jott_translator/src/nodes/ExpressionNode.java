@@ -40,7 +40,11 @@ abstract class ExpressionNode implements JottTree {
         if(tokens.get(0).getTokenType() == TokenType.REL_OP ||
         tokens.get(0).getTokenType() == TokenType.MATH_OP){
             // In this case you have binary expression
-            
+            Token operator = tokens.remove(0);
+            // Get the right side node, then return a binaryExpressionNode
+            ExpressionNode right = parseExpression(tokens);
+            // Put return with binaryExpressionNode here
+            return new BinaryExpressionNode(left, right, operator);
         }
         else {
             return left;
