@@ -35,8 +35,10 @@ public class BodyNode implements JottTree {
         for (BodyStmtNode body : this.bodyStmts) {
             output += body.convertToJott();
         }
-        String returnString = this.returnStmt.convertToJott();
-        output +=  " " + returnString;
+        if(this.returnStmt != null){
+            String returnString = this.returnStmt.convertToJott();
+            output +=  " " + returnString;
+        }
         return output;
     }
 
