@@ -20,7 +20,7 @@ public class BodyNode implements JottTree {
         return "not implemented";
     }
 
-    public String convertToJava() {
+    public String convertToJava(String className) {
         // TODO
         return "not implemented";
     }
@@ -40,7 +40,14 @@ public class BodyNode implements JottTree {
         return output;
     }
 
+    public boolean validateTree() {
+        // TODO
+        return false;
+    }
+
     public static BodyNode parseBodyNode(ArrayList<Token> tokenList) {
+        // This needs to account for the fact that all of the body_stmt's start with an ID_KEYWORD
+        // And that the return statement will sometimes be null
         while (tokenList.get(0).getTokenType() != TokenType.)
     }
 }
