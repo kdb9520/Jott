@@ -66,6 +66,8 @@ public class ProgramNode implements JottTree {
             funcDefList.add(currentFunc);
         }
 
+        // Add a check to see if token list is empty? 
+
         return new ProgramNode(funcDefList);
     }
 }
