@@ -9,7 +9,7 @@ package provided;
  * @author
  */
 
-import nodes;
+import nodes.*;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class JottParser {
         return ProgramNode.parseProgramNode(tokens);
       }
       // WILL BE CHANGED TO SYNTAX ERROR LATER
-      catch (Error e){
+      catch (SyntaxException e){
 
         System.err.println(e.getMessage());
         return null;

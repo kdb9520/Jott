@@ -1,3 +1,5 @@
+package nodes;
+
 import java.util.ArrayList;
 
 import provided.JottTree;
