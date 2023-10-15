@@ -9,6 +9,8 @@ package provided;
  * @author
  */
 
+import nodes;
+
 import java.util.ArrayList;
 
 public class JottParser {
@@ -26,13 +28,14 @@ public class JottParser {
       // To my understanding, this would need to have a try catch in which 
       // the token list just has the top most token look for the program definition
       try {
-
+        return ProgramNode.parseProgramNode(tokens);
       }
       // WILL BE CHANGED TO SYNTAX ERROR LATER
       catch (Error e){
 
+        System.err.println(e.getMessage());
+        return null;
       }
 
-		return null;
     }
 }

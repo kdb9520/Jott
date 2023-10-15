@@ -1,9 +1,12 @@
+package nodes;
+
 /**
  * A class representing the Program part of the Jott grammar.  Meant to be 
  * the upper most node in the JottTree structure.
  * 
  * @author Max O'Malley
  */
+
 
 import provided.JottTree;
 
