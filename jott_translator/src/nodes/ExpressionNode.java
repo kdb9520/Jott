@@ -13,23 +13,38 @@ abstract class ExpressionNode implements JottTree {
             // This is the case where you JUST have a boolean
             return BoolNode.parseBoolNode(tokens);
         } 
+        if(tokens.get(0).getTokenType() == TokenType.STRING){
+            // Have a string literal, which means just return that node 
+            return StringLitNode.parseStringLitNode(tokens);
+        }
 
+        // Now there may be cases where you have an op 
         ExpressionNode left;
         if (tokens.get(0).getTokenType() == TokenType.ID_KEYWORD) {
-            return IDNode.parseIDNode(tokens);
+            left = IDNode.parseIDNode(tokens);
         }
         if (tokens.get(0).getTokenType() == TokenType.NUMBER) {
-            return NumberNode.parseNumberNode(tokens);
+            left = NumberNode.parseNumberNode(tokens);
         }
         if (tokens.get(0).getTokenType() == TokenType.FC_HEADER) {
-            return FunctionCallNode.parseFunctionCallNode(tokens);
+            left = FunctionCallNode.parseFunctionCallNode(tokens);
         }
         else {
+            // If none of the previous ifs are true, then the expr node isn't valid 
             throw new SyntaxException("ExpressionNode does not have a valid token type", 
             tokens.get(0));
         }
 
-        // Look ahead 1 to see if you have a Math_op or rel_op, if so, then you have a binary expression
+        // Look at the current token now, if it is a math_op or rel_op, you have a binary expression
+        // Otherwise just return left
+        if(tokens.get(0).getTokenType() == TokenType.REL_OP ||
+        tokens.get(0).getTokenType() == TokenType.MATH_OP){
+            // In this case you have binary expression
+            
+        }
+        else {
+            return left;
+        }
     }
     
 }

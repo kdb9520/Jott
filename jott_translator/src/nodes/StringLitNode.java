@@ -35,6 +35,19 @@ public class StringLitNode extends ExpressionNode {
 
     public String convertToJott() {
         // This should be as simple as returning the string token for now
+        // Will need to look into string formatting of Jott Strings compared to other langs later
         return this.token.getToken();
     }
+
+    static public StringLitNode parseStringLitNode(ArrayList<Token> tokens) throws SyntaxException {
+        if(tokens.get(0).getTokenType() != TokenType.STRING){
+            throw new SyntaxException("Invalid token " + tokens.get(0) + 
+            "with type " + tokens.get(0).getTokenType() +
+            ".\nExpected Type: " + TokenType.STRING, tokens.get(0));
+        }
+
+        // If all the above passes, then just return a new stringLitNode
+        return new StringLitNode(tokens.remove(0));
+    }
+
 }
