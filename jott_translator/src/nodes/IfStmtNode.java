@@ -83,7 +83,7 @@ public class IfStmtNode implements BodyStmtNode {
             throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
         tokenList.remove(0);
-        while ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken() == "elif")) {
+        while ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken() == "elseif")) {
             ElifStmtNode current_elif = ElifStmtNode.parseElifStmtNode(tokenList);
             elif_nodes.add(current_elif);
         }
