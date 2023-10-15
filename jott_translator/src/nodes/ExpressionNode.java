@@ -11,7 +11,7 @@ abstract class ExpressionNode implements JottTree {
         if(tokens.get(0).getToken().equals("True") || 
             tokens.get(0).getToken().equals("False")){
             // This is the case where you JUST have a boolean
-            
+            return BoolNode.parseBoolNode(tokens);
         } 
 
         ExpressionNode left;

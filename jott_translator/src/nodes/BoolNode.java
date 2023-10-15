@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import provided.Token;
 import provided.TokenType;
 
-public class BoolNode {
+public class BoolNode extends ExpressionNode {
     private Token token;
     
     public BoolNode (Token t) {
