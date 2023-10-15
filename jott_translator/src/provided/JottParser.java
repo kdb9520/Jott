@@ -6,7 +6,7 @@ package provided;
  * This class is responsible for paring Jott Tokens
  * into a Jott parse tree.
  *
- * @author
+ * @author Max O'Malley
  */
 
 import nodes.*;
