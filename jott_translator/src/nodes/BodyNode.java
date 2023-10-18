@@ -57,6 +57,9 @@ public class BodyNode implements JottTree {
         (tokenList.get(0).getTokenType() == TokenType.FC_HEADER)) {
             BodyStmtNode curr_BodyStmtNode = BodyStmtNode.parseBodyStmt(tokenList);
             bodyStmtNodes.add(curr_BodyStmtNode);
+            if (tokenList.get(0).getTokenType() != TokenType.SEMICOLON) {
+                throw new SyntaxException("Token is not semi-colon", tokenList.get(0));
+            }
             tokenList.remove(0); // JUSTIN have to remove semi-colon after body statment
         }
         if ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken().equals("return"))) {
