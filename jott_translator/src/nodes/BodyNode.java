@@ -36,6 +36,10 @@ public class BodyNode implements JottTree {
         String output = "";
         for (BodyStmtNode body : this.bodyStmtNodes) {
             output += body.convertToJott();
+            if(body instanceof FunctionCallNode){
+                // This means you'd need to append a semicolon 
+                output += ";";
+            }
         }
         if(this.returnStmt != null){
             String returnString = this.returnStmt.convertToJott();
