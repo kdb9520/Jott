@@ -20,9 +20,12 @@ public interface BodyStmtNode extends JottTree {
         // would match any of the possible body statement cases
         if(tokens.get(0).getTokenType() == TokenType.FC_HEADER){
             // Means that you're dealing with a function header
-            return FunctionCallNode.parseFunctionCallNode(tokens);
-
-            
+            FunctionCallNode fcNode = FunctionCallNode.parseFunctionCallNode(tokens);
+            if (tokens.get(0).getTokenType() != TokenType.SEMICOLON) {
+                throw new SyntaxException("Token after function call is not a not a semi-colon", tokens.get(0));
+            }
+            tokens.remove(0); // JUSTIN have to remove semi-colon after function call
+            return fcNode;
         }
         // The other cases ALL start with an id_keyword
         // Both var dec and asmt could start with a type.  Check if its var dec by using look ahead? 
