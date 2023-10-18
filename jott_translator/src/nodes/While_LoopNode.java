@@ -52,7 +52,7 @@ public class While_LoopNode implements BodyStmtNode {
         if (tokens.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token ", tokens.get(0));
         }
-        if (tokens.get(0).getToken() != "while"){
+        if (!tokens.get(0).getToken().equals("while")){
             throw new SyntaxException("Invalid token: ", tokens.get(0));
         }
         tokens.remove(0);

@@ -24,6 +24,7 @@ public class TypeNode implements JottTree {
         }
 
         String token = t.getToken();
+        tokens.remove(0);
 
         if (token.equals("Double") || token.equals("Integer") 
             || token.equals("String") || token.equals("Boolean") 

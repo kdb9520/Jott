@@ -45,9 +45,9 @@ public class BinaryExpressionNode extends ExpressionNode {
         // This mostly just needs to call the convert to Jott of it's components
         String stringToReturn = "";
         // First, get the left side, then the operator, then the right
-        stringToReturn.concat(leftNode.convertToJott());
-        stringToReturn.concat(opToken.getToken());
-        stringToReturn.concat(rightNode.convertToJott());
+        stringToReturn = stringToReturn.concat(leftNode.convertToJott());
+        stringToReturn = stringToReturn.concat(opToken.getToken());
+        stringToReturn = stringToReturn.concat(rightNode.convertToJott());
 
         return stringToReturn;
     }

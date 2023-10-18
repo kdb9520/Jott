@@ -82,7 +82,7 @@ public class FuncDefParamsNode implements JottTree {
             paramTypes.add(type);
 
             if (tokenList.get(0).getTokenType() != TokenType.COMMA) {
-                if (tokenList.get(1).getTokenType() != TokenType.R_BRACKET) {
+                if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET) {
                     throw new SyntaxException("Token type is not Comma", tokenList.get(0));
                 } else {
                     break;

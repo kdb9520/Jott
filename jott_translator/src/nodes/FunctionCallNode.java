@@ -7,9 +7,11 @@ import provided.TokenType;
 
 public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     private IDNode funcName;
-    private FuncDefParamsNode params;
+    // private FuncDefParamsNode params;
+    // should be ParamsNode
+    ParamsNode params;
     
-    public FunctionCallNode (IDNode f_name, FuncDefParamsNode f_p) {
+    public FunctionCallNode (IDNode f_name, ParamsNode f_p) { // same thing should be ParamsNode
         this.funcName = f_name;
         this.params = f_p;
     }
@@ -54,13 +56,23 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         }
         tokenList.remove(0);
         IDNode f_name = IDNode.parseIDNode(tokenList);
-        if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
-            throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
+        // if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
+        //     throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
+        // }
+        // I think it should be bracket ???
+        if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET){
+            throw new SyntaxException("Token types is not LBracket", tokenList.get(0));
         }
         tokenList.remove(0);
-        FuncDefParamsNode f_p = FuncDefParamsNode.parseFuncDefParamsNode(tokenList);
-        if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
-            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
+        // FuncDefParamsNode f_p = FuncDefParamsNode.parseFuncDefParamsNode(tokenList);
+        // should be calling parseParamsNode
+        ParamsNode f_p = ParamsNode.parse_ParamsNode(tokenList);
+        // if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
+        //     throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
+        // }
+        // same thing should be bracket
+        if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET){
+            throw new SyntaxException("Token types is not RBracket", tokenList.get(0));
         }
         tokenList.remove(0);
         return new FunctionCallNode(f_name, f_p);

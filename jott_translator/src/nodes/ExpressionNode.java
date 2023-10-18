@@ -25,10 +25,10 @@ abstract class ExpressionNode implements JottTree {
         if (tokens.get(0).getTokenType() == TokenType.ID_KEYWORD) {
             left = IDNode.parseIDNode(tokens);
         }
-        if (tokens.get(0).getTokenType() == TokenType.NUMBER) {
+        else if (tokens.get(0).getTokenType() == TokenType.NUMBER) {
             left = NumberNode.parseNumberNode(tokens);
         }
-        if (tokens.get(0).getTokenType() == TokenType.FC_HEADER) {
+        else if (tokens.get(0).getTokenType() == TokenType.FC_HEADER) {
             left = FunctionCallNode.parseFunctionCallNode(tokens);
         }
         else {

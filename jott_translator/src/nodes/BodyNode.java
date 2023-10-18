@@ -53,11 +53,12 @@ public class BodyNode implements JottTree {
         // This needs to account for the fact that all of the body_stmt's start with an ID_KEYWORD
         // And that the return statement will sometimes be null
         ArrayList<BodyStmtNode> bodyStmtNodes = new ArrayList<BodyStmtNode>();
-        while ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken() != "return")) {
+        while ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && !(tokenList.get(0).getToken().equals("return"))) {
             BodyStmtNode curr_BodyStmtNode = BodyStmtNode.parseBodyStmt(tokenList);
             bodyStmtNodes.add(curr_BodyStmtNode);
+            tokenList.remove(0); // JUSTIN have to remove semi-colon after body statment
         }
-        if ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken() == "return")) {
+        if ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken().equals("return"))) {
             ReturnStmtNode returnStmtNode = ReturnStmtNode.parseReturnStmtNode(tokenList);
             return new BodyNode(bodyStmtNodes, returnStmtNode);
         }

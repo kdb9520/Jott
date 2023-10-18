@@ -57,7 +57,7 @@ public class FuncDefNode implements JottTree {
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Token type is not ID or Keyword", tokenList.get(0));
         }
-        if (tokenList.get(0).getToken() != "def") {
+        if (!tokenList.get(0).getToken().equals("def")) {
             throw new SyntaxException("Token is not keyword 'def'", tokenList.get(0));
         }
         tokenList.remove(0);
@@ -81,8 +81,9 @@ public class FuncDefNode implements JottTree {
         }
         tokenList.remove(0);
         BodyNode body = BodyNode.parseBodyNode(tokenList);
+        System.out.println("THISSSS TOKEN TYPE IS: " + tokenList.get(0).getTokenType());
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE) {
-            throw new SyntaxException("Token type is not Right Brace", tokenList.get(0));
+            throw new SyntaxException("Token type is not Right Brace it's " + tokenList.get(0).getTokenType(), tokenList.get(0));
         }
         tokenList.remove(0);
 

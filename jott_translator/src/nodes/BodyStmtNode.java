@@ -25,7 +25,7 @@ public interface BodyStmtNode extends JottTree {
         // The other cases ALL start with an id_keyword
         // Both var dec and asmt could start with a type.  Check if its var dec by using look ahead? 
         // I could look ahead 2 to see if there is a ; 
-        if(tokens.get(0).getTokenType() == TokenType.ID_KEYWORD){
+        if(tokens.get(0).getTokenType() == TokenType.ID_KEYWORD){ // should this be an else if???
             // Now determine which of the other options is the case 
             String currentTokenText = tokens.get(0).getToken();
             if(currentTokenText.equals("if")){
