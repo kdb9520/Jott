@@ -1,1 +1,1 @@
-def foo[nodes.IDNode@49097b5d:nodes.TypeNode@6e2c634b]:String{::print[x];}def main[]:Void{}
+def foo[]:Void{Integerwhile=5;::print[while];}
