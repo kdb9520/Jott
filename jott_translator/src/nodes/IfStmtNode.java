@@ -6,11 +6,11 @@ import provided.TokenType;
 
 public class IfStmtNode implements BodyStmtNode {
     private ExpressionNode expr;
-    private BodyStmtNode body;
+    private BodyNode body;
     private ArrayList<ElifStmtNode> elif_nodes;
     private ElseStmtNode el;
     
-    public IfStmtNode (ExpressionNode expr, BodyStmtNode body, ArrayList<ElifStmtNode> elif_nodes, ElseStmtNode el) {
+    public IfStmtNode (ExpressionNode expr, BodyNode body, ArrayList<ElifStmtNode> elif_nodes, ElseStmtNode el) {
         this.expr = expr;
         this.body = body;
         this.elif_nodes = elif_nodes;
@@ -79,7 +79,7 @@ public class IfStmtNode implements BodyStmtNode {
             throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
         tokenList.remove(0);
-        BodyStmtNode body = BodyStmtNode.parseBodyStmt(tokenList);
+        BodyNode body = BodyNode.parseBodyNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
             throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }

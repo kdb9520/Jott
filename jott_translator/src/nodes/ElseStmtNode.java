@@ -6,11 +6,9 @@ import provided.Token;
 import provided.TokenType;
 
 public class ElseStmtNode implements JottTree {
-    private ExpressionNode expr;
-    private BodyStmtNode body;
+    private BodyNode body;
     
-    public ElseStmtNode (ExpressionNode expr, BodyStmtNode body) {
-        this.expr = expr;
+    public ElseStmtNode (BodyNode body) {
         this.body = body;
     }
 
@@ -35,9 +33,8 @@ public class ElseStmtNode implements JottTree {
     }
 
     public String convertToJott() {
-        String output = "else[";
-        output += expr.convertToJott();
-        output  += "]{";
+        String output = "else";
+        output  += "{";
         output += body.convertToJott();
         output += "}";
         return output;
@@ -53,24 +50,15 @@ public class ElseStmtNode implements JottTree {
             throw new SyntaxException("Token string does not match", tokenList.get(0));
         }
         tokenList.remove(0);
-        if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET){
-            throw new SyntaxException("Token types is not LBracket", tokenList.get(0));
-        }
-        tokenList.remove(0);
-        ExpressionNode expr = ExpressionNode.parseExpression(tokenList);
-        if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET){
-            throw new SyntaxException("Token types is not RBracket", tokenList.get(0));
-        }
-        tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
             throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
         tokenList.remove(0);
-        BodyStmtNode body = BodyStmtNode.parseBodyStmt(tokenList);
+        BodyNode body = BodyNode.parseBodyNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
             throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
         tokenList.remove(0);
-        return new ElseStmtNode(expr, body);
+        return new ElseStmtNode(body);
     }
 }

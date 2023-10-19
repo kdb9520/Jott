@@ -8,9 +8,9 @@ import provided.JottTree;
 // This likely should get changed to a normal Jott Tree, as this is NOT an expressionNode
 public class ElifStmtNode implements JottTree {
     private ExpressionNode expr;
-    private BodyStmtNode body;
+    private BodyNode body;
     
-    public ElifStmtNode (ExpressionNode expr, BodyStmtNode body) {
+    public ElifStmtNode (ExpressionNode expr, BodyNode body) {
         this.expr = expr;
         this.body = body;
     }
@@ -67,7 +67,7 @@ public class ElifStmtNode implements JottTree {
             throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
         tokenList.remove(0);
-        BodyStmtNode body = BodyStmtNode.parseBodyStmt(tokenList);
+        BodyNode body = BodyNode.parseBodyNode(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
             throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
