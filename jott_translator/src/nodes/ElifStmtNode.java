@@ -55,16 +55,16 @@ public class ElifStmtNode implements JottTree {
         }
         tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET){
-            throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
+            throw new SyntaxException("Token types is not LBracket", tokenList.get(0));
         }
         tokenList.remove(0);
         ExpressionNode expr = ExpressionNode.parseExpression(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET){
-            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
+            throw new SyntaxException("Token types is not RBracket", tokenList.get(0));
         }
         tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
-            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
+            throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
         tokenList.remove(0);
         BodyStmtNode body = BodyStmtNode.parseBodyStmt(tokenList);
