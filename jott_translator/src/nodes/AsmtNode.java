@@ -1,5 +1,11 @@
 package nodes;
 
+/**
+ * This class handles the Assignment Node functionality from the Jott grammar.  
+ * 
+ * @author Max O'Malley 
+ */
+
 import java.util.ArrayList;
 
 import provided.Token;

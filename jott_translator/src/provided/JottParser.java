@@ -30,7 +30,7 @@ public class JottParser {
       try {
         return ProgramNode.parseProgramNode(tokens);
       }
-      // WILL BE CHANGED TO SYNTAX ERROR LATER
+
       catch (SyntaxException e){
 
         System.err.println(e.getMessage());
