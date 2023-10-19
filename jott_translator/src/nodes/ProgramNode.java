@@ -69,7 +69,9 @@ public class ProgramNode implements JottTree {
                 funcDefList.add(currentFunc);
             }
             else{
-                break;
+                // If you hit this case, it means there's a statement outside of a func, which is an error
+                throw new SyntaxException("Statements cannot be outside of function definitions", 
+                tokens.get(0));
             }
         }
 
