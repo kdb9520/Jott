@@ -1,5 +1,13 @@
 package nodes;
 
+/**
+ * Abstract Expression node meant to be used anytime an expr is called in the 
+ * Jott grammar.  Extended by anything that expr calls inside of the language.
+ * Makes use of BinaryExpressionNode in the cases where there is an <op> in the expr.
+ * 
+ * @author Max O'Malley 
+ */
+
 import java.util.ArrayList;
 
 import provided.JottTree;

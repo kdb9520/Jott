@@ -1,7 +1,8 @@
 package nodes;
 
 /**
- * This class handles the Assignment Node functionality from the Jott grammar.  
+ * This class handles the Assignment Node functionality from the Jott grammar.
+ * Deals with the cases where you have an id or type with look ahead.  
  * 
  * @author Max O'Malley 
  */
