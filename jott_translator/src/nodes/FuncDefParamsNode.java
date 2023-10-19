@@ -75,7 +75,7 @@ public class FuncDefParamsNode implements JottTree {
             }
             tokenList.remove(0);
 
-            if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD) {
+            if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD || tokenList.get(0).getToken().equals("Void")) {
                 throw new SyntaxException("Token type is not ID or Keyword", tokenList.get(0));
             }
             TypeNode type = TypeNode.parseTypeNode(tokenList);
