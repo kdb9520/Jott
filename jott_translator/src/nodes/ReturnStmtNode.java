@@ -53,9 +53,7 @@ public class ReturnStmtNode extends ExpressionNode {
         if (tokens.get(0).getTokenType() != TokenType.SEMICOLON) {
             throw new SyntaxException("Invalid return statement missing ; token type is: " + tokens.get(0).getTokenType(), tokens.get(0));
         }
-        System.out.println("TOKEN TYPE IS: " + tokens.get(0).getTokenType());
         tokens.remove(0);
-        System.out.println("TOKEN TYPE IS: " + tokens.get(0).getTokenType());
         return new ReturnStmtNode(expr);
     }
 }

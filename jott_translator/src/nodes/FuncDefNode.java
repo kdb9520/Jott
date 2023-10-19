@@ -81,7 +81,6 @@ public class FuncDefNode implements JottTree {
         }
         tokenList.remove(0);
         BodyNode body = BodyNode.parseBodyNode(tokenList);
-        System.out.println("THISSSS TOKEN TYPE IS: " + tokenList.get(0).getTokenType());
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE) {
             throw new SyntaxException("Token type is not Right Brace it's " + tokenList.get(0).getTokenType(), tokenList.get(0));
         }
