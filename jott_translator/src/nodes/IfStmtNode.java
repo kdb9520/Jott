@@ -62,21 +62,21 @@ public class IfStmtNode implements BodyStmtNode {
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD){
             throw new SyntaxException("Token types don't match", tokenList.get(0));
         }
-        if (tokenList.get(0).getToken() != "if"){
+        if (!tokenList.get(0).getToken().equals("if")){
             throw new SyntaxException("Token string does not match", tokenList.get(0));
         }
         tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET){
-            throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
+            throw new SyntaxException("Token types is not LBracket", tokenList.get(0));
         }
         tokenList.remove(0);
         ExpressionNode expr = ExpressionNode.parseExpression(tokenList);
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET){
-            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
+            throw new SyntaxException("Token types is not RBracket", tokenList.get(0));
         }
         tokenList.remove(0);
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
-            throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
+            throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
         tokenList.remove(0);
         BodyStmtNode body = BodyStmtNode.parseBodyStmt(tokenList);
@@ -84,13 +84,13 @@ public class IfStmtNode implements BodyStmtNode {
             throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }
         tokenList.remove(0);
-        while ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken() == "elseif")) {
+        while ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken().equals("elseif"))) {
             ElifStmtNode current_elif = ElifStmtNode.parseElifStmtNode(tokenList);
             elif_nodes.add(current_elif);
         }
 
         ElseStmtNode elseStmt = null;
-        if (tokenList.get(0).getToken() == "else"){
+        if (tokenList.get(0).getToken().equals("else")){
             elseStmt = ElseStmtNode.parseElseStmtNode(tokenList);
         }
         // There needs to be a way to handle the else statement here if it does not exist.

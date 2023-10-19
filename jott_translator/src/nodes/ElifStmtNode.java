@@ -50,7 +50,7 @@ public class ElifStmtNode implements JottTree {
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD){
             throw new SyntaxException("Token types don't match", tokenList.get(0));
         }
-        if (tokenList.get(0).getToken() != "elseif"){
+        if (!tokenList.get(0).getToken().equals("elseif")){
             throw new SyntaxException("Token string does not match", tokenList.get(0));
         }
         tokenList.remove(0);
