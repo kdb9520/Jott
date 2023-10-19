@@ -6,5 +6,5 @@
 
 def main[]:Void{
     Integer x = -4;
-	Integer y = - -4;
+	Integer y = -4;
 }
