@@ -68,6 +68,7 @@ public class AsmtNode implements BodyStmtNode {
         if(type != null){
             // Means that there is a type to add
             stringToReturn = stringToReturn.concat(type.convertToJott());
+            stringToReturn += " ";
         }
         // Now no matter what, call the convert to Jott on the ID
         stringToReturn = stringToReturn.concat(varName.convertToJott());

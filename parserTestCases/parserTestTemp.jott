@@ -1,1 +1,1 @@
-def foo[]:Void{Integerwhile=5;::print[while];}
+def foo[]:Void{Integer while=5;::print[while];}
