@@ -43,7 +43,7 @@ public class While_LoopNode implements BodyStmtNode {
         output += exprNode.convertToJott();
         output += "]";
         output += '{';
-        output += exprNode.convertToJott();
+        output += bodyNode.convertToJott();
         output += '}';
         return output;
     }
