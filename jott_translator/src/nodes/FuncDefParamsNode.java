@@ -37,7 +37,7 @@ public class FuncDefParamsNode implements JottTree {
         String output = "";
 
         for (int i = 0; i < this.paramIds.size(); i++) {
-            output += this.paramIds.get(i) + ":" + this.paramTypes.get(i) + ", ";
+            output += this.paramIds.get(i).convertToJott() + ":" + this.paramTypes.get(i).convertToJott() + ", ";
         }
         if (output.length() != 0) {
             output = output.substring(0, output.length()-2);
