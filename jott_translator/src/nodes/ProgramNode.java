@@ -61,10 +61,16 @@ public class ProgramNode implements JottTree {
         // Create an empty func def array in case you're adding something to it
         ArrayList<FuncDefNode> funcDefList = new ArrayList<FuncDefNode>();
         FuncDefNode currentFunc;
-        while ((tokens.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokens.get(0).getToken().equals("def"))) {
+        while (!tokens.isEmpty()) {
             // Now that we know there's a function definition, add it to the list 
-            currentFunc = FuncDefNode.parseFuncDefNode(tokens);
-            funcDefList.add(currentFunc);
+            if((tokens.get(0).getTokenType() == TokenType.ID_KEYWORD) && 
+            (tokens.get(0).getToken().equals("def"))){
+                currentFunc = FuncDefNode.parseFuncDefNode(tokens);
+                funcDefList.add(currentFunc);
+            }
+            else{
+                break;
+            }
         }
 
         // Add a check to see if token list is empty? 
