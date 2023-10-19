@@ -32,6 +32,11 @@ public class AsmtNode implements BodyStmtNode {
             // Handle the expression Node 
             ExpressionNode expr = ExpressionNode.parseExpression(tokens);
 
+            if(tokens.get(0).getTokenType() != TokenType.SEMICOLON){
+                throw new SyntaxException("asgn node is missing semicolon.", tokens.get(0));
+            }
+            tokens.remove(0);
+            
             return new AsmtNode(type, variableName, expr);
         }
         else {
@@ -44,6 +49,11 @@ public class AsmtNode implements BodyStmtNode {
             tokens.remove(0);
             // Handle the expression Node 
             ExpressionNode expr = ExpressionNode.parseExpression(tokens);
+
+            if(tokens.get(0).getTokenType() != TokenType.SEMICOLON){
+                throw new SyntaxException("asgn node is missing semicolon.", tokens.get(0));
+            }
+            tokens.remove(0);  
 
             return new AsmtNode(null, variableName, expr);
         }
