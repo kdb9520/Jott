@@ -9,7 +9,7 @@ Specifically, the instructions to compile and run will have \ characters that, i
 
 ### Instructions to Compile and Run:
 1. If it is desired to replace the parser tester file, then replace the JottParserTester.java inside of the src/testers folder before the following steps.
-2. Go into the src folder in the jott_translator, and run the following command on the command line: 
+2. Go into the src folder in the phase2 folder, and run the following command on the command line: 
 javac nodes/\*.java provided/\*.java testers/\*.java -d classes
 3. This will create the classes folder inside of the src folder. 
 4. Open up the classes folder and paste a folder named parserTestCases inside of the classes folder.  That parserTestCases folder should contain the .jott files accessed by the JottParserTester.  
