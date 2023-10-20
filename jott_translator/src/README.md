@@ -2,6 +2,7 @@
 
 ## Phase 2 Jott Parser
 
+Implementation of nodes that can be used to represent tokens in the form of a JottTree. The JottParser takes a list of tokens and scans through them in order to construct and accurate JottTree that can then be read and converted back into the original Jott code. In future parts implementation will be added to convert this tree into C, Python, and Java code.
 
 **Be sure to view this file as a proper markdown file to get the correct formatting for commands.**  
 Specifically, the instructions to compile and run will have \ characters that, if viewed as raw text, will make the commands to compile the code not work properly.
