@@ -1,7 +1,10 @@
-## Group 6 (Derek Pruski, Max O'Malley, Eligh Ros, Kellen Bell, Justin Ceiley)
+### Group 6 (Derek Pruski, Max O'Malley, Eligh Ros, Kellen Bell, Justin Ceiley)
 
 ## Phase 2 Jott Parser
 
+
+**Be sure to view this file as a proper markdown file to get the correct formatting for commands.**  
+Specifically, the instructions to compile and run will have \ characters that, if viewed as raw text, will make the commands to compile the code not work properly.
 
 ### Instructions to Compile and Run:
 1. Go into the src folder in the jott_translator, and run the following command on the command line: 
