@@ -15,6 +15,9 @@ import java.util.ArrayList;
 
 public class JottParser {
 
+  static String lastTokenFilename;
+  static int lastTokenLineNumber;
+
     /**
      * Parses an ArrayList of Jotton tokens into a Jott Parse Tree.
      * @param tokens the ArrayList of Jott tokens to parse
@@ -28,12 +31,23 @@ public class JottParser {
       // To my understanding, this would need to have a try catch in which 
       // the token list just has the top most token look for the program definition
       try {
+        if(tokens.size() != 0){
+          Token lastToken = tokens.get(tokens.size() - 1);
+          lastTokenFilename = lastToken.getFilename();
+          lastTokenLineNumber = lastToken.getLineNum();
+        }
         return ProgramNode.parseProgramNode(tokens);
       }
 
       catch (SyntaxException e){
 
         System.err.println(e.getMessage());
+        return null;
+      }
+      catch(IndexOutOfBoundsException e){
+        System.err.println("IndexOutOfBounds Exception");
+        System.err.println("Unexpected EOF Reached");
+        System.err.println(lastTokenFilename + ":" + lastTokenLineNumber);
         return null;
       }
 
