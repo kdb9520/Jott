@@ -43,7 +43,7 @@ public class BoolNode extends ExpressionNode {
             ".\nExpected Type: " + TokenType.ID_KEYWORD, tokens.get(0));
         }
         // Check to make sure the boolean text is in the correct format
-        if(!tokens.get(0).getToken().equals("True") || 
+        if(!tokens.get(0).getToken().equals("True") &&
             !tokens.get(0).getToken().equals("False")){  
             throw new SyntaxException("BoolNode has an invalid value that is not True or False: " + 
             tokens.get(0).getToken(),
