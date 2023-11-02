@@ -13,8 +13,8 @@ public class BoolNode extends ExpressionNode {
     }
 
     public boolean validateTree() {
-        // TODO
-        return false;
+        // Correct by default since the parser checks that
+        return true;
     }
 
     public String convertToJava(String classname) {
