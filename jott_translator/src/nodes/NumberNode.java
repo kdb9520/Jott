@@ -13,8 +13,8 @@ public class NumberNode extends ExpressionNode {
     }
 
     public boolean validateTree() {
-        // TODO
-        return false;
+        // This is always valid by itself, and will be valid by default
+        return true;
     }
 
     public String convertToJava(String classname) {

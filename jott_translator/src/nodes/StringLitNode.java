@@ -15,8 +15,8 @@ public class StringLitNode extends ExpressionNode {
     }
 
     public boolean validateTree() {
-        // TODO
-        return false;
+        // Valid by Default so return true
+        return true;
     }
 
     public String convertToJava(String classname) {
