@@ -57,7 +57,7 @@ public class IfStmtNode implements BodyStmtNode {
 
     /// example if stmt token list ["if", "[", "expr", "]", "{", "body", "}", "elif", elif content(handled in elif), "else", else content(handled in else)]
 
-    public static IfStmtNode parseIfStmtNode(ArrayList<Token> tokenList) throws SyntaxException {
+    public static IfStmtNode parseIfStmtNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
         ArrayList<ElifStmtNode> elif_nodes = new ArrayList<ElifStmtNode>();
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD){
             throw new SyntaxException("Token types don't match", tokenList.get(0));

@@ -57,7 +57,7 @@ public class ProgramNode implements JottTree {
     }
 
     
-    public static ProgramNode parseProgramNode(ArrayList<Token> tokens) throws SyntaxException {
+    public static ProgramNode parseProgramNode(ArrayList<Token> tokens) throws SyntaxException, SemanticException {
         // Create an empty func def array in case you're adding something to it
         ArrayList<FuncDefNode> funcDefList = new ArrayList<FuncDefNode>();
         FuncDefNode currentFunc;

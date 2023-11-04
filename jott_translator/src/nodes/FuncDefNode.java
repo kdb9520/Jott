@@ -53,7 +53,7 @@ public class FuncDefNode implements JottTree {
         return false;
     }
 
-    public static FuncDefNode parseFuncDefNode(ArrayList<Token> tokenList) throws SyntaxException {
+    public static FuncDefNode parseFuncDefNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Token type is not ID or Keyword", tokenList.get(0));
         }

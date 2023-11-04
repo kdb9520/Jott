@@ -42,7 +42,7 @@ public class ElseStmtNode implements JottTree {
 
     /// example if stmt token list ["if", "[", "expr", "]", "{", "body", "}", "elif", elif content(handled in elif), "else", else content(handled in else)]
 
-    public static ElseStmtNode parseElseStmtNode(ArrayList<Token> tokenList) throws SyntaxException{
+    public static ElseStmtNode parseElseStmtNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException{
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD){
             throw new SyntaxException("Token types don't match", tokenList.get(0));
         }

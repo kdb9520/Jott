@@ -46,6 +46,10 @@ public class JottParser {
         System.err.println(e.getMessage());
         return null;
       }
+      catch(SemanticException e){
+        System.err.println(e.getMessage());
+        return null;
+      }
       catch(IndexOutOfBoundsException e){
         System.err.println("IndexOutOfBounds Exception");
         System.err.println("Unexpected EOF Reached");

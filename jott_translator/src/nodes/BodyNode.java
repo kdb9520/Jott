@@ -53,7 +53,7 @@ public class BodyNode implements JottTree {
         return false;
     }
 
-    public static BodyNode parseBodyNode(ArrayList<Token> tokenList) throws SyntaxException {
+    public static BodyNode parseBodyNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
         // This needs to account for the fact that all of the body_stmt's start with an ID_KEYWORD
         // And that the return statement will sometimes be null
         ArrayList<BodyStmtNode> bodyStmtNodes = new ArrayList<BodyStmtNode>();

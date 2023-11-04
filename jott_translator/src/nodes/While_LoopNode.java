@@ -48,7 +48,7 @@ public class While_LoopNode implements BodyStmtNode {
         return output;
     }
 
-    static public While_LoopNode parseWhile_LoopNode(ArrayList<Token> tokens) throws SyntaxException {
+    static public While_LoopNode parseWhile_LoopNode(ArrayList<Token> tokens) throws SyntaxException, SemanticException {
         if (tokens.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token ", tokens.get(0));
         }

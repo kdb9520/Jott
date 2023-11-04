@@ -15,7 +15,7 @@ import provided.TokenType;
 
 public interface BodyStmtNode extends JottTree {
     
-    static BodyStmtNode parseBodyStmt(ArrayList<Token> tokens) throws SyntaxException{
+    static BodyStmtNode parseBodyStmt(ArrayList<Token> tokens) throws SyntaxException, SemanticException{
         // Similarly to the base expression node, this needs to check if the current token
         // would match any of the possible body statement cases
         if(tokens.get(0).getTokenType() == TokenType.FC_HEADER){
