@@ -3,8 +3,9 @@ import java.util.ArrayList;
 
 import provided.Token;
 import provided.TokenType;
-
 import provided.JottTree;
+
+import validate.symbolTable;
 
 public class FuncDefNode implements JottTree {
 
@@ -62,6 +63,32 @@ public class FuncDefNode implements JottTree {
         }
         tokenList.remove(0);
         IDNode funcName = IDNode.parseIDNode(tokenList);
+
+        // Add code for adding the function to the symbol table
+        Token funcNameToken = funcName.getNodeToken();
+        if(symbolTable.hasFunc(funcNameToken.getToken())){
+            // If this is true, then throw an error as you're trying to add a duplicate function
+            // I'm pretty sure this should cause an error?
+            String errMsg = "Attempted to add duplicate function name: " + funcNameToken.getToken();
+            throw new SemanticException(errMsg, funcNameToken);
+        }
+        else if(funcNameToken.getToken().equals("print") ||
+        funcNameToken.getToken().equals("concat") ||
+        funcNameToken.getToken().equals("length")){
+            // If this is true then you are trying to name a function the same as a built in
+            // one, which is an error.
+            String errMsg = "Attempted to name function same as a builtin function: " + funcNameToken.getToken();
+            throw new SemanticException(errMsg, funcNameToken);
+        }
+        else {
+            // If you hit here then you have a function that can be properly added
+            symbolTable.addFunc(funcNameToken.getToken());
+            
+            // Once you've added the function, set the active function here
+            symbolTable.setFunc(funcNameToken.getToken());
+        }
+
+
         if (tokenList.get(0).getTokenType() != TokenType.L_BRACKET) {
             throw new SyntaxException("Token type is not Left Bracket", tokenList.get(0));
         }
