@@ -2,9 +2,10 @@ package nodes;
 
 import java.util.ArrayList;
 
-import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
+
+import validate.symbolTable;
 
 public class VarDecNode implements BodyStmtNode {
 
@@ -16,9 +17,23 @@ public class VarDecNode implements BodyStmtNode {
         this.id = id;
     }
 
-    static public VarDecNode parseVarDecNode(ArrayList<Token> tokens) throws SyntaxException {
+    static public VarDecNode parseVarDecNode(ArrayList<Token> tokens) throws SyntaxException, SemanticException {
         TypeNode typeToken = TypeNode.parseTypeNode(tokens);
         IDNode idToken = IDNode.parseIDNode(tokens);
+
+        // Additionally code to add the current variable to the symbolTable
+        Token currentIdToken = idToken.getNodeToken();
+        Token currentTypeToken = typeToken.getNodeToken();
+        if(!symbolTable.hasVar(currentIdToken.getToken())){
+            // If this is the case then add the variable to the symbol table.
+            symbolTable.addVar(currentIdToken.getToken(), currentTypeToken.getToken());
+        }
+        else {
+            // If this is the case then you have a Semantic Error as you're trying to 
+            // redeclare the variable.
+            String errorMsg = "Attempted to redeclare already declared variable: " + currentIdToken.getToken();
+            throw new SemanticException(errorMsg, currentIdToken);
+        }
 
         if (tokens.get(0).getTokenType() != TokenType.SEMICOLON) {
             throw new SyntaxException("Variable Declaration missing semicolon.", tokens.get(0));
