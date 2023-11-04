@@ -12,6 +12,12 @@ public class IDNode extends ExpressionNode {
         this.token = t;
     }
 
+    public Token getNodeToken() {
+        // Getter for this node's token
+        // for use in AsmtNode's populating of the symbolTable
+        return token;
+    }
+
     public boolean validateTree() {
         // TODO
         return false;

@@ -31,6 +31,8 @@ public class symbolTable {
 
     // takes a function name and creates an empty hashmap to store to the functions hashmap
     public static void addFunc(String func_name) {
+        // There needs to be a check added here to make sure that no built in functions get added
+        // You CANNOT add print, concat, or length
         HashMap<String, String> curr_hash = new HashMap<String, String>();
         functions.put(func_name, curr_hash);
     }
@@ -52,7 +54,7 @@ public class symbolTable {
     }
 
     // adds new variable to current_function hashmap with key of var_name and value equal to string of type
-    public static void setVar(String var_name, String type) {
+    public static void addVar(String var_name, String type) {
         HashMap<String, String> curr_hash = functions.get(current_function);
         curr_hash.put(var_name, type);
     }

@@ -14,6 +14,12 @@ public class TypeNode implements JottTree {
         this.type = t;
     }
 
+    public Token getNodeToken() {
+        // Getter for this node's token
+        // for use in AsmtNode's populating of the symbolTable
+        return type;
+    }
+
     static public TypeNode parseTypeNode(ArrayList<Token> tokens) throws SyntaxException {
         Token t = tokens.get(0);
 
