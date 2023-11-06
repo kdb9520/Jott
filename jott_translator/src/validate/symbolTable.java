@@ -1,6 +1,7 @@
 package validate;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class is meant to be used across the nodes to properly validate in phase 3
@@ -79,6 +80,18 @@ public class symbolTable {
     // returns the entire symbol table (shouldn't need to use this)
     public static HashMap<String, HashMap<String, String>> getSymTab() {
         return functions;
+    }
+    public static void printSymTab() {
+        for (Map.Entry<String, HashMap<String, String>> funcs : functions.entrySet()) {
+            String curr_func = funcs.getKey();
+            HashMap<String, String> curr_map = funcs.getValue();
+            System.out.println("Function " + curr_func + "contains vars:");
+            for (Map.Entry<String, String> vars : curr_map.entrySet()) {
+                String var = vars.getKey();
+                String type = vars.getValue();
+                System.out.println("Var name: " + var + ", Var type: " + type);
+            }
+        }
     }
     // Have a current function value 
     // That current function value is set by the FuncDefNode
