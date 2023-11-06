@@ -33,6 +33,7 @@ public class JottParser {
       // To my understanding, this would need to have a try catch in which 
       // the token list just has the top most token look for the program definition
       try {
+        symbolTable.initSymbolTable();
         if(tokens.size() != 0){
           Token lastToken = tokens.get(tokens.size() - 1);
           lastTokenFilename = lastToken.getFilename();
