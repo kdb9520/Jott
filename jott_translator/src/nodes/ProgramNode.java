@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import provided.Token;
 import provided.TokenType;
 
+import validate.symbolTable;
+
 
 public class ProgramNode implements JottTree {
     // Stubbing this out first
@@ -76,6 +78,7 @@ public class ProgramNode implements JottTree {
         }
 
         // Add a check to see if token list is empty? 
+        symbolTable.printSymTab();
 
         return new ProgramNode(funcDefList);
     }
