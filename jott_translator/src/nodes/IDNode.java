@@ -20,7 +20,7 @@ public class IDNode extends ExpressionNode {
 
     public boolean validateTree() {
         // TODO
-        return false;
+        return true;
     }
 
     public String convertToJava(String classname) {
