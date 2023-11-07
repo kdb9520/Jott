@@ -125,8 +125,18 @@ public class AsmtNode implements BodyStmtNode {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        String tokenText = this.varName.getNodeToken().getToken();
+        TokenType tokenType = this.varName.getNodeToken().getTokenType();
+
+        // checking if the variable exists in the symbol table
+        if (!symbolTable.hasVar(tokenText)) {
+            return false;
+        }
+
+        // need to check that types on either side of assignment are the same
+        // If this is true then we can return true
+
+        return true;
     }
 
 }
