@@ -36,7 +36,7 @@ public class symbolTable {
         // There needs to be a check added here to make sure that no built in functions get added
         // You CANNOT add print, concat, or length
         HashMap<String, String> curr_hash = new HashMap<String, String>();
-        curr_hash.put("param_count", "0");
+        curr_hash.put("Param_count", "0");
         functions.put(func_name, curr_hash);
     }
 
