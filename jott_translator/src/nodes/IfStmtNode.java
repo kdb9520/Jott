@@ -18,8 +18,12 @@ public class IfStmtNode implements BodyStmtNode {
     }
 
     public boolean validateTree() {
-        // TODO
-        return false;
+        for (ElifStmtNode node : elif_nodes) {
+            if (!node.validateTree()) {
+                return false;
+            }
+        }
+        return expr.validateTree() && body.validateTree() && el.validateTree();
     }
 
     public String convertToJava(String classname) {
