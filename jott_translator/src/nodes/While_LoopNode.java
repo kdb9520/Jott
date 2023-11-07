@@ -18,8 +18,14 @@ public class While_LoopNode implements BodyStmtNode {
     }
 
     public boolean validateTree() {
-        // TODO
-        return false;
+        // call expr and body validateTree()
+        if (!exprNode.validateTree()){
+            return false;
+        }
+        if (!bodyNode.validateTree()){
+            return false;
+        }
+        return true;
     }
 
     public String convertToJava(String classname) {
