@@ -19,13 +19,7 @@ public class While_LoopNode implements BodyStmtNode {
 
     public boolean validateTree() {
         // call expr and body validateTree()
-        if (!exprNode.validateTree()){
-            return false;
-        }
-        if (!bodyNode.validateTree()){
-            return false;
-        }
-        return true;
+        return exprNode.validateTree() && bodyNode.validateTree();
     }
 
     public String convertToJava(String classname) {

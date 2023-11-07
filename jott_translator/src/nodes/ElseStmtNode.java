@@ -13,10 +13,7 @@ public class ElseStmtNode implements JottTree {
     }
 
     public boolean validateTree() {
-        if (!body.validateTree()){
-            return false;
-        }
-        return true;
+        return body.validateTree();
     }
 
     public String convertToJava(String classname) {

@@ -16,13 +16,7 @@ public class ElifStmtNode implements JottTree {
     }
 
     public boolean validateTree(){
-        if (!expr.validateTree()){
-            return false;
-        }
-        if (!body.validateTree()){
-            return false;
-        }
-        return true;
+        return expr.validateTree() && body.validateTree();
     }
 
     public String convertToJava(String classname) {
