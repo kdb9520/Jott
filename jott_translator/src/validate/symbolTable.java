@@ -59,8 +59,10 @@ public class symbolTable {
     // adds new parameter to current_function hashmap with key of var_name and value equal to string of type
     public static void addParam(String var_name, String type) {
         HashMap<String, String> curr_hash = functions.get(current_function);
-        String params = curr_hash.get("param_count");
+        String params = curr_hash.get("Param_count");
         params = Integer.toString(Integer.valueOf(params) + 1);
+        // Need to make sure to put the params back inside of the right place in the hash map
+        curr_hash.put("Param_count", params);
         curr_hash.put(var_name, type);
     }
 
@@ -68,10 +70,10 @@ public class symbolTable {
     public static ArrayList<String> getParamTypes() {
         HashMap<String, String> curr_hash = functions.get(current_function);
         ArrayList<String> params = new ArrayList<String>();
-        Integer param_count = Integer.valueOf(curr_hash.get("param_count"));
+        Integer param_count = Integer.valueOf(curr_hash.get("Param_count"));
         Integer loop_count = 0;
         for (Map.Entry<String, String> param : curr_hash.entrySet()) {
-                if (param.getKey() == "param_count") {
+                if (param.getKey() == "Param_count") {
                     loop_count += 1;
                 }
                 else {

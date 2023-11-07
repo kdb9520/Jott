@@ -6,6 +6,8 @@ import provided.TokenType;
 
 import provided.JottTree;
 
+import validate.symbolTable;
+
 public class FuncDefParamsNode implements JottTree {
 
     private ArrayList<IDNode> paramIds;
@@ -82,6 +84,8 @@ public class FuncDefParamsNode implements JottTree {
             paramTypes.add(type);
 
             // Add the parameter to the symbol table using the id and type here 
+            symbolTable.addParam(id.getNodeToken().getToken(), type.getNodeToken().getToken());
+
             if (tokenList.get(0).getTokenType() != TokenType.COMMA) {
                 if (tokenList.get(0).getTokenType() != TokenType.R_BRACKET) {
                     throw new SyntaxException("Token type is not Comma", tokenList.get(0));
