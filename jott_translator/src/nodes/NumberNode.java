@@ -17,6 +17,10 @@ public class NumberNode extends ExpressionNode {
         return true;
     }
 
+    public TokenType getTokenType() {
+        return this.token.getTokenType();
+    }
+
     public String convertToJava(String classname) {
         // TODO
         return "not implemented";

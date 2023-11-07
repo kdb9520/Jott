@@ -16,6 +16,12 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         this.params = f_p;
     }
 
+    public TokenType getTokenType() {
+        // TODO: This might have to return the return
+        //  type of the function from the symtable
+        return null;
+    }
+
     public boolean validateTree() {
         // TODO
         return false;

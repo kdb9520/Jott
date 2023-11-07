@@ -16,6 +16,8 @@ import provided.TokenType;
 
 abstract class ExpressionNode implements JottTree {
 
+    public abstract TokenType getTokenType();
+
     static ExpressionNode parseExpression(ArrayList<Token> tokens) throws SyntaxException{
         // First, check the cases that cannot involve an op.
         if(tokens.get(0).getToken().equals("True") || 

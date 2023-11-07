@@ -1,6 +1,7 @@
 package nodes;
 
 import provided.Token;
+import provided.TokenType;
 
 
 
@@ -19,6 +20,10 @@ public class BinaryExpressionNode extends ExpressionNode {
         this.leftNode = left;
         this.rightNode = right;
         this.opToken = operator;
+    }
+
+    public TokenType getTokenType() {
+        return leftNode.getTokenType();
     }
 
     public boolean validateTree() {

@@ -12,6 +12,10 @@ public class BoolNode extends ExpressionNode {
         this.token = t;
     }
 
+    public TokenType getTokenType() {
+        return this.token.getTokenType();
+    }
+
     public boolean validateTree() {
         // Correct by default since the parser checks that
         return true;

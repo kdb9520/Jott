@@ -19,6 +19,10 @@ public class ReturnStmtNode extends ExpressionNode {
         return false;
     }
 
+    public TokenType getTokenType() {
+        return this.token.getTokenType();
+    }
+
     public String convertToJava(String classname) {
         // TODO
         return "not implemented";

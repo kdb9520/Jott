@@ -18,6 +18,10 @@ public class IDNode extends ExpressionNode {
         return token;
     }
 
+    public TokenType getTokenType() {
+        return this.token.getTokenType();
+    }
+
     public boolean validateTree() {
         // TODO
         return true;

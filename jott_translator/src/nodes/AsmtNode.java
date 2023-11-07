@@ -127,16 +127,9 @@ public class AsmtNode implements BodyStmtNode {
     public boolean validateTree() {
         String tokenText = this.varName.getNodeToken().getToken();
         TokenType tokenType = this.varName.getNodeToken().getTokenType();
+        TokenType exprType = this.exprValue.getTokenType();
 
-        // checking if the variable exists in the symbol table
-        if (!symbolTable.hasVar(tokenText)) {
-            return false;
-        }
-
-        // need to check that types on either side of assignment are the same
-        // If this is true then we can return true
-
-        return true;
+        return symbolTable.hasVar(tokenText) && (tokenType != exprType);
     }
 
 }
