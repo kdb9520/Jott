@@ -1,5 +1,6 @@
 package validate;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,6 +36,7 @@ public class symbolTable {
         // There needs to be a check added here to make sure that no built in functions get added
         // You CANNOT add print, concat, or length
         HashMap<String, String> curr_hash = new HashMap<String, String>();
+        curr_hash.put("param_count", "0");
         functions.put(func_name, curr_hash);
     }
 
@@ -52,6 +54,35 @@ public class symbolTable {
         else {
             return false;
         }
+    }
+
+    // adds new parameter to current_function hashmap with key of var_name and value equal to string of type
+    public static void addParam(String var_name, String type) {
+        HashMap<String, String> curr_hash = functions.get(current_function);
+        String params = curr_hash.get("param_count");
+        params = Integer.toString(Integer.valueOf(params) + 1);
+        curr_hash.put(var_name, type);
+    }
+
+    // returns an ArrayList containing the types of all params for curr_function, length of list is how many params should be present
+    public static ArrayList<String> getParamTypes() {
+        HashMap<String, String> curr_hash = functions.get(current_function);
+        ArrayList<String> params = new ArrayList<String>();
+        Integer param_count = Integer.valueOf(curr_hash.get("param_count"));
+        Integer loop_count = 0;
+        for (Map.Entry<String, String> param : curr_hash.entrySet()) {
+                if (param.getKey() == "param_count") {
+                    loop_count += 1;
+                }
+                else {
+                    params.add(param.getValue());
+                    loop_count += 1;
+                }
+                if (loop_count > param_count) {
+                    break;
+                }
+            }
+        return params;
     }
 
     // adds new variable to current_function hashmap with key of var_name and value equal to string of type
@@ -82,7 +113,7 @@ public class symbolTable {
         return functions;
     }
     public static void printSymTab() {
-        System.out.println("\nStarting SymbolTable Print:\n");
+System.out.println("\nStarting SymbolTable Print:\n");
         for (Map.Entry<String, HashMap<String, String>> funcs : functions.entrySet()) {
             String curr_func = funcs.getKey();
             HashMap<String, String> curr_map = funcs.getValue();
@@ -93,7 +124,7 @@ public class symbolTable {
                 System.out.println("\tVar name: " + var + ", Var type: " + type);
             }
         }
-        System.out.println("\nEnding Symbol Table Print:\n");
+System.out.println("\nEnding Symbol Table Print:\n");
     }
     // Have a current function value 
     // That current function value is set by the FuncDefNode
