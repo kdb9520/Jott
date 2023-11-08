@@ -12,6 +12,8 @@ import java.util.Map;
 
 public class symbolTable {
     public static HashMap<String, HashMap<String, String>> functions;
+    // Exists to contain the return type of each function
+    public static HashMap<String, String> funcReturnTypes;
     public static String current_function;
 
     // initializer.  Needs to be called by something before the symbol
@@ -134,4 +136,7 @@ public class symbolTable {
     // called from it'll know what row of the symbol table to add it to. 
 
     // Have a symbol table add based on the current 
+
+    // Function return node needs to have some way of telling what the return type of
+    // A given function is.
 }
