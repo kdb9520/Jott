@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
+import validate.symbolTable;
 
 public class ParamsNode implements JottTree {
     private ArrayList<ExpressionNode> exprNodes = new ArrayList<>();
@@ -13,8 +14,14 @@ public class ParamsNode implements JottTree {
     }
 
     public boolean validateTree() {
-        // TODO
-        return false;
+        ArrayList<String> params = symbolTable.getParamTypes();
+        for (int i = 0; i < exprNodes.size(); i++) {
+            TokenType exprType = exprNodes.get(i).getTokenType();
+            if (!exprType.toString().equals(params.get(i))){
+                return false;
+            }
+        }
+        return true;
     }
 
     public String convertToJava(String classname) {
