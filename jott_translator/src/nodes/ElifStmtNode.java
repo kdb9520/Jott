@@ -15,7 +15,7 @@ public class ElifStmtNode implements JottTree {
         this.body = body;
     }
 
-    public boolean validateTree(){
+    public boolean validateTree() throws SemanticException {
         return expr.validateTree() && body.validateTree();
     }
 

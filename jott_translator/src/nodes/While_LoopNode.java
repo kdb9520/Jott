@@ -17,7 +17,7 @@ public class While_LoopNode implements BodyStmtNode {
         this.bodyNode = body;
     }
 
-    public boolean validateTree() {
+    public boolean validateTree() throws SemanticException {
         // call expr and body validateTree()
         return exprNode.validateTree() && bodyNode.validateTree();
     }

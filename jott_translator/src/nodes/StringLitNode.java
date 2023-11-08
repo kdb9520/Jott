@@ -23,6 +23,10 @@ public class StringLitNode extends ExpressionNode {
         return this.token.getTokenType();
     }
 
+    public Token getToken() {
+        return this.token;
+    }
+
     public String convertToJava(String classname) {
         // TODO
         return "not implemented";

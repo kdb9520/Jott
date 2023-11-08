@@ -40,6 +40,10 @@ public class BoolNode extends ExpressionNode {
         return this.token.getToken();
     }
 
+    public Token getToken() {
+        return this.token;
+    }
+
     static public BoolNode parseBoolNode(ArrayList<Token> tokens) throws SyntaxException {
         if (tokens.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token " + tokens.get(0) + 

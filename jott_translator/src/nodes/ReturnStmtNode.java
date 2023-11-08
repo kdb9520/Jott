@@ -60,4 +60,8 @@ public class ReturnStmtNode extends ExpressionNode {
         tokens.remove(0);
         return new ReturnStmtNode(expr);
     }
+
+    public Token getToken() {
+        return this.token;
+    }
 }

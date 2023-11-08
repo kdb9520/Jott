@@ -49,4 +49,8 @@ public class NumberNode extends ExpressionNode {
         }
         return new NumberNode(tokens.remove(0));
     }
+
+    public Token getToken() {
+        return this.token;
+    }
 }

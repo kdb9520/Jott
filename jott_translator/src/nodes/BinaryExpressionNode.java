@@ -46,6 +46,11 @@ public class BinaryExpressionNode extends ExpressionNode {
         return "not implemented";
     }
 
+    public Token getToken() {
+        // return this.token;
+        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+    }
+
     public String convertToJott(){
         // This mostly just needs to call the convert to Jott of it's components
         String stringToReturn = "";

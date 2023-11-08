@@ -66,9 +66,12 @@ public class VarDecNode implements BodyStmtNode {
     }
 
     @Override
-    public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+    public boolean validateTree() throws SemanticException {
+        if (Character.isUpperCase(this.id.toString().charAt(0))) {
+            throw new SemanticException("Invalid variable name", this.id.getToken());
+        }
+
+        return true;
     }
     
 }

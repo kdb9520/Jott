@@ -17,7 +17,7 @@ public class IfStmtNode implements BodyStmtNode {
         this.el = el;
     }
 
-    public boolean validateTree() {
+    public boolean validateTree() throws SemanticException {
         for (ElifStmtNode node : elif_nodes) {
             if (!node.validateTree()) {
                 return false;

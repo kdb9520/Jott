@@ -13,12 +13,12 @@ public class ParamsNode implements JottTree {
         this.exprNodes = exprs;
     }
 
-    public boolean validateTree() {
+    public boolean validateTree() throws SemanticException {
         ArrayList<String> params = symbolTable.getParamTypes();
         for (int i = 0; i < exprNodes.size(); i++) {
             TokenType exprType = exprNodes.get(i).getTokenType();
             if (!exprType.toString().equals(params.get(i))){
-                return false;
+                throw new SemanticException("Invalid param type.", exprNodes.get(i).getToken());
             }
         }
         return true;
