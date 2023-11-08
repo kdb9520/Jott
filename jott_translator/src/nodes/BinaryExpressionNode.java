@@ -1,5 +1,9 @@
 package nodes;
 
+import java.util.Arrays;
+import java.util.Set;
+import java.util.HashSet;
+
 import provided.Token;
 import provided.TokenType;
 
@@ -8,6 +12,10 @@ import provided.TokenType;
 public class BinaryExpressionNode extends ExpressionNode {
     // This class exists mostly to be used with ExpressionNode for the case where 
     // you have a operator present. 
+
+    // Static sets of operators used during validate tree
+    static Set<String> mathOpSymbols = new HashSet<>(Arrays.asList("*", "/", "+", "-"));
+    static Set<String> relOpSymbols = new HashSet<>(Arrays.asList(">", ">=", "<", "<=", "==", "!="));
 
     // These nodes are the left and right side of the expression respectively 
     ExpressionNode leftNode;
