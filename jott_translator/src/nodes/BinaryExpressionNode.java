@@ -26,8 +26,14 @@ public class BinaryExpressionNode extends ExpressionNode {
         return leftNode.getTokenType();
     }
 
-    public boolean validateTree() {
-        // TODO
+    public boolean validateTree() throws SemanticException {
+        // Check for division by 0
+        if(opToken.getToken().equals("/") && rightNode.getToken().getToken().equals("0")){
+            // If this is the case then you're attempting to divide by zero, so error out
+            String errMsg = "Attempted to divide by Zero.";
+            throw new SemanticException(errMsg, rightNode.getToken());
+        }
+        
         return false;
     }
 
