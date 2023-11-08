@@ -48,9 +48,14 @@ public class BodyNode implements JottTree {
         return output;
     }
 
-    public boolean validateTree() {
-        // TODO
-        return false;
+    public boolean validateTree() throws SemanticException {
+        for (BodyStmtNode bodyStmtNode : bodyStmtNodes) {
+            if (!bodyStmtNode.validateTree()) {
+                return false;
+            }
+        }
+
+        return this.returnStmt.validateTree();
     }
 
     public static BodyNode parseBodyNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {

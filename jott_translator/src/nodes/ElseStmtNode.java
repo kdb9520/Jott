@@ -12,7 +12,7 @@ public class ElseStmtNode implements JottTree {
         this.body = body;
     }
 
-    public boolean validateTree() {
+    public boolean validateTree() throws SemanticException {
         return body.validateTree();
     }
 
