@@ -26,8 +26,12 @@ public class ProgramNode implements JottTree {
     }
 
     public boolean validateTree() {
-        // TODO
-        return false;
+        for (FuncDefNode funcDefNode : functionDefinitions) {
+            if (!funcDefNode.validateTree()) {
+                throw new SemanticException("Invalid function definition.", funcDefNode.getToken());
+            }
+        }
+        return true;
     }
 
     public String convertToJava(String classname) {
