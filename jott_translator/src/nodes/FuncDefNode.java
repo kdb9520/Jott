@@ -50,8 +50,8 @@ public class FuncDefNode implements JottTree {
     }
 
     public boolean validateTree(){
-        // TODO 
-        return false;
+        // FuncDef is what defines the type of the parameters, and thus the errors for it have already been checked
+        return true;
     }
 
     public static FuncDefNode parseFuncDefNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
