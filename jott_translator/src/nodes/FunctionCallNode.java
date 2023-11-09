@@ -72,6 +72,13 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         }
         tokenList.remove(0);
         IDNode f_name = IDNode.parseIDNode(tokenList);
+
+        // make sure the function exists already
+        if (!symbolTable.hasFunc(f_name.getToken().getToken())) {
+            String errMsg = "Error: Function not found";
+            throw new SemanticException(errMsg, f_name.getToken());
+        }
+
         // if (tokenList.get(0).getTokenType() != TokenType.L_BRACE){
         //     throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         // }
