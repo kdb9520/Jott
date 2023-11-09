@@ -34,12 +34,18 @@ public class AsmtNode implements BodyStmtNode {
 
             IDNode variableName = IDNode.parseIDNode(tokens);
 
-            // Code to check if the current variable has been declared
+            // Additionally code to add the current variable to the symbolTable
             Token varToken = variableName.getNodeToken();
+            Token typeToken = type.getNodeToken();
             if(!symbolTable.hasVar(varToken.getToken())){
-                
-                // If this is the case then throw undeclared variable error.
-                String errorMsg = "Attempted to use undeclared variable: " + varToken.getToken();
+                // If this is the case then add the variable to the symbol table.
+                // If the exprValue is the correct type can get checked in validate.
+                symbolTable.addVar(varToken.getToken(), typeToken.getToken());
+            }
+            else {
+                // If this is the case then you have a Semantic Error as you're trying to 
+                // redeclare the variable.
+                String errorMsg = "Attempted to redeclare already declared variable: " + varToken.getToken();
                 throw new SemanticException(errorMsg, varToken);
             }
             
@@ -58,8 +64,18 @@ public class AsmtNode implements BodyStmtNode {
             return new AsmtNode(type, variableName, expr);
         }
         else {
+
             // This case, there is no type so treat it as null
             IDNode variableName = IDNode.parseIDNode(tokens);
+
+
+            Token varToken = variableName.getNodeToken();
+            if(!symbolTable.hasVar(varToken.getToken())){
+                // If this is the case then add the variable to the symbol table.
+                // If the exprValue is the correct type can get checked in validate.
+                String errorMsg = "Attempted to use undeclared variable: " + varToken.getToken();
+                throw new SemanticException(errorMsg, varToken);
+            }
             
             if(tokens.get(0).getTokenType() != TokenType.ASSIGN){
                 throw new SyntaxException("Assignment Node does not have valid token type.", tokens.get(0));
@@ -124,4 +140,5 @@ public class AsmtNode implements BodyStmtNode {
         TokenType exprType = this.exprValue.getTokenType();
         return this.exprValue.validateTree() && symbolTable.hasVar(tokenText) && (tokenType != exprType);
     }
+
 }
