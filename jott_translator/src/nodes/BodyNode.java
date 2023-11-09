@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import provided.Token;
 import provided.TokenType;
-
+import validate.symbolTable;
 import provided.JottTree;
 
 public class BodyNode implements JottTree {
@@ -49,6 +49,11 @@ public class BodyNode implements JottTree {
     }
 
     public boolean validateTree() throws SemanticException {
+        if (this.returnStmt == null){
+            if (!symbolTable.getVarType("Return").equals("Void")){
+                throw new SemanticException("Missing return statement in non-void function", null);
+            }
+        }
         for (BodyStmtNode bodyStmtNode : bodyStmtNodes) {
             if (!bodyStmtNode.validateTree()) {
                 return false;
