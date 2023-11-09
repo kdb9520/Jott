@@ -50,7 +50,7 @@ public class ParamsNode implements JottTree {
         return output;
     }
 
-    public static ParamsNode parse_ParamsNode(ArrayList<Token> tokenList) throws SyntaxException{
+    public static ParamsNode parse_ParamsNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
         // Make empty list of expressions
         ArrayList<ExpressionNode> exprs = new ArrayList<>();
         // Check to see if there are any params 
