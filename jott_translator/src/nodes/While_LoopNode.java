@@ -2,9 +2,10 @@ package nodes;
 
 import java.util.ArrayList;
 
-import provided.JottTree;
 import provided.Token;
 import provided.TokenType;
+
+import validate.symbolTable;
 
 public class While_LoopNode implements BodyStmtNode {
     private Token token;
@@ -49,6 +50,9 @@ public class While_LoopNode implements BodyStmtNode {
     }
 
     static public While_LoopNode parseWhile_LoopNode(ArrayList<Token> tokens) throws SyntaxException, SemanticException {
+        // Increment the depth since we're entering a while loop
+        symbolTable.incrementIfWhileDepth();
+        
         if (tokens.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token ", tokens.get(0));
         }
@@ -75,6 +79,8 @@ public class While_LoopNode implements BodyStmtNode {
         }
         tokens.remove(0);
 
+        // Decrement the while counter now that you're leaving the while loop
+        symbolTable.decrementIfWhileDepth();
         return new While_LoopNode(expr, body);
     }
 }
