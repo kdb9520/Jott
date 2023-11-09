@@ -34,18 +34,12 @@ public class AsmtNode implements BodyStmtNode {
 
             IDNode variableName = IDNode.parseIDNode(tokens);
 
-            // Additionally code to add the current variable to the symbolTable
+            // Code to check if the current variable has been declared
             Token varToken = variableName.getNodeToken();
-            Token typeToken = type.getNodeToken();
             if(!symbolTable.hasVar(varToken.getToken())){
-                // If this is the case then add the variable to the symbol table.
-                // If the exprValue is the correct type can get checked in validate.
-                symbolTable.addVar(varToken.getToken(), typeToken.getToken());
-            }
-            else {
-                // If this is the case then you have a Semantic Error as you're trying to 
-                // redeclare the variable.
-                String errorMsg = "Attempted to redeclare already declared variable: " + varToken.getToken();
+                
+                // If this is the case then throw undeclared variable error.
+                String errorMsg = "Attempted to use undeclared variable: " + varToken.getToken();
                 throw new SemanticException(errorMsg, varToken);
             }
             
@@ -130,5 +124,4 @@ public class AsmtNode implements BodyStmtNode {
         TokenType exprType = this.exprValue.getTokenType();
         return this.exprValue.validateTree() && symbolTable.hasVar(tokenText) && (tokenType != exprType);
     }
-
 }
