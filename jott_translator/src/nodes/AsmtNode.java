@@ -162,7 +162,14 @@ public class AsmtNode implements BodyStmtNode {
                 throw new SemanticException("Right hand variable not defined", this.exprValue.getToken());
             }
         }
-        return this.exprValue.validateTree() && (varType == exprType);
+
+        // validate that same types are used in expressions
+        if (!(this.exprValue.validateTree() && (varType == exprType))) {
+            String errMsg = "Attempted to use non-matching types in an expression.";
+            throw new SemanticException(errMsg, this.exprValue.getToken());
+        }
+        
+        return true;
     }
 
 }
