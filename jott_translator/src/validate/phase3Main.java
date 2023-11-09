@@ -12,7 +12,7 @@ import nodes.*;
 public class phase3Main {
     
     
-    public static void processJott(String jottFilename) throws FileNotFoundException {
+    public static void processJott(String jottFilename) {
         // This needs to somehow run all the phases up to this point.
         // Tokenize (call tokenizer)
         // Parse (call parser)
@@ -29,6 +29,11 @@ public class phase3Main {
 
 
     public static void main(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter file name");
+        String filename = sc.nextLine();
+        sc.close();
+        processJott(filename);
         // This will deal with .io and then call processJott
     }
 }
