@@ -11,12 +11,7 @@ import nodes.*;
 
 public class phase3Main {
     
-
-    private static boolean validateNodes(JottTree nodeTree){
-
-    }
-    
-    public static void processJott(String jottFilename) {
+    public static void processJott(String input_jottFilename, String output_filename) {
         // This needs to somehow run all the phases up to this point.
         // Tokenize (call tokenizer)
         // Parse (call parser)
@@ -24,7 +19,7 @@ public class phase3Main {
         // In phase 4 we can have another param that is the langauge to write to. 
         // For now treat it as Jott always
 
-        ArrayList<Token> tokenList = JottTokenizer.tokenize(jottFilename);
+        ArrayList<Token> tokenList = JottTokenizer.tokenize(input_jottFilename);
         if(tokenList == null){
             // That means an error happened, the tokenizer printed already so just stop
             return;
@@ -37,16 +32,30 @@ public class phase3Main {
             return;
         }
 
-
+        boolean valid;
+        try {
+            valid = nodeTree.validateTree();
+        } catch (SemanticException e) {
+            System.err.println(e.getMessage());
+            valid = false;
+        }
+        if(valid == true) {
+            // write to output file
+        }
+        if(valid == false) {
+            return;
+        }
     }
 
 
     public static void main(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter file name");
-        String filename = sc.nextLine();
+        System.out.println("Enter input file name");
+        String input_filename = sc.nextLine();
+        System.out.println("Enter output file name");
+        String output_filename = sc.nextLine();
         sc.close();
-        processJott(filename);
+        processJott(input_filename, output_filename);
         // This will deal with .io and then call processJott
     }
 }
