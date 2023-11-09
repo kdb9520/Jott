@@ -52,6 +52,7 @@ public class While_LoopNode implements BodyStmtNode {
     static public While_LoopNode parseWhile_LoopNode(ArrayList<Token> tokens) throws SyntaxException, SemanticException {
         // Increment the depth since we're entering a while loop
         symbolTable.incrementIfWhileDepth();
+        symbolTable.incrementWhileDepth();
         
         if (tokens.get(0).getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token ", tokens.get(0));
@@ -81,6 +82,7 @@ public class While_LoopNode implements BodyStmtNode {
 
         // Decrement the while counter now that you're leaving the while loop
         symbolTable.decrementIfWhileDepth();
+        symbolTable.decrementWhileDepth();
         return new While_LoopNode(expr, body);
     }
 }

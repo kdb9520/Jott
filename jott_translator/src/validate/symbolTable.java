@@ -18,13 +18,17 @@ public class symbolTable {
 // Variable that, if it is not zero, says you are inside of an if or while statement.
     // Used for ensuring variables aren't declared in a while loop/if.
     public static int ifWhileDepth;
+    public static int whileDepth; // Kellen
 
     // initializer.  Needs to be called by something before the symbol
     // table can be used across the program
     public static void initSymbolTable() {
         functions = new HashMap<String, HashMap<String, String>>();
         current_function = null;
-ifWhileDepth = 0;
+        ifWhileDepth = 0;
+
+        // check in while -- Kellen
+        whileDepth = 0;
     }
 
     // check if a func with this name has already been added to the functions hashmap
@@ -116,6 +120,19 @@ ifWhileDepth = 0;
 
     public static int getIfWhileDepth(){
         return ifWhileDepth;
+    }
+
+    // Kellen
+    public static void incrementWhileDepth(){
+        whileDepth++;
+    }
+
+    public static void decrementWhileDepth(){
+        whileDepth--;
+    }
+
+    public static int getWhileDepth(){
+        return whileDepth;
     }
 
     // returns the entire hashmap of the current_function (shouldn't need to use this)

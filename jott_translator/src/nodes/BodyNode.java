@@ -49,6 +49,12 @@ public class BodyNode implements JottTree {
     }
 
     public boolean validateTree() throws SemanticException {
+        if (symbolTable.getWhileDepth() > 0) {
+            if (this.returnStmt != null) {
+                String errMsg = "Invalid return from While Loop.";
+                throw new SemanticException(errMsg, this.returnStmt.getToken());
+            }
+        }
         if (this.returnStmt == null){
             if (!symbolTable.getVarType("Return").equals("Void")){
                 throw new SemanticException("Missing return statement in non-void function", null);
