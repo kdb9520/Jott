@@ -19,8 +19,8 @@ public class StringLitNode extends ExpressionNode {
         return true;
     }
 
-    public TokenType getTokenType() {
-        return this.token.getTokenType();
+    public String getType() {
+        return "String";
     }
 
     public Token getToken() {

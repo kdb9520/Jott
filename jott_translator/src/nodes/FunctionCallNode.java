@@ -17,11 +17,8 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         this.params = f_p;
     }
 
-    public TokenType getTokenType() {
-        // TODO: This might have to return the return
-        //  type of the function from the symtable
-        // String returnType = getReturnType();
-        return null;
+    public String getType() {
+        return this.getReturnType();
     }
 
     public String getReturnType(){

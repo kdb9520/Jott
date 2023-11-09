@@ -17,8 +17,12 @@ public class NumberNode extends ExpressionNode {
         return true;
     }
 
-    public TokenType getTokenType() {
-        return this.token.getTokenType();
+    public String getType() {
+        String tokenText = this.token.getToken();
+        if (tokenText.contains(".")) {
+            return "Double";
+        }
+        return "Integer";
     }
 
     public String convertToJava(String classname) {

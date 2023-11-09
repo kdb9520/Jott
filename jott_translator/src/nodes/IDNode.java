@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import provided.Token;
 import provided.TokenType;
+import validate.symbolTable;
 
 public class IDNode extends ExpressionNode {
     private Token token;
@@ -18,8 +19,8 @@ public class IDNode extends ExpressionNode {
         return token;
     }
 
-    public TokenType getTokenType() {
-        return this.token.getTokenType();
+    public String getType() {
+        return symbolTable.getVarType(this.token.getToken());
     }
 
     public boolean validateTree() {

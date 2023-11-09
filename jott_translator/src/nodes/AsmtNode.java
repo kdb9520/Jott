@@ -151,9 +151,12 @@ public class AsmtNode implements BodyStmtNode {
     @Override
     public boolean validateTree() throws SemanticException {
         String tokenText = this.varName.getNodeToken().getToken();
-        TokenType tokenType = this.varName.getNodeToken().getTokenType();
-        TokenType exprType = this.exprValue.getTokenType();
-        return this.exprValue.validateTree() && symbolTable.hasVar(tokenText) && (tokenType == exprType);
+        if (!symbolTable.hasVar(tokenText)) {
+            return false;
+        }
+        String varType = symbolTable.getVarType(tokenText);
+        String exprType = this.exprValue.getType();
+        return this.exprValue.validateTree() && (varType == exprType);
     }
 
 }

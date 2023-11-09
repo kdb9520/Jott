@@ -17,14 +17,14 @@ public class ReturnStmtNode extends ExpressionNode {
 
     public boolean validateTree() throws SemanticException{
         // check if return type = expected return type
-        if (!this.exprNode.getTokenType().equals(symbolTable.getVarType("Return"))) {
+        if (!this.exprNode.getType().equals(symbolTable.getVarType("Return"))) {
             throw new SemanticException("Invalid return type: ", this.exprNode.getToken());
         }
         return true;
     }
 
-    public TokenType getTokenType() {
-        return this.token.getTokenType();
+    public String getType() {
+        return this.exprNode.getType();
     }
 
     public String convertToJava(String classname) {

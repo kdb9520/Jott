@@ -85,7 +85,7 @@ public class VarDecNode implements BodyStmtNode {
     public boolean validateTree() throws SemanticException {
 
         String leftTypeString = this.type.toString();
-        String rightTypeString = this.id.getTokenType().toString();
+        String rightTypeString = this.id.getType();
         
         if (!leftTypeString.equals(symbolTable.getVarType(rightTypeString))) {
             throw new SemanticException("Left side has different type than right side", this.id.getToken());    

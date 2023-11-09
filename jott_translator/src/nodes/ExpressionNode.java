@@ -16,7 +16,7 @@ import provided.TokenType;
 
 abstract class ExpressionNode implements JottTree {
 
-    public abstract TokenType getTokenType();
+    public abstract String getType();
 
     public abstract Token getToken();
 
