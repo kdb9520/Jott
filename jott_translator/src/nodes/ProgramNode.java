@@ -25,7 +25,7 @@ public class ProgramNode implements JottTree {
         this.functionDefinitions = funcDefArray;
     }
 
-    public boolean validateTree() {
+    public boolean validateTree() throws SemanticException {
         for (FuncDefNode funcDefNode : functionDefinitions) {
             if (!funcDefNode.validateTree()) {
                 throw new SemanticException("Invalid function definition.", funcDefNode.getToken());

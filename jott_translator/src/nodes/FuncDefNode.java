@@ -21,6 +21,10 @@ public class FuncDefNode implements JottTree {
         this.body = b;
     }
 
+    public Token getToken(){
+        return funcName.getToken();
+    }
+
     public String convertToC() {
         // TODO
         return "not implemented";
