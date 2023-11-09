@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import provided.Token;
 import provided.TokenType;
+import validate.symbolTable;
 
 public class ReturnStmtNode extends ExpressionNode {
     private Token token;
@@ -14,9 +15,12 @@ public class ReturnStmtNode extends ExpressionNode {
         this.exprNode = expr;
     }
 
-    public boolean validateTree() {
-        // TODO
-        return false;
+    public boolean validateTree() throws SemanticException{
+        // check if return type = expected return type
+        if (!this.exprNode.getTokenType().equals(symbolTable.getVarType("Return"))) {
+            throw new SemanticException("Invalid return type: ", this.exprNode.getToken());
+        }
+        return true;
     }
 
     public TokenType getTokenType() {

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import provided.Token;
 import provided.TokenType;
+import validate.symbolTable;
 
 public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     private IDNode funcName;
@@ -19,10 +20,17 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     public TokenType getTokenType() {
         // TODO: This might have to return the return
         //  type of the function from the symtable
+        // String returnType = getReturnType();
         return null;
     }
 
+    public String getReturnType(){
+        symbolTable.setFunc(this.funcName.getToken().getToken());
+        return symbolTable.getVarType("Return");
+    }
+
     public boolean validateTree() {
+        symbolTable.setFunc(this.funcName.getToken().getToken());
         // TODO
         return false;
     }

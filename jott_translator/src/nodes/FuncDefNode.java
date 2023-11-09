@@ -51,6 +51,7 @@ public class FuncDefNode implements JottTree {
 
     public boolean validateTree(){
         // FuncDef is what defines the type of the parameters, and thus the errors for it have already been checked
+        symbolTable.setFunc(this.funcName.getToken().getToken());
         return true;
     }
 

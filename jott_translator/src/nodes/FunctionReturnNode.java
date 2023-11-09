@@ -45,8 +45,8 @@ public class FunctionReturnNode implements JottTree {
 
     @Override
     public boolean validateTree() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        // we always have a return type or void
+        return true;
     }
     
 }
