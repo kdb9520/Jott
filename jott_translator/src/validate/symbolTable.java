@@ -7,15 +7,15 @@ import java.util.Map;
 /**
  * This class is meant to be used across the nodes to properly validate in phase 3
  * 
- * @author Max O'Malley, Eligh
+ * @author Max O'Malley, Eligh Ros
  */
 
 public class symbolTable {
     public static HashMap<String, HashMap<String, String>> functions;
-    // Exists to contain the return type of each function
+// Exists to contain the return type of each function
     public static HashMap<String, String> funcReturnTypes;
     public static String current_function;
-    // Variable that, if it is not zero, says you are inside of an if or while statement.
+// Variable that, if it is not zero, says you are inside of an if or while statement.
     // Used for ensuring variables aren't declared in a while loop/if.
     public static int ifWhileDepth;
 
@@ -24,7 +24,7 @@ public class symbolTable {
     public static void initSymbolTable() {
         functions = new HashMap<String, HashMap<String, String>>();
         current_function = null;
-        ifWhileDepth = 0;
+ifWhileDepth = 0;
     }
 
     // check if a func with this name has already been added to the functions hashmap
@@ -67,7 +67,7 @@ public class symbolTable {
         HashMap<String, String> curr_hash = functions.get(current_function);
         String params = curr_hash.get("Param_count");
         params = Integer.toString(Integer.valueOf(params) + 1);
-        // Need to make sure to put the params back inside of the right place in the hash map
+// Need to make sure to put the params back inside of the right place in the hash map
         curr_hash.put("Param_count", params);
         curr_hash.put(var_name, type);
     }
