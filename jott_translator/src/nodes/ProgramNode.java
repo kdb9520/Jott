@@ -26,9 +26,34 @@ public class ProgramNode implements JottTree {
     }
 
     public boolean validateTree() throws SemanticException {
+        // check for valid main function
+
+        // verify existence of main
+        if (symbolTable.hasFunc("main")) {
+            symbolTable.setFunc("main");
+            String mainReturnType = symbolTable.getVarType("Return");
+
+            // verify main function return type is void
+            if (!mainReturnType.equals("Void")) {
+                String errMessage = "Main function does not have return type of 'Void'";
+                throw new SemanticException(errMessage, null);
+            }
+
+            // verify main function takes no parameters
+            int numParams = symbolTable.getParamTypes().size();
+            if (numParams != 0) {
+                String errMessage = "Main function has " + numParams + " parameters but should take 0";
+                throw new SemanticException(errMessage, null);
+            }
+        } 
+        else {
+            String errMessage = "Program must have main function";
+            throw new SemanticException(errMessage, null);
+        }
+
         for (FuncDefNode funcDefNode : functionDefinitions) {
             if (!funcDefNode.validateTree()) {
-                throw new SemanticException("Invalid function definition.", funcDefNode.getToken());
+                throw new SemanticException("Invalid function definition.", null);
             }
         }
         return true;
