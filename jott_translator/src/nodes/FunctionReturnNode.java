@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import provided.JottTree;
 import provided.Token;
+import validate.symbolTable;
 
 public class FunctionReturnNode implements JottTree {
 
@@ -15,6 +16,7 @@ public class FunctionReturnNode implements JottTree {
 
     static public FunctionReturnNode parseFunctionReturnNode(ArrayList<Token> tokens) throws SyntaxException {
         TypeNode type = TypeNode.parseTypeNode(tokens);
+        symbolTable.addVar("Return", type.getNodeToken().getToken());
         return new FunctionReturnNode(type);
     }
 
