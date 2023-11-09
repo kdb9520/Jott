@@ -24,6 +24,13 @@ public class VarDecNode implements BodyStmtNode {
         // Additionally code to add the current variable to the symbolTable
         Token currentIdToken = idToken.getNodeToken();
         Token currentTypeToken = typeToken.getNodeToken();
+
+        // vars cannot start with a capital letter
+        if (Character.isUpperCase(currentIdToken.toString().charAt(0))) {
+            String errMsg = "Invalid variable name: cannot start with a capital letter";
+            throw new SemanticException(errMsg, currentIdToken);
+        }
+
         if(!symbolTable.hasVar(currentIdToken.getToken())){
             // If this is the case then add the variable to the symbol table.
             symbolTable.addVar(currentIdToken.getToken(), currentTypeToken.getToken());
@@ -67,15 +74,12 @@ public class VarDecNode implements BodyStmtNode {
 
     @Override
     public boolean validateTree() throws SemanticException {
-        if (Character.isUpperCase(this.id.toString().charAt(0))) {
 
-            String leftTypeString = this.type.toString();
-            String rightTypeString = this.id.getTokenType().toString();
-            
-            if (!leftTypeString.equals(symbolTable.getVarType(rightTypeString))) {
-                throw new SemanticException("Left side has different type than right side", this.id.getToken());    
-            }
-            throw new SemanticException("Invalid variable name", this.id.getToken());
+        String leftTypeString = this.type.toString();
+        String rightTypeString = this.id.getTokenType().toString();
+        
+        if (!leftTypeString.equals(symbolTable.getVarType(rightTypeString))) {
+            throw new SemanticException("Left side has different type than right side", this.id.getToken());    
         }
 
         return true;

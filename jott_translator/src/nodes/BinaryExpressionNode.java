@@ -41,6 +41,13 @@ public class BinaryExpressionNode extends ExpressionNode {
             String errMsg = "Attempted to divide by Zero.";
             throw new SemanticException(errMsg, rightNode.getToken());
         }
+
+        // Check for types not being the same
+        if (!this.leftNode.getTokenType().equals(this.rightNode.getTokenType())) {
+            // this is a case where the left and right node do not have the same type
+            String errMsg = "Attempted Binary Operation with different types.";
+            throw new SemanticException(errMsg, rightNode.getToken());
+        }
         
         return false;
     }

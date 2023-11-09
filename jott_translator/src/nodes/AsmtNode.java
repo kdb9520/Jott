@@ -40,6 +40,13 @@ public class AsmtNode implements BodyStmtNode {
             if(!symbolTable.hasVar(varToken.getToken())){
                 // If this is the case then add the variable to the symbol table.
                 // If the exprValue is the correct type can get checked in validate.
+
+                // check if var name is upper case
+                if (Character.isUpperCase(variableName.getToken().toString().charAt(0))) {
+                    String errMsg = "Invalid variable name: cannot start with a capital letter";
+                    throw new SemanticException(errMsg, variableName.getToken());
+                }
+
                 symbolTable.addVar(varToken.getToken(), typeToken.getToken());
             }
             else {
@@ -138,7 +145,7 @@ public class AsmtNode implements BodyStmtNode {
         String tokenText = this.varName.getNodeToken().getToken();
         TokenType tokenType = this.varName.getNodeToken().getTokenType();
         TokenType exprType = this.exprValue.getTokenType();
-        return this.exprValue.validateTree() && symbolTable.hasVar(tokenText) && (tokenType != exprType);
+        return this.exprValue.validateTree() && symbolTable.hasVar(tokenText) && (tokenType == exprType);
     }
 
 }
