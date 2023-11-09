@@ -56,26 +56,16 @@ abstract class ExpressionNode implements JottTree {
             // In this case you have binary expression
             Token operator = tokens.remove(0);
 
-            // check that right token doesn't chain math ops
-            // x + y > 8 is valid
-            // x + y + z > 8 is not
-            // check that we are currently doing a math op
-            if (operator.getTokenType() == TokenType.MATH_OP) {
-                // check that there is more than just one token left
-                if (tokens.size() > 1) {
-                    // check that the second token is a math op
-                    if (tokens.get(1).getTokenType() == TokenType.MATH_OP) {
-                        // chaining math ops so invalid
-                        String errMsg = "Invalid chaining of Math Operations";
-                        throw new SemanticException(errMsg, operator);
-                    }
-                }
-            }
-            
-            // TODO: ask professor about chaining RelOps
-
             // Get the right side node, then return a binaryExpressionNode
             ExpressionNode right = parseExpression(tokens);
+
+            // check that right token doesn't chain ops
+            // check that there is more than just one token left
+            if (right instanceof BinaryExpressionNode) {
+                String errMsg = "Invalid chaining of Binary Operations";
+                throw new SemanticException(errMsg, operator);
+            }
+
             // Put return with binaryExpressionNode here
             return new BinaryExpressionNode(left, right, operator);
         }
