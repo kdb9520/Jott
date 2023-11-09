@@ -1,6 +1,9 @@
 package validate;
 
 import provided.*;
+
+import java.util.Scanner;
+
 import nodes.*;
 
 public class phase3Main {
@@ -18,6 +21,11 @@ public class phase3Main {
 
 
     public static void main(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter file name");
+        String filename = sc.nextLine();
+        sc.close();
+        processJott(filename);
         // This will deal with .io and then call processJott
     }
 }
