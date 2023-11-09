@@ -26,10 +26,9 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         return symbolTable.getVarType("Return");
     }
 
-    public boolean validateTree() {
+    public boolean validateTree() throws SemanticException{
         symbolTable.setFunc(this.funcName.getToken().getToken());
-        // TODO
-        return false;
+        return this.params.validateTree();
     }
 
     public String convertToJava(String classname) {

@@ -152,10 +152,16 @@ public class AsmtNode implements BodyStmtNode {
     public boolean validateTree() throws SemanticException {
         String tokenText = this.varName.getNodeToken().getToken();
         if (!symbolTable.hasVar(tokenText)) {
-            return false;
+            throw new SemanticException("Left hand assignment variable is not defined", this.varName.getToken());
         }
         String varType = symbolTable.getVarType(tokenText);
         String exprType = this.exprValue.getType();
+        // validate right hand IDKeyword exists in symbol table
+        if (this.exprValue.getToken().getTokenType() == TokenType.ID_KEYWORD){
+            if (!symbolTable.hasVar(this.exprValue.getToken().getToken())){
+                throw new SemanticException("Right hand variable not defined", this.exprValue.getToken());
+            }
+        }
         return this.exprValue.validateTree() && (varType == exprType);
     }
 
