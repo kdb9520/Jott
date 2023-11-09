@@ -164,12 +164,12 @@ public class AsmtNode implements BodyStmtNode {
         }
 
         // validate that same types are used in expressions
-        if (!(this.exprValue.validateTree() && (varType == exprType))) {
+        if (varType != exprType) {
             String errMsg = "Attempted to use non-matching types in an expression.";
             throw new SemanticException(errMsg, this.exprValue.getToken());
         }
-        
-        return true;
+
+        return this.exprValue.validateTree();
     }
 
 }
