@@ -72,6 +72,7 @@ abstract class ExpressionNode implements JottTree {
                 }
             }
             
+            // TODO: ask professor about chaining RelOps
 
             // Get the right side node, then return a binaryExpressionNode
             ExpressionNode right = parseExpression(tokens);
