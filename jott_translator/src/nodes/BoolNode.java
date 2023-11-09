@@ -12,8 +12,8 @@ public class BoolNode extends ExpressionNode {
         this.token = t;
     }
 
-    public TokenType getTokenType() {
-        return this.token.getTokenType();
+    public String getType() {
+        return "Boolean";
     }
 
     public boolean validateTree() {

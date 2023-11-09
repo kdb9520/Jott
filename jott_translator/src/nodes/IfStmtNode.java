@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 import provided.Token;
 import provided.TokenType;
+import validate.symbolTable;
 
 public class IfStmtNode implements BodyStmtNode {
     private ExpressionNode expr;
@@ -62,6 +63,9 @@ public class IfStmtNode implements BodyStmtNode {
     /// example if stmt token list ["if", "[", "expr", "]", "{", "body", "}", "elif", elif content(handled in elif), "else", else content(handled in else)]
 
     public static IfStmtNode parseIfStmtNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
+        // Increment the while depth before adjusting the body node
+        symbolTable.incrementIfWhileDepth();
+        
         ArrayList<ElifStmtNode> elif_nodes = new ArrayList<ElifStmtNode>();
         if (tokenList.get(0).getTokenType() != TokenType.ID_KEYWORD){
             throw new SyntaxException("Token types don't match", tokenList.get(0));
@@ -99,6 +103,9 @@ public class IfStmtNode implements BodyStmtNode {
         }
         // There needs to be a way to handle the else statement here if it does not exist.
         // If it is null then treat it as not existing
+
+        // Decrement the depth since you're at the end of the if
+        symbolTable.decrementIfWhileDepth();
         return new IfStmtNode(expr, body, elif_nodes, elseStmt);
     }
 }

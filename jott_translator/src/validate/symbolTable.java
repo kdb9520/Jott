@@ -15,12 +15,16 @@ public class symbolTable {
     // Exists to contain the return type of each function
     public static HashMap<String, String> funcReturnTypes;
     public static String current_function;
+    // Variable that, if it is not zero, says you are inside of an if or while statement.
+    // Used for ensuring variables aren't declared in a while loop/if.
+    public static int ifWhileDepth;
 
     // initializer.  Needs to be called by something before the symbol
     // table can be used across the program
     public static void initSymbolTable() {
         functions = new HashMap<String, HashMap<String, String>>();
         current_function = null;
+        ifWhileDepth = 0;
     }
 
     // check if a func with this name has already been added to the functions hashmap
@@ -100,6 +104,18 @@ public class symbolTable {
         HashMap<String, String> curr_hash = functions.get(current_function);
         String type = curr_hash.get(var_name);
         return type;
+    }
+
+    public static void incrementIfWhileDepth(){
+        ifWhileDepth++;
+    }
+
+    public static void decrementIfWhileDepth(){
+        ifWhileDepth--;
+    }
+
+    public static int getIfWhileDepth(){
+        return ifWhileDepth;
     }
 
     // returns the entire hashmap of the current_function (shouldn't need to use this)

@@ -47,6 +47,14 @@ public class AsmtNode implements BodyStmtNode {
                     throw new SemanticException(errMsg, variableName.getToken());
                 }
 
+                // Check to make sure you're not in an if/while loop
+                if(symbolTable.getIfWhileDepth() != 0){
+                    // If this is true then error out because you tried to declare 
+                    // inside of an if/while
+                    String errMsg = "Attempted to declare variable inside of an if or while loop, which isn't allowed";
+                    throw new SemanticException(errMsg, variableName.getToken());
+                }
+
                 symbolTable.addVar(varToken.getToken(), typeToken.getToken());
             }
             else {
@@ -143,9 +151,12 @@ public class AsmtNode implements BodyStmtNode {
     @Override
     public boolean validateTree() throws SemanticException {
         String tokenText = this.varName.getNodeToken().getToken();
-        TokenType tokenType = this.varName.getNodeToken().getTokenType();
-        TokenType exprType = this.exprValue.getTokenType();
-        return this.exprValue.validateTree() && symbolTable.hasVar(tokenText) && (tokenType == exprType);
+        if (!symbolTable.hasVar(tokenText)) {
+            return false;
+        }
+        String varType = symbolTable.getVarType(tokenText);
+        String exprType = this.exprValue.getType();
+        return this.exprValue.validateTree() && (varType == exprType);
     }
 
 }

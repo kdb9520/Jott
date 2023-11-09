@@ -32,6 +32,15 @@ public class VarDecNode implements BodyStmtNode {
         }
 
         if(!symbolTable.hasVar(currentIdToken.getToken())){
+
+            // Check to make sure you're not in an if/while loop
+            if(symbolTable.getIfWhileDepth() != 0){
+                // If this is true then error out because you tried to declare 
+                // inside of an if/while
+                String errMsg = "Attempted to declare variable inside of an if or while loop, which isn't allowed";
+                throw new SemanticException(errMsg, currentIdToken);
+            }
+
             // If this is the case then add the variable to the symbol table.
             symbolTable.addVar(currentIdToken.getToken(), currentTypeToken.getToken());
         }
@@ -76,7 +85,7 @@ public class VarDecNode implements BodyStmtNode {
     public boolean validateTree() throws SemanticException {
 
         String leftTypeString = this.type.toString();
-        String rightTypeString = this.id.getTokenType().toString();
+        String rightTypeString = this.id.getType();
         
         if (!leftTypeString.equals(symbolTable.getVarType(rightTypeString))) {
             throw new SemanticException("Left side has different type than right side", this.id.getToken());    

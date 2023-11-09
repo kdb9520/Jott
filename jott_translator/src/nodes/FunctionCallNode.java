@@ -17,11 +17,8 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         this.params = f_p;
     }
 
-    public TokenType getTokenType() {
-        // TODO: This might have to return the return
-        //  type of the function from the symtable
-        // String returnType = getReturnType();
-        return null;
+    public String getType() {
+        return this.getReturnType();
     }
 
     public String getReturnType(){
@@ -70,7 +67,7 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
      * create a valid Node, in this case being a valid functionCallNode
      * 
      */
-    public static FunctionCallNode parseFunctionCallNode(ArrayList<Token> tokenList) throws SyntaxException{
+    public static FunctionCallNode parseFunctionCallNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException{
         if (tokenList.get(0).getTokenType() != TokenType.FC_HEADER){
             throw new SyntaxException("Token types don't match", tokenList.get(0));
         }

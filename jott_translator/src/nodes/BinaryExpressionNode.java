@@ -30,8 +30,8 @@ public class BinaryExpressionNode extends ExpressionNode {
         this.opToken = operator;
     }
 
-    public TokenType getTokenType() {
-        return leftNode.getTokenType();
+    public String getType() {
+        return leftNode.getType();
     }
 
     public boolean validateTree() throws SemanticException {
@@ -43,7 +43,7 @@ public class BinaryExpressionNode extends ExpressionNode {
         }
 
         // Check for types not being the same
-        if (!this.leftNode.getTokenType().equals(this.rightNode.getTokenType())) {
+        if (!this.leftNode.getType().equals(this.rightNode.getType())) {
             // this is a case where the left and right node do not have the same type
             String errMsg = "Attempted Binary Operation with different types.";
             throw new SemanticException(errMsg, rightNode.getToken());
