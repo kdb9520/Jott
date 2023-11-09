@@ -11,6 +11,10 @@ import nodes.*;
 
 public class phase3Main {
     
+
+    private static boolean validateNodes(JottTree nodeTree){
+
+    }
     
     public static void processJott(String jottFilename) {
         // This needs to somehow run all the phases up to this point.
@@ -22,9 +26,18 @@ public class phase3Main {
 
         ArrayList<Token> tokenList = JottTokenizer.tokenize(jottFilename);
         if(tokenList == null){
-            // Do some sort of error message here
-            System.out.println("");
+            // That means an error happened, the tokenizer printed already so just stop
+            return;
         }
+
+        // Now you have the tokens, so get the node tree
+        JottTree nodeTree = JottParser.parse(tokenList);
+        if(nodeTree == null){
+            // Hit some kind of error that already was printed during tree processing
+            return;
+        }
+
+
     }
 
 
