@@ -39,6 +39,15 @@ public class symbolTable {
 
         // check in while -- Kellen
         whileDepth = 0;
+
+        // Add the built in function here
+        // Length takes in a string as its only param
+        addFunc("length");
+        setFunc("length");
+        addParam("stringToCheck", "String");
+        addVar("Return", "Integer");
+
+
     }
 
     // check if a func with this name has already been added to the functions hashmap
@@ -119,6 +128,11 @@ public class symbolTable {
         HashMap<String, String> curr_hash = functions.get(current_function);
         String type = curr_hash.get(var_name);
         return type;
+    }
+
+    // Should get the return type for the current function
+    public static String getFuncReturnType(){
+        return getVarType("Return");
     }
 
     public static void incrementIfWhileDepth(){
