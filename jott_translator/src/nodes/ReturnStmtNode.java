@@ -18,7 +18,10 @@ public class ReturnStmtNode extends ExpressionNode {
     public boolean validateTree() throws SemanticException{
         // check if return type = expected return type
         if (!this.exprNode.getType().equals(symbolTable.getVarType("Return"))) {
-            throw new SemanticException("Invalid return type: ", this.exprNode.getToken());
+            String actual = symbolTable.getVarType(this.exprNode.getToken().getToken());
+            String expected = symbolTable.getFuncReturnType();
+            String errMsg = "Invalid return type: " + actual + "\nExpected: " + expected;
+            throw new SemanticException(errMsg, this.exprNode.getToken());
         }
         return true;
     }
