@@ -22,7 +22,10 @@ public class IfStmtNode implements BodyStmtNode {
         // First, check if the if's body has a return statement in it 
         ReturnStmtNode bodyReturn = body.getReturnNode();
         boolean ifHasReturn = false;
-        boolean elifElseHasReturn = false;
+        // This will sum up the amount of elifNodes with a return 
+        // When ifHasReturn is false, this needs to be 0.
+        // When ifHasReturn is true, this needs to be equal to elif_nodes.length()
+        int elifReturnCount = 0;
         if(bodyReturn != null){
             // What I need to do here is set some sort of flag that says if the if has a return.
             // When the if has a return, all elifs and else must have one and an else must exist.
@@ -34,8 +37,41 @@ public class IfStmtNode implements BodyStmtNode {
             if (!node.validateTree()) {
                 return false;
             }
+            // Also check to see if it has a body with a return
+            ReturnStmtNode currentReturn = node.getReturnNode();
+            if(currentReturn != null){
+                // If this is the case then increment
+                elifReturnCount++;
+            }
         }
-        return expr.validateTree() && body.validateTree() && el.validateTree();
+
+        // Now, branch based on if there is an else statement
+        if(el == null){
+            // Means that you have no else statement.  So check if there are any returns
+            if(ifHasReturn || elifReturnCount > 0){
+                // If either of the above is true, then you have an error
+                String errString = "If block contains a return statement without an else with a return statement.";
+                // This assumes expr.getToken() is implemented
+                throw new SemanticException(errString, expr.getToken());
+            }
+
+            // Otherwise, just return the validate results of the children
+            return expr.validateTree() && body.validateTree();
+        }
+        else {
+            // Means there is an else statement, so check to make sure the returns properly exist.
+            ReturnStmtNode elseReturn = el.getReturnNode();
+
+            if(ifHasReturn && elifReturnCount == elif_nodes.size() && elseReturn != null){
+                // If all of the above is true, then you can return as the returns are properly formatted.
+                return expr.validateTree() && body.validateTree() && el.validateTree();
+            }
+            else{
+                // In this case not all of the if/elif/else have a return statement, so error
+                String errString = "Not all if/elif/else have a return statement.";
+                throw new SemanticException(errString, expr.getToken());
+            }
+        }
     }
 
     public String convertToJava(String classname) {
