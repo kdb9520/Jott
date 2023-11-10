@@ -22,6 +22,10 @@ public class SemanticException extends Exception {
     }
 
     static private String formatErrorMessage(String errorMessage, String extraString){
-        return errorMessage + "  :  " + extraString;
+        String msg = "Semantic Error\n" + errorMessage;
+        if (!extraString.equals("")) {
+            msg += ":  " + extraString;
+        }
+        return msg;
     }
 }
