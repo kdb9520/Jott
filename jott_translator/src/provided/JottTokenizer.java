@@ -25,6 +25,8 @@ public class JottTokenizer {
   public static ArrayList<Token> tokenize(String filename) {
 
     File file = new File(filename);
+    String[] path = filename.split("/");
+    filename = path[path.length - 1];
     Scanner sc;
     ArrayList<Token> tokens = new ArrayList<>();
 
