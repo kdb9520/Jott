@@ -1,5 +1,6 @@
 package validate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.crypto.spec.PBEKeySpec;
@@ -42,6 +43,20 @@ public class phase3Tester {
     }
 
 
+    private boolean runTest(TestCase test){
+        System.out.println("Running Test: " + test.testName);
+        boolean testResult;
+        testResult = phase3Main.processJott(test.inputFileName, test.outputFileName);
+
+        if(testResult && !test.error){
+            
+        }
+
+        return testResult;
+        
+    }
+
+
     public static void main(String[] args) {
         // Okay so run through each case and try to test it 
         System.out.println("Attempting to run phase 3 test cases");
@@ -54,6 +69,9 @@ public class phase3Tester {
         for(phase3Tester.TestCase currentTest : tester.testCases){
             // This should iterate over all the test cases 
             numTests++;
+            if(tester.runTest(currentTest)){
+
+            }
         }
 
         System.out.printf("Passed: %d/%d%n", passedTests, numTests);

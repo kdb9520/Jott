@@ -13,7 +13,7 @@ import nodes.*;
 
 public class phase3Main {
     
-    public static void processJott(String jottFilename, String outputFilename) {
+    public static boolean processJott(String jottFilename, String outputFilename) {
         // This needs to somehow run all the phases up to this point.
         // Tokenize (call tokenizer)
         // Parse (call parser)
@@ -24,14 +24,14 @@ public class phase3Main {
         ArrayList<Token> tokenList = JottTokenizer.tokenize(jottFilename);
         if(tokenList == null){
             // That means an error happened, the tokenizer printed already so just stop
-            return;
+            return false;
         }
 
         // Now you have the tokens, so get the node tree
         JottTree nodeTree = JottParser.parse(tokenList);
         if(nodeTree == null){
             // Hit some kind of error that already was printed during tree processing
-            return;
+            return false;
         }
 
         boolean valid;
@@ -51,14 +51,17 @@ public class phase3Main {
                 currentWriter.close();
                 // Will need to be removed later but is here to confirm for now
                 System.out.println("Successfully printed Jott to file: " + outputFilename);
+                return true;
             }
             catch(IOException e){
                 System.err.println("Attempt to write to " + outputFilename + " failed due to the following: ");
                 System.err.println(e);
+                return false;
             }
         }
-        if(valid == false) {
-            return;
+        else {
+            // Means valid equals false so return false
+            return false;
         }
     }
 
