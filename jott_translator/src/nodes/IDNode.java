@@ -53,7 +53,7 @@ public class IDNode extends ExpressionNode {
 
     static public IDNode parseIDNode(ArrayList<Token> tokens) throws SyntaxException {
         if (tokens.get(0).getTokenType() != TokenType.ID_KEYWORD) {
-            throw new SyntaxException("Invalid token " + tokens.get(0) + 
+            throw new SyntaxException("Invalid token " + tokens.get(0).getToken() + 
             "with type " + tokens.get(0).getTokenType() +
             ".\nExpected Type: " + TokenType.ID_KEYWORD, tokens.get(0));
         }

@@ -47,7 +47,7 @@ public class NumberNode extends ExpressionNode {
     static public NumberNode parseNumberNode(ArrayList<Token> tokens) throws SyntaxException{
         if (tokens.get(0).getTokenType() != TokenType.NUMBER) {
             // throw syntax exception
-            throw new SyntaxException("Invalid token " + tokens.get(0) + 
+            throw new SyntaxException("Invalid token " + tokens.get(0).getToken() + 
             "with type " + tokens.get(0).getTokenType() +
             ".\nExpected Type: " + TokenType.NUMBER, tokens.get(0));
         }
