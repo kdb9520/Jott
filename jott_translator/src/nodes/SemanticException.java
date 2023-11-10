@@ -9,6 +9,7 @@ public class SemanticException extends Exception {
 
 
     static private String formatErrorMessage(String errorMessage, Token currentToken){
-        return "Semantic Error:\n" + errorMessage + "\n" + currentToken.getFilename() + ":" + currentToken.getLineNum();
+        return "Semantic Error:\n" + errorMessage;
+        // return "Semantic Error:\n" + errorMessage + "\n" + currentToken.getFilename() + ":" + currentToken.getLineNum();
     }
 }
