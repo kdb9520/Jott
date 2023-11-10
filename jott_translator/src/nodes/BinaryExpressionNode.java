@@ -75,8 +75,7 @@ public class BinaryExpressionNode extends ExpressionNode {
     }
 
     public Token getToken() {
-        // return this.token;
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree'");
+        return this.opToken;
     }
 
     public String convertToJott(){
