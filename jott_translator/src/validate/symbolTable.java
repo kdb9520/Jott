@@ -47,7 +47,18 @@ public class symbolTable {
         addParam("stringToCheck", "String");
         addVar("Return", "Integer");
 
+        // Print takes in a string as its only param
+        addFunc("print");
+        setFunc("print");
+        addParam("stringToPrint", "String");
+        addVar("Return", "Void");
 
+        // Concat takes 2 strings and returns a string
+        addFunc("concat");
+        setFunc("concat");
+        addParam("first", "String");
+        addParam("second", "String");
+        addVar("Return", "String");
     }
 
     // check if a func with this name has already been added to the functions hashmap
