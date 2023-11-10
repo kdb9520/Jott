@@ -35,6 +35,13 @@ public class BinaryExpressionNode extends ExpressionNode {
     }
 
     public boolean validateTree() throws SemanticException {
+        if (!this.leftNode.validateTree()) {
+            throw new SemanticException("Invalid left hand side expression node", "Expression type = " + this.leftNode.getType());
+        }
+
+        if (!this.rightNode.validateTree()) {
+            throw new SemanticException("Invalid right hand side expression node", "Expression type = " + this.rightNode.getType());
+        }
         // Check for division by 0
         if(opToken.getToken().equals("/") && rightNode.getToken().getToken().equals("0")){
             // If this is the case then you're attempting to divide by zero, so error out
@@ -49,7 +56,7 @@ public class BinaryExpressionNode extends ExpressionNode {
             throw new SemanticException(errMsg, rightNode.getToken());
         }
         
-        return false;
+        return true;
     }
 
     public String convertToJava(String classname) {

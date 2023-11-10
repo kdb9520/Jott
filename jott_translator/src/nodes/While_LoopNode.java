@@ -20,6 +20,12 @@ public class While_LoopNode implements BodyStmtNode {
 
     public boolean validateTree() throws SemanticException {
         // call expr and body validateTree()
+        if (!this.exprNode.validateTree()) {
+            throw new SemanticException("Invalid expression node in While loop", "Expression type = " + this.exprNode.getType());
+        }
+        if (!this.bodyNode.validateTree()) {
+            throw new SemanticException("Invalid body node in While loop", "");
+        }
         return exprNode.validateTree() && bodyNode.validateTree();
     }
 

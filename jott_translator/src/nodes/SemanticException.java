@@ -7,6 +7,10 @@ public class SemanticException extends Exception {
         super(formatErrorMessage(errorMessage, currentToken));
     }
 
+    public SemanticException(String errorMessage, String extraString) {
+        super(formatErrorMessage(errorMessage, extraString));
+    }
+
 
     static private String formatErrorMessage(String errorMessage, Token currentToken){
         if(currentToken == null){
@@ -15,5 +19,9 @@ public class SemanticException extends Exception {
         else {
             return "Semantic Error:\n" + errorMessage + "\n" + currentToken.getFilename() + ":" + currentToken.getLineNum();
         }
+    }
+
+    static private String formatErrorMessage(String errorMessage, String extraString){
+        return errorMessage + "  :  " + extraString;
     }
 }

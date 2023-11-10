@@ -69,19 +69,23 @@ public class BodyNode implements JottTree {
         // check that return types match funtion return
         if (this.returnStmt == null){
             if (!symbolTable.getVarType("Return").equals("Void")){
-                throw new SemanticException("Missing return statement in non-void function", null);
+                throw new SemanticException("Missing return statement in non-void function", "");
             }
         }
 
         // make sure all body statements are valid
         for (BodyStmtNode bodyStmtNode : bodyStmtNodes) {
             if (!bodyStmtNode.validateTree()) {
-                return false;
+                throw new SemanticException("Invalid body stmt node", "");
             }
         }
 
         // validate return statement
-        return this.returnStmt.validateTree();
+        if (!(this.returnStmt == null)) {
+            return this.returnStmt.validateTree();
+        }
+
+        return true;
     }
 
     public static BodyNode parseBodyNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {

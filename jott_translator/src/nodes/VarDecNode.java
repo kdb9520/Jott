@@ -84,11 +84,19 @@ public class VarDecNode implements BodyStmtNode {
     @Override
     public boolean validateTree() throws SemanticException {
 
-        String leftTypeString = this.type.toString();
-        String rightTypeString = this.id.getType();
+        // Justin: pretty sure the current validateTree implementation doesn't make sense, since varDec isn't actually assigning to a right side
+        // String leftTypeString = this.type.toString();
+        // String rightTypeString = this.id.getType();
         
-        if (!leftTypeString.equals(symbolTable.getVarType(rightTypeString))) {
-            throw new SemanticException("Left side has different type than right side", this.id.getToken());    
+        // if (!leftTypeString.equals(symbolTable.getVarType(rightTypeString))) {
+        //     throw new SemanticException("Left side has different type than right side", this.id.getToken());    
+        // }
+
+        if (!this.type.validateTree()) {
+            throw new SemanticException("Invalid type node in Var Dec Node", "");
+        }
+        if (!this.id.validateTree()) {
+            throw new SemanticException("Invalid ID node in var dec node", "");
         }
 
         return true;

@@ -156,6 +156,8 @@ public class AsmtNode implements BodyStmtNode {
         }
         String varType = symbolTable.getVarType(tokenText);
         String exprType = this.exprValue.getType();
+
+        // Justin: This causes an issue because if the exprValue is a functionCallNode, then the functionCallNode doesn't have token associated with it
         // validate right hand IDKeyword exists in symbol table
         if (this.exprValue.getToken().getTokenType() == TokenType.ID_KEYWORD){
             if (!symbolTable.hasVar(this.exprValue.getToken().getToken())){
@@ -164,12 +166,16 @@ public class AsmtNode implements BodyStmtNode {
         }
 
         // validate that same types are used in expressions
-        if (varType != exprType) {
+        // NEED TO USE .equals FOR STRING COMPARISON!!!!!!!!!!!!
+        if (!varType.equals(exprType)) {
             String errMsg = "Attempted to use non-matching types in an expression.";
             throw new SemanticException(errMsg, this.exprValue.getToken());
         }
 
-        return this.exprValue.validateTree();
+        if (!this.exprValue.validateTree()) {
+            throw new SemanticException("Invalid expression in AsmtNode", "");
+        }
+        return true;
     }
 
 }
