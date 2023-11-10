@@ -52,6 +52,7 @@ public class ProgramNode implements JottTree {
         }
 
         for (FuncDefNode funcDefNode : functionDefinitions) {
+            // Will need to be removed later
             System.out.println(funcDefNode.getToken().getToken());
             if (!funcDefNode.validateTree()) {
                 throw new SemanticException("Invalid function definition.", "");
