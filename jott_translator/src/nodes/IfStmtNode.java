@@ -19,6 +19,17 @@ public class IfStmtNode implements BodyStmtNode {
     }
 
     public boolean validateTree() throws SemanticException {
+        // First, check if the if's body has a return statement in it 
+        ReturnStmtNode bodyReturn = body.getReturnNode();
+        boolean ifHasReturn = false;
+        boolean elifElseHasReturn = false;
+        if(bodyReturn != null){
+            // What I need to do here is set some sort of flag that says if the if has a return.
+            // When the if has a return, all elifs and else must have one and an else must exist.
+            // When the if doesn't have a return, NONE of the elif/else can have a return.
+            ifHasReturn = true;
+        }
+
         for (ElifStmtNode node : elif_nodes) {
             if (!node.validateTree()) {
                 return false;
@@ -87,7 +98,9 @@ public class IfStmtNode implements BodyStmtNode {
             throw new SyntaxException("Token types is not LBrace", tokenList.get(0));
         }
         tokenList.remove(0);
+
         BodyNode body = BodyNode.parseBodyNode(tokenList);
+
         if (tokenList.get(0).getTokenType() != TokenType.R_BRACE){
             throw new SyntaxException("Token types is not RBrace", tokenList.get(0));
         }

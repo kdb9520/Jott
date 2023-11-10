@@ -17,6 +17,14 @@ public class BodyNode implements JottTree {
         this.returnStmt = returnStmtNode;
     }
 
+
+    // Used as a helper function for IfStmtNode to check if 
+    // an if has a return statement or not
+    public ReturnStmtNode getReturnNode(){
+        // Remember, this CAN be a null value and that needs to be checked
+        return returnStmt;
+    }
+
     public String convertToC() {
         // TODO
         return "not implemented";

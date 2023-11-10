@@ -63,7 +63,7 @@ public class phase3Main {
     }
 
 
-    public static void main(){
+    public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter input file name");
         String input_filename = sc.nextLine();
