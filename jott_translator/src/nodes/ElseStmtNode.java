@@ -12,6 +12,13 @@ public class ElseStmtNode implements JottTree {
         this.body = body;
     }
 
+    // Used as a helper function for IfStmtNode to check if 
+    // this else has a return statement in its body or not
+    public ReturnStmtNode getReturnNode(){
+        // Remember, this CAN be a null value and that needs to be checked
+        return body.getReturnNode();
+    }
+
     public boolean validateTree() throws SemanticException {
         return body.validateTree();
     }
