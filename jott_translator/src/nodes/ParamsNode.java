@@ -14,6 +14,7 @@ public class ParamsNode implements JottTree {
     }
 
     public boolean validateTree() throws SemanticException {
+        // The issue here seems to be that if there's something that breaks when you try to 
         ArrayList<String> params = symbolTable.getParamTypes();
         for (int i = 0; i < exprNodes.size(); i++) {
             String exprType = exprNodes.get(i).getType();
