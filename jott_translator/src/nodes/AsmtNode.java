@@ -158,8 +158,14 @@ public class AsmtNode implements BodyStmtNode {
         String exprType = this.exprValue.getType();
 
         // Justin: This causes an issue because if the exprValue is a functionCallNode, then the functionCallNode doesn't have token associated with it
+        // Max: What this would actually need to do if you're dealing with a function, is check the func's
+        // return type to see if it matches the type of the var.
+        // We'll also need a special case for binary expression node, right?
+        // Cause that won't be an individual entry in the table anyways. 
         // validate right hand IDKeyword exists in symbol table
-        if (this.exprValue.getToken().getTokenType() == TokenType.ID_KEYWORD){
+        
+        // Have an extra check to make sure that if you have an id, it's variable exists
+        if (this.exprValue instanceof IDNode){
             if (!symbolTable.hasVar(this.exprValue.getToken().getToken())){
                 throw new SemanticException("Right hand variable not defined", this.exprValue.getToken());
             }
