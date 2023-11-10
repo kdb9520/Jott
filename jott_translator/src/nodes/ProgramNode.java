@@ -40,7 +40,7 @@ public class ProgramNode implements JottTree {
             }
 
             // verify main function takes no parameters
-            int numParams = symbolTable.getParamTypes().size();
+            int numParams = symbolTable.getParamCount();
             if (numParams != 0) {
                 String errMessage = "Main function has " + numParams + " parameters but should take 0";
                 throw new SemanticException(errMessage, null);
