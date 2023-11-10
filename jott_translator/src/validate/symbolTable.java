@@ -11,9 +11,16 @@ import java.util.Map;
  */
 
 public class symbolTable {
+    // Includes the functions, their variables and params.
+    // Has the return type of each 
     public static HashMap<String, HashMap<String, String>> functions;
-// Exists to contain the return type of each function
-    public static HashMap<String, String> funcReturnTypes;
+
+    // This holds the parameters and associated types for each function
+    public static HashMap<String, HashMap<String, String>> funcParams;
+
+    // Holds key value pairs of func_name:num_of_params
+    public static HashMap<String, Integer> funcParamCount;
+
     public static String current_function;
 // Variable that, if it is not zero, says you are inside of an if or while statement.
     // Used for ensuring variables aren't declared in a while loop/if.
@@ -23,7 +30,10 @@ public class symbolTable {
     // initializer.  Needs to be called by something before the symbol
     // table can be used across the program
     public static void initSymbolTable() {
+        // Initialize the hash maps
         functions = new HashMap<String, HashMap<String, String>>();
+        funcParams = new HashMap<String, HashMap<String, String>>();
+        funcParamCount = new HashMap<String, Integer>();
         current_function = null;
         ifWhileDepth = 0;
 
@@ -46,8 +56,13 @@ public class symbolTable {
         // There needs to be a check added here to make sure that no built in functions get added
         // You CANNOT add print, concat, or length
         HashMap<String, String> curr_hash = new HashMap<String, String>();
-        curr_hash.put("Param_count", "0");
         functions.put(func_name, curr_hash);
+
+        HashMap<String, String> currentParamMap = new HashMap<String, String>();
+        funcParams.put(func_name, currentParamMap);
+
+        // Add the param count here
+        funcParamCount.put(func_name, 0);
     }
 
     // sets current_function value to given func_name
@@ -68,33 +83,29 @@ public class symbolTable {
 
     // adds new parameter to current_function hashmap with key of var_name and value equal to string of type
     public static void addParam(String var_name, String type) {
-        HashMap<String, String> curr_hash = functions.get(current_function);
-        String params = curr_hash.get("Param_count");
-        params = Integer.toString(Integer.valueOf(params) + 1);
-// Need to make sure to put the params back inside of the right place in the hash map
-        curr_hash.put("Param_count", params);
-        curr_hash.put(var_name, type);
+        HashMap<String, String> currentVarTable = functions.get(current_function);
+        currentVarTable.put(var_name, type);
+
+        // Get the param count for the current func and increment it
+        funcParamCount.put(current_function, funcParamCount.get(current_function) + 1);
+
+        // The param has been put in the variable table, so put it in the param table now
+        HashMap<String, String> currentParamTable = funcParams.get(current_function);
+        currentParamTable.put(var_name, type);
     }
 
     // returns an ArrayList containing the types of all params for curr_function, length of list is how many params should be present
     public static ArrayList<String> getParamTypes() {
-        HashMap<String, String> curr_hash = functions.get(current_function);
-        ArrayList<String> params = new ArrayList<String>();
-        Integer param_count = Integer.valueOf(curr_hash.get("Param_count"));
-        Integer loop_count = 0;
-        for (Map.Entry<String, String> param : curr_hash.entrySet()) {
-                if (param.getKey() == "Param_count") {
-                    loop_count += 1;
-                }
-                else {
-                    params.add(param.getValue());
-                    loop_count += 1;
-                }
-                if (loop_count > param_count) {
-                    break;
-                }
-            }
-        return params;
+        HashMap<String, String> currentParams = funcParams.get(current_function);
+        // This array list should have a sequence of the return types of the params.
+        ArrayList<String> returnTypes = new ArrayList<String>(currentParams.values());
+        return returnTypes;
+    }
+
+
+    // Gets the param count for the current function
+    public static int getParamCount(){
+        return funcParamCount.get(current_function);
     }
 
     // adds new variable to current_function hashmap with key of var_name and value equal to string of type
