@@ -85,7 +85,7 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
 
         // make sure the function exists already
         if (!symbolTable.hasFunc(f_name.getToken().getToken())) {
-            String errMsg = "Error: Function not found";
+            String errMsg = "Call to unknown function " + f_name.getToken().getToken();
             throw new SemanticException(errMsg, f_name.getToken());
         }
 
