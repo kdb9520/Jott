@@ -53,10 +53,10 @@ public class FuncDefNode implements JottTree {
         return output;
     }
 
-    public boolean validateTree(){
+    public boolean validateTree() throws SemanticException {
         // FuncDef is what defines the type of the parameters, and thus the errors for it have already been checked
         symbolTable.setFunc(this.funcName.getToken().getToken());
-        return true;
+        return this.funcName.validateTree() && this.funcDefParams.validateTree() && this.funcReturn.validateTree() && this.body.validateTree();
     }
 
     public static FuncDefNode parseFuncDefNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
