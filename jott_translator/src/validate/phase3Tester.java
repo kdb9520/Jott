@@ -51,8 +51,10 @@ public class phase3Tester {
         testCases.add(new TestCase("while is not a valid id", "whileKeyword.jott", "whileKeywordOutput.jott", true));
 
         // These are the test cases we know fail right now
+        testCases.add(new TestCase("Parameter types need to match", "funcCallParamInvalid.jott", "funcCallParamInvalidOutput.jott", true));
+        testCases.add(new TestCase("Function Needs Return in all if cases", "noReturnIf.jott", "noReturnIfOutput.jott", true));
+        testCases.add(new TestCase("noReturnWhile Test", "noReturnWhile.jott", "noReturnWhileOutput.jott", true));
         testCases.add(new TestCase("valid loop test case", "validLoop.jott", "validLoopOutput.jott", false));
-
     }
 
 
