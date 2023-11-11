@@ -16,7 +16,7 @@ public class ParamsNode implements JottTree {
     }
 
     public boolean validateTree() throws SemanticException {
-        if (this.functionName == "print"){
+        if (this.functionName.equals("print")){ 
             if (exprNodes.size() != 1){
                 throw new SemanticException("Invalid number of params provided for function print. ", exprNodes.get(0).getToken());
             }

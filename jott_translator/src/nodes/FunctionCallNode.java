@@ -26,20 +26,10 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     }
 
     public boolean validateTree() throws SemanticException{
-        // symbolTable.setFunc(this.funcName.getToken().getToken());
-        if(this.funcName.getToken().getToken().equals("print")){
-            // Special case where you have a print, handle checking the params here
-            // Check to see if the parameters has a size of 1, then see if the 
-            // Single parameter is of a valid type.
 
-
-            return true;
-        }
-        else{
-            // set current function for params
-            this.params.setFunc(this.funcName.getToken().getToken());
-            return this.params.validateTree();
-        }
+        // set current function for params
+        this.params.setFunc(this.funcName.getToken().getToken());
+        return this.params.validateTree();
     }
 
     public String convertToJava(String classname) {
