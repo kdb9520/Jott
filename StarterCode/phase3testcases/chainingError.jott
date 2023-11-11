@@ -1,0 +1,5 @@
+#throw error for chaining binary ops
+
+def main[]:Void{
+    Integer x = 1 + 1 + 1;
+}

@@ -1,0 +1,5 @@
+#throw error division by zero
+
+def main[]:Void{
+    Integer x = 1 / 0;
+}
