@@ -41,6 +41,12 @@ public class AsmtNode implements BodyStmtNode {
                 // If this is the case then add the variable to the symbol table.
                 // If the exprValue is the correct type can get checked in validate.
 
+                // check if id is a keyword
+                if (symbolTable.isKeyword(variableName.getToken().getToken())) {
+                    String errMsg = "Invalid variable name: " + variableName.getToken().getToken();
+                    throw new SemanticException(errMsg + "\nVariable name cannot be a keyword", variableName.getToken());
+                }
+
                 // check if var name is upper case
                 if (Character.isUpperCase(variableName.getToken().toString().charAt(0))) {
                     String errMsg = "Invalid variable name: cannot start with a capital letter";

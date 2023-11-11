@@ -2,6 +2,7 @@ package validate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 /**
@@ -27,6 +28,8 @@ public class symbolTable {
     public static int ifWhileDepth;
     public static int whileDepth; // Kellen
 
+    private static HashSet<String> keywords;
+
     // initializer.  Needs to be called by something before the symbol
     // table can be used across the program
     public static void initSymbolTable() {
@@ -34,6 +37,7 @@ public class symbolTable {
         functions = new HashMap<String, HashMap<String, String>>();
         funcParams = new HashMap<String, HashMap<String, String>>();
         funcParamCount = new HashMap<String, Integer>();
+        keywords = new HashSet<String>();
         current_function = null;
         ifWhileDepth = 0;
 
@@ -59,6 +63,13 @@ public class symbolTable {
         addParam("first", "String");
         addParam("second", "String");
         addVar("Return", "String");
+
+        // add the keywords that are invalid as var names
+        keywords.add("while");
+        keywords.add("if");
+        keywords.add("elseif");
+        keywords.add("else");
+        keywords.add("return");
     }
 
     // check if a func with this name has already been added to the functions hashmap
@@ -175,6 +186,11 @@ public class symbolTable {
 
     public static int getWhileDepth(){
         return whileDepth;
+    }
+
+    // checks if a string is in the keywords
+    public static boolean isKeyword(String varName) {
+        return keywords.contains(varName);
     }
 
     // returns the entire hashmap of the current_function (shouldn't need to use this)

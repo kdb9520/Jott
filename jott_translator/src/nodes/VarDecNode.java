@@ -25,6 +25,12 @@ public class VarDecNode implements BodyStmtNode {
         Token currentIdToken = idToken.getNodeToken();
         Token currentTypeToken = typeToken.getNodeToken();
 
+        // check if id is a keyword
+        if (symbolTable.isKeyword(currentIdToken.getToken())) {
+            String errMsg = "Invalid variable name: " + currentIdToken.getToken();
+            throw new SemanticException(errMsg + "\nVariable name cannot be a keyword", currentIdToken);
+        }
+
         // vars cannot start with a capital letter
         if (Character.isUpperCase(currentIdToken.toString().charAt(0))) {
             String errMsg = "Invalid variable name: cannot start with a capital letter";
