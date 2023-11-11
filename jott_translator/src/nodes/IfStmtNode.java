@@ -10,12 +10,18 @@ public class IfStmtNode implements BodyStmtNode {
     private BodyNode body;
     private ArrayList<ElifStmtNode> elif_nodes;
     private ElseStmtNode el;
+
+    // This is used for BodyNode checking to see if it has a valid return path
+    // This will get set inside of validate tree if it is true 
+    private boolean isValidReturnPath;
     
     public IfStmtNode (ExpressionNode expr, BodyNode body, ArrayList<ElifStmtNode> elif_nodes, ElseStmtNode el) {
         this.expr = expr;
         this.body = body;
         this.elif_nodes = elif_nodes;
         this.el = el;
+
+        isValidReturnPath = false;
     }
 
     public boolean validateTree() throws SemanticException {
@@ -47,15 +53,8 @@ public class IfStmtNode implements BodyStmtNode {
 
         // Now, branch based on if there is an else statement
         if(el == null){
-            // Means that you have no else statement.  So check if there are any returns
-            if(ifHasReturn || elifReturnCount > 0){
-                // If either of the above is true, then you have an error
-                String errString = "If block contains a return statement without an else with a return statement.";
-                // This assumes expr.getToken() is implemented
-                throw new SemanticException(errString, expr.getToken());
-            }
-
-            // Otherwise, just return the validate results of the children
+            // Means that you have no else statement
+            // So this if can't be a valid return path
             return expr.validateTree() && body.validateTree();
         }
         else {
