@@ -1,6 +1,7 @@
 package nodes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import provided.JottTree;
 import provided.Token;
@@ -15,16 +16,27 @@ public class ParamsNode implements JottTree {
     }
 
     public boolean validateTree() throws SemanticException {
-        ArrayList<String> params = symbolTable.getParamTypesCurrentFunction(this.functionName);
+        if (this.functionName == "print"){
+            if (exprNodes.size() != 1){
+                throw new SemanticException("Invalid number of params provided for function print. ", exprNodes.get(0).getToken());
+            }
+            ArrayList<String> validExprs = new ArrayList<>(Arrays.asList("String", "Integer", "Double", "Boolean"));
+            if (!validExprs.contains(exprNodes.get(0).getType())){
+                throw new SemanticException("Invalid Expression Type: ", exprNodes.get(0).getToken());
+            }
+        }
+        else{
+            ArrayList<String> params = symbolTable.getParamTypesCurrentFunction(this.functionName);
         int expected_param_count = symbolTable.getParamCount();
         int actual_param_count = params.size();
         if(expected_param_count != actual_param_count) {
             throw new SemanticException("Number of params given does not equal number of params expected", "");
         }
-        for (int i = 0; i < exprNodes.size(); i++) {
-            String exprType = exprNodes.get(i).getType();
-            if (!exprType.equals(params.get(i))){
-                throw new SemanticException("Invalid param type.", exprNodes.get(i).getToken());
+            for (int i = 0; i < exprNodes.size(); i++) {
+                String exprType = exprNodes.get(i).getType();
+                if (!exprType.equals(params.get(i))){
+                    throw new SemanticException("Invalid param type.", exprNodes.get(i).getToken());
+                }
             }
         }
         return true;
