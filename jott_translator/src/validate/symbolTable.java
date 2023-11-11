@@ -158,6 +158,11 @@ public class symbolTable {
         return funcParamCount.get(current_function);
     }
 
+    // Gets the param count for the current function
+    public static int getParamCountForGiven(String funcName){
+        return funcParamCount.get(funcName);
+    }
+
     // adds new variable to current_function hashmap with key of var_name and value equal to string of type
     public static void addVar(String var_name, String type) {
         HashMap<String, String> curr_hash = functions.get(current_function);
