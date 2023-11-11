@@ -82,6 +82,7 @@ public class ProgramNode implements JottTree {
             // Iterate through all the function definitions, and call their convert to Jott func
             currentFunctionText = functionDefinitions.get(funcIndex).convertToJott();
             stringToReturn = stringToReturn.concat(currentFunctionText);
+            stringToReturn = stringToReturn.concat("\n");
         }
 
         return stringToReturn;
