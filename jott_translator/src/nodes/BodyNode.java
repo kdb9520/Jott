@@ -66,18 +66,31 @@ public class BodyNode implements JottTree {
             }
         }
 
-        // check that return types match funtion return 
-        // need to fix
-        if (this.returnStmt == null){
-            if (!symbolTable.getVarType("Return").equals("Void")){
-                throw new SemanticException("Missing return statement in non-void function", "");
-            }
-        }
-
+        // If any of the bodyStmtNodes have a return that's valid, switch this to true
+        boolean validReturnInIf = false;
         // make sure all body statements are valid
         for (BodyStmtNode bodyStmtNode : bodyStmtNodes) {
             if (!bodyStmtNode.validateTree()) {
                 throw new SemanticException("Invalid body stmt node", "");
+            }
+
+            // Check if the bodyStmtNode is an if, and if it is, check if it has a valid return
+            if(bodyStmtNode instanceof IfStmtNode && !validReturnInIf){
+                IfStmtNode ifNode = (IfStmtNode) bodyStmtNode;
+                validReturnInIf = ifNode.getReturnPath();                
+            }
+        }
+
+
+        // check that return types match funtion return 
+        // need to fix
+        if (this.returnStmt == null){
+            if(validReturnInIf){
+                // Have a valid return path in an if, so just return true
+                return true;
+            }
+            else if (!symbolTable.getVarType("Return").equals("Void")){
+                throw new SemanticException("Missing return statement in non-void function", "");
             }
         }
 
@@ -86,6 +99,7 @@ public class BodyNode implements JottTree {
             return this.returnStmt.validateTree();
         }
 
+        // If you reached this then either your return is void or it exists and is valid
         return true;
     }
 

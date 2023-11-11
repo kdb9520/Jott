@@ -24,6 +24,11 @@ public class IfStmtNode implements BodyStmtNode {
         isValidReturnPath = false;
     }
 
+    // Getter for the isValidReturnPath
+    public boolean getReturnPath(){
+        return isValidReturnPath;
+    }
+
     public boolean validateTree() throws SemanticException {
         // First, check if the if's body has a return statement in it 
         ReturnStmtNode bodyReturn = body.getReturnNode();
@@ -62,13 +67,13 @@ public class IfStmtNode implements BodyStmtNode {
             ReturnStmtNode elseReturn = el.getReturnNode();
 
             if(ifHasReturn && elifReturnCount == elif_nodes.size() && elseReturn != null){
-                // If all of the above is true, then you can return as the returns are properly formatted.
+                // If all these are true, then this is a valid return path
+                isValidReturnPath = true;
                 return expr.validateTree() && body.validateTree() && el.validateTree();
             }
             else{
-                // In this case not all of the if/elif/else have a return statement, so error
-                String errString = "Not all if/elif/else have a return statement.";
-                throw new SemanticException(errString, expr.getToken());
+                // Not a valid return path, so return without setting the bool
+                return expr.validateTree() && body.validateTree() && el.validateTree();
             }
         }
     }
