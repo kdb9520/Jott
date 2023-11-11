@@ -130,11 +130,11 @@ public class symbolTable {
         HashMap<String, String> currentParams = funcParams.get(current_function);
         // This array list should have a sequence of the return types of the params.
         ArrayList<String> returnTypes = new ArrayList<String>(currentParams.values());
-        System.out.println("Calling getParamTypes, results in list of length " + returnTypes.size() + " and this output: ");
+        // System.out.println("Calling getParamTypes, results in list of length " + returnTypes.size() + " and this output: ");
         int paramIndex = -1;
         for(String currentType : returnTypes){
             paramIndex++;
-            System.out.println("Param Has Type " + currentType + " at index " + paramIndex);
+            // System.out.println("Param Has Type " + currentType + " at index " + paramIndex);
         }
         return returnTypes;
     }
@@ -143,11 +143,11 @@ public class symbolTable {
         HashMap<String, String> currentParams = funcParams.get(functionName);
         // This array list should have a sequence of the return types of the params.
         ArrayList<String> returnTypes = new ArrayList<String>(currentParams.values());
-        System.out.println("Calling getParamTypes, results in list of length " + returnTypes.size() + " and this output: ");
+        // System.out.println("Calling getParamTypes, results in list of length " + returnTypes.size() + " and this output: ");
         int paramIndex = -1;
         for(String currentType : returnTypes){
             paramIndex++;
-            System.out.println("Param Has Type " + currentType + " at index " + paramIndex);
+            // System.out.println("Param Has Type " + currentType + " at index " + paramIndex);
         }
         return returnTypes;
     }
@@ -235,18 +235,18 @@ public class symbolTable {
         return functions;
     }
     public static void printSymTab() {
-        System.out.println("\nStarting SymbolTable Print:\n");
+        // System.out.println("\nStarting SymbolTable Print:\n");
         for (Map.Entry<String, HashMap<String, String>> funcs : functions.entrySet()) {
             String curr_func = funcs.getKey();
             HashMap<String, String> curr_map = funcs.getValue();
-            System.out.println("Function \"" + curr_func + "\" contains vars:");
+            // System.out.println("Function \"" + curr_func + "\" contains vars:");
             for (Map.Entry<String, String> vars : curr_map.entrySet()) {
                 String var = vars.getKey();
                 String type = vars.getValue();
-                System.out.println("\tVar name: " + var + ", Var type: " + type);
+                // System.out.println("\tVar name: " + var + ", Var type: " + type);
             }
         }
-        System.out.println("\nEnding Symbol Table Print:\n");
+        // System.out.println("\nEnding Symbol Table Print:\n");
     }
     // Have a current function value 
     // That current function value is set by the FuncDefNode
