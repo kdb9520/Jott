@@ -36,6 +36,8 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             return true;
         }
         else{
+            // set current function for params
+            this.params.setFunc(this.funcName.getToken().getToken());
             return this.params.validateTree();
         }
     }

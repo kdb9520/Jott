@@ -9,13 +9,13 @@ import validate.symbolTable;
 
 public class ParamsNode implements JottTree {
     private ArrayList<ExpressionNode> exprNodes = new ArrayList<>();
+    private String functionName;
     public ParamsNode (ArrayList<ExpressionNode> exprs) {
         this.exprNodes = exprs;
     }
 
     public boolean validateTree() throws SemanticException {
-        // The issue here seems to be that if there's something that breaks when you try to 
-        ArrayList<String> params = symbolTable.getParamTypes();
+        ArrayList<String> params = symbolTable.getParamTypesCurrentFunction(this.functionName);
         for (int i = 0; i < exprNodes.size(); i++) {
             String exprType = exprNodes.get(i).getType();
             if (!exprType.equals(params.get(i))){
@@ -49,6 +49,10 @@ public class ParamsNode implements JottTree {
             }
         }
         return output;
+    }
+
+    public void setFunc(String funcName){
+        this.functionName = funcName;
     }
 
     public static ParamsNode parse_ParamsNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
