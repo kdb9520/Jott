@@ -32,7 +32,7 @@ public class VarDecNode implements BodyStmtNode {
         }
 
         // vars cannot start with a capital letter
-        if (Character.isUpperCase(currentIdToken.toString().charAt(0))) {
+        if (Character.isUpperCase(currentIdToken.getToken().charAt(0))) {
             String errMsg = "Invalid variable name: cannot start with a capital letter";
             throw new SemanticException(errMsg, currentIdToken);
         }
@@ -59,6 +59,8 @@ public class VarDecNode implements BodyStmtNode {
 
         if (tokens.get(0).getTokenType() != TokenType.SEMICOLON) {
             throw new SyntaxException("Variable Declaration missing semicolon.", tokens.get(0));
+        } else {
+            tokens.remove(0);
         }
 
         return new VarDecNode(typeToken, idToken);
