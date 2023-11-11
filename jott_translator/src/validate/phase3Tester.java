@@ -89,7 +89,8 @@ public class phase3Tester {
         }
         else {
             // Did not recieve an expected result
-            System.out.printf("Test returned unexpected result, expected error: %b\n", test.error);
+            System.out.printf("\t\tTest returned unexpected result, expected error: %b\n", test.error);
+            System.out.println("TEST FAILED");
             return false;
         }     
     }
