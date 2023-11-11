@@ -58,9 +58,7 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     }
 
     public Token getToken() {
-        // todo: idk 
-        // return this.token;
-        throw new UnsupportedOperationException("Unimplemented method 'validateTree' in FunctionCallNode");
+        return this.funcName.getToken();
     }
 
     public String convertToJott() {
