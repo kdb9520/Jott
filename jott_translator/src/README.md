@@ -28,7 +28,7 @@ The choice of which language to output will be added in the next phase.
 Specifically, the instructions to compile and run will have \ characters that, if viewed as raw text, will make the commands to compile the code not work properly.
 
 ### Instructions to Compile and Run: 
-1. The nodes, provided, and testers packages are all required to be compiled so that the tester can properly run.  One method of doing this is to go into the src folder in the phase3 folder, and run the following command on the command line: 
+1. The nodes, provided, and validate packages are all required to be compiled so that the phase 3 main can properly run.  One method of doing this is to go into the src folder in the phase3 folder, and run the following command on the command line: 
 javac nodes/\*.java provided/\*.java validate/\*.java -d classes
 2. This will create the classes folder inside of the src folder. 
 3. Navigate to the classes folder on the command line, and run the following command in that folder to run phase: java validate/phase3Main [inputJottFilename] [outputJottFilename]
