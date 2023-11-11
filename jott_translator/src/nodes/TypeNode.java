@@ -23,6 +23,8 @@ public class TypeNode implements JottTree {
     static public TypeNode parseTypeNode(ArrayList<Token> tokens) throws SyntaxException {
         Token t = tokens.get(0);
 
+        System.out.println(t.getToken());
+
         if (t.getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token " + t.getToken() + 
             "with type " + t.getTokenType() +
