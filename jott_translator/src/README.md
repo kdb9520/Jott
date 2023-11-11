@@ -2,7 +2,11 @@
 
 ## Phase 3 Jott Validate Tree
 
-Implementation of nodes that can be used to represent tokens in the form of a JottTree. The JottParser takes a list of tokens and scans through them in order to construct an accurate JottTree that can then be read and converted back into the original Jott code. In future parts implementation will be added to convert this tree into C, Python, and Java code.
+Implementation of nodes that can be used to represent tokens in the form of a JottTree. 
+The JottParser takes a list of tokens and scans through them in order to construct 
+an accurate JottTree that can then be read and converted back into the original Jott code. 
+In future parts implementation will be added to convert this tree 
+into C, Python, and Java code.
 
 For phase 3 the validateTree function was implemented for all of the nodes.  That function does 
 some of the job of checking various sematic rules inside of Jott,but several rules were also 
@@ -16,7 +20,9 @@ The code that should be ran to have the phase 3 functionality is the phase3Main.
 the validate folder.  The specific instructions of how to compile and run from the command line 
 are detailed below. 
 
-The phase3Main.java expects to take 2 inputs which are the jott file to read 
+The phase3Main.java expects to take 2 inputs which are the jott file to read and the file to output to.
+The file to output to will have Jott output to it automatically for this phase. 
+The choice of which language to output will be added in the next phase. 
 
 **Be sure to view this file as a proper markdown file to get the correct formatting for commands.**  
 Specifically, the instructions to compile and run will have \ characters that, if viewed as raw text, will make the commands to compile the code not work properly.
