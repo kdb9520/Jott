@@ -58,14 +58,6 @@ public class BodyNode implements JottTree {
 
     public boolean validateTree() throws SemanticException {
 
-        // check that while loop does not have a return
-        if (symbolTable.getWhileDepth() > 0) {
-            if (this.returnStmt != null) {
-                String errMsg = "Invalid return from While Loop.";
-                throw new SemanticException(errMsg, this.returnStmt.getToken());
-            }
-        }
-
         // If any of the bodyStmtNodes have a return that's valid, switch this to true
         boolean validReturnInIf = false;
         // make sure all body statements are valid
