@@ -39,6 +39,7 @@ public class phase3Tester {
     private void createTestCases(){
         // So this will do the functionality of creating all the test cases 
         this.testCases = new ArrayList<>();
+        // These are the tests that we know pass right now
         testCases.add(new TestCase("HelloWorld", "helloWorld.jott", "helloWorldOutput.jott", false));
         testCases.add(new TestCase("function not defined", "funcNotDefined.jott", "funcNotDefinedOutput.jott", true));
         testCases.add(new TestCase("main having a non void return should error", "mainReturnNotInt.jott", "mainReturnNotIntOutput.jott", true));
@@ -46,6 +47,10 @@ public class phase3Tester {
         testCases.add(new TestCase("Functions with a return type need a return", "missingReturn.jott", "missingReturnOutput.jott", true));
         testCases.add(new TestCase("provided example code 1", "providedExample1.jott", "providedExample1Output.jott", false));
         testCases.add(new TestCase("returning not allowed in void func", "returnId.jott", "returnIdOutput.jott", true));
+        testCases.add(new TestCase("Check when void function has a return", "voidReturn.jott", "voidReturnOutput.jott", true));
+        testCases.add(new TestCase("while is not a valid id", "whileKeyword.jott", "whileKeywordOutput.jott", true));
+
+        // These are the test cases we know fail right now
         testCases.add(new TestCase("valid loop test case", "validLoop.jott", "validLoopOutput.jott", false));
 
     }
