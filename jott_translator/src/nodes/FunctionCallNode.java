@@ -22,12 +22,11 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     }
 
     public String getReturnType(){
-        symbolTable.setFunc(this.funcName.getToken().getToken());
-        return symbolTable.getVarType("Return");
+        return symbolTable.getFunctionReturnType(this.funcName.getToken().getToken());
     }
 
     public boolean validateTree() throws SemanticException{
-        symbolTable.setFunc(this.funcName.getToken().getToken());
+        // symbolTable.setFunc(this.funcName.getToken().getToken());
         if(this.funcName.getToken().getToken().equals("print")){
             // Special case where you have a print, handle checking the params here
             // Check to see if the parameters has a size of 1, then see if the 

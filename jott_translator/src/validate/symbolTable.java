@@ -157,7 +157,16 @@ public class symbolTable {
         String type = curr_hash.get(var_name);
         return type;
     }
-
+    // gets the variable type for variable in current_function hashmap with given var_name
+    public static String getFunctionReturnType(String functionName) {
+        if (hasFunc(functionName)){
+            HashMap<String, String> curr_hash = functions.get(functionName);
+            String type = curr_hash.get("Return");
+            return type;
+        }
+        return null;
+    }
+    
     // Should get the return type for the current function
     public static String getFuncReturnType(){
         return getVarType("Return");
