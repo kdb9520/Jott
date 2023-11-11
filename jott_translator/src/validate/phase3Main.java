@@ -2,12 +2,9 @@ package validate;
 
 import provided.*;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import nodes.*;
 
@@ -66,22 +63,10 @@ public class phase3Main {
     }
 
 
-    public static void main(String[] args) {
-        /*
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter input file name");
-        String input_filename = sc.nextLine();
-        System.out.println("Enter output file name");
-        String output_filename = sc.nextLine();
-        sc.close();
-        */
-
-        
+    public static void main(String[] args) {        
         if(args.length != 2){
-            // INSERT HELP STATEMENT IF THE LENGTH OF ARGS IS WRONG HERE
             System.err.println("phase3Main requires two command line args to run: ");
             System.err.println("java validate/phase3Main inputJottFilename OutputFilename");
-
             return;
         }
 
