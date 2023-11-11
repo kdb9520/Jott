@@ -40,6 +40,14 @@ public class phase3Tester {
         // So this will do the functionality of creating all the test cases 
         this.testCases = new ArrayList<>();
         testCases.add(new TestCase("HelloWorld", "helloWorld.jott", "helloWorldOutput.jott", false));
+        testCases.add(new TestCase("function not defined", "funcNotDefined.jott", "funcNotDefinedOutput.jott", true));
+        testCases.add(new TestCase("main having a non void return should error", "mainReturnNotInt.jott", "mainReturnNotIntOutput.jott", true));
+        testCases.add(new TestCase("jott file needs a main function", "missingMain.jott", "missingMainOutput.jott", true));
+        testCases.add(new TestCase("Functions with a return type need a return", "missingReturn.jott", "missingReturnOutput.jott", true));
+        testCases.add(new TestCase("provided example code 1", "providedExample1.jott", "providedExample1Output.jott", false));
+        testCases.add(new TestCase("returning not allowed in void func", "returnId.jott", "returnIdOutput.jott", true));
+        testCases.add(new TestCase("valid loop test case", "validLoop.jott", "validLoopOutput.jott", false));
+
     }
 
 
@@ -80,9 +88,16 @@ public class phase3Tester {
         for(phase3Tester.TestCase currentTest : tester.testCases){
             // This should iterate over all the test cases 
             numTests++;
-            if(tester.runTest(currentTest)){
-                // Then the test ran successfully, increment the passed test count
-                passedTests++;
+            try{
+                if(tester.runTest(currentTest)){
+                    // Then the test ran successfully, increment the passed test count
+                    passedTests++;
+                }
+            }
+            catch (Exception e){
+                System.err.printf("Unexpected error happened in test case: %s\n", currentTest.testName);
+                System.err.println(e.getMessage());
+                e.printStackTrace();
             }
         }
 
