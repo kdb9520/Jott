@@ -48,7 +48,7 @@ public class AsmtNode implements BodyStmtNode {
                 }
 
                 // check if var name is upper case
-                if (Character.isUpperCase(variableName.getToken().toString().charAt(0))) {
+                if (Character.isUpperCase(variableName.getToken().getToken().toString().charAt(0))) {
                     String errMsg = "Invalid variable name: cannot start with a capital letter";
                     throw new SemanticException(errMsg, variableName.getToken());
                 }
