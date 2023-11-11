@@ -49,11 +49,22 @@ public class phase3Tester {
         testResult = phase3Main.processJott(test.inputFileName, test.outputFileName);
 
         if(testResult && !test.error){
-            
-        }
+            // Means that you successfully return as expected 
+            System.out.println("Test Successfully returned true as expected\n");
+            return true;
 
-        return testResult;
-        
+        }
+        else if(!testResult && test.error){
+            // Means you got an error and expected one.
+            // Will need to check later if it is the expected error, however
+            System.out.println("Test returned an error as expected\n");
+            return true;
+        }
+        else {
+            // Did not recieve an expected result
+            System.out.printf("Test returned unexpected result, expected error: %b\n", test.error);
+            return false;
+        }     
     }
 
 
@@ -70,7 +81,8 @@ public class phase3Tester {
             // This should iterate over all the test cases 
             numTests++;
             if(tester.runTest(currentTest)){
-
+                // Then the test ran successfully, increment the passed test count
+                passedTests++;
             }
         }
 
