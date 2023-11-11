@@ -55,11 +55,21 @@ public class phase3Tester {
         testCases.add(new TestCase("Function Needs Return in all if cases", "noReturnIf.jott", "noReturnIfOutput.jott", true));
         testCases.add(new TestCase("noReturnWhile Test", "noReturnWhile.jott", "noReturnWhileOutput.jott", true));
         testCases.add(new TestCase("valid loop test case", "validLoop.jott", "validLoopOutput.jott", false));
+    
+        // Files that we've not tested till just now
+        testCases.add(new TestCase("Types don't match in while loops binary expression", "funcReturnInExpr.jott", "funcReturnInExprOutput.jott", true));
+        // This one says the return type is null when it should be seeing a Double return
+        testCases.add(new TestCase("Wrong return type in function", "funcWrongParamType.jott", "funcWrongParamTypeOutput.jott", true));
+        // If statement fails due to body not checking if it's body_statements have any return 
+        testCases.add(new TestCase("Passing If statement", "ifStmtReturns.jott", "ifStmtReturnsOutput.jott", false));
+
+        testCases.add(new TestCase("Large Valid Jott File", "largerValid.jott", "largerValidOutput.jott", false));
+        testCases.add(new TestCase("Missing parameters in func call", "missingFuncParams.jott", "missingFuncParamsOutput.jott", true));
     }
 
 
     private boolean runTest(TestCase test){
-        System.out.println("Running Test: " + test.testName);
+        System.out.println("\nRunning Test: " + test.testName);
         boolean testResult;
         testResult = phase3Main.processJott(test.inputFileName, test.outputFileName);
 
