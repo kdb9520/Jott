@@ -1,0 +1,5 @@
+#throw error for upper case vars
+
+def main[]:Void{
+    Integer X = 1;
+}

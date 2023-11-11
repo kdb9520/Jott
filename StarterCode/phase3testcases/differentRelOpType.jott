@@ -1,0 +1,5 @@
+#throw error for diff rel op types
+
+def main[]:Void{
+    Boolean x = 1 == 1.0;
+}
