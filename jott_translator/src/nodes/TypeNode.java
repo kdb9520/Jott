@@ -27,8 +27,7 @@ public class TypeNode implements JottTree {
 
         if (t.getTokenType() != TokenType.ID_KEYWORD) {
             throw new SyntaxException("Invalid token " + t.getToken() + 
-            "with type " + t.getTokenType() +
-            ".\nExpected Type: " + TokenType.ID_KEYWORD, t);
+            ".\nExpected tokens: Double, Integer, String, Boolean, Void", t);
         }
 
         String token = t.getToken();
@@ -40,7 +39,6 @@ public class TypeNode implements JottTree {
             return new TypeNode(t);
         } else {
             throw new SyntaxException("Invalid token " + t.getToken() + 
-            "with token " + token +
             ".\nExpected tokens: Double, Integer, String, Boolean, Void", t);
         }
         
