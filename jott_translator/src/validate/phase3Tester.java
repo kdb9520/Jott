@@ -58,14 +58,15 @@ public class phase3Tester {
     
         // Files that we've not tested till just now
         testCases.add(new TestCase("Types don't match in while loops binary expression", "funcReturnInExpr.jott", "funcReturnInExprOutput.jott", true));
-        // If statement fails due to body not checking if it's body_statements have any return 
-        testCases.add(new TestCase("Passing If statement", "ifStmtReturns.jott", "ifStmtReturnsOutput.jott", false));
-
+        
         testCases.add(new TestCase("Large Valid Jott File", "largerValid.jott", "largerValidOutput.jott", false));
         testCases.add(new TestCase("Missing parameters in func call", "missingFuncParams.jott", "missingFuncParamsOutput.jott", true));
     
         // This one says the return type is null when it should be seeing a Double return
         testCases.add(new TestCase("Wrong return type in function", "funcWrongParamType.jott", "funcWrongParamTypeOutput.jott", true));
+    
+        // If statement fails due to body not checking if it's body_statements have any return 
+        testCases.add(new TestCase("Passing If statement", "ifStmtReturns.jott", "ifStmtReturnsOutput.jott", false));
     }
 
 

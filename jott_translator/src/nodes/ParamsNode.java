@@ -27,6 +27,11 @@ public class ParamsNode implements JottTree {
         }
         else{
             ArrayList<String> params = symbolTable.getParamTypesCurrentFunction(this.functionName);
+        int expected_param_count = symbolTable.getParamCount();
+        int actual_param_count = params.size();
+        if(expected_param_count != actual_param_count) {
+            throw new SemanticException("Number of params given does not equal number of params expected", "");
+        }
             for (int i = 0; i < exprNodes.size(); i++) {
                 String exprType = exprNodes.get(i).getType();
                 if (!exprType.equals(params.get(i))){
