@@ -127,10 +127,10 @@ public class AsmtNode implements BodyStmtNode {
         }
         // Now no matter what, call the convert to Jott on the ID
         stringToReturn = stringToReturn.concat(varName.convertToJott());
-        stringToReturn = stringToReturn.concat("=");
+        stringToReturn = stringToReturn.concat(" = ");
         // Call the expression node's convert 
         stringToReturn = stringToReturn.concat(exprValue.convertToJott());
-        stringToReturn = stringToReturn.concat(";");
+        stringToReturn = stringToReturn.concat(";\n");
         // The string's constructed
         return stringToReturn;
 

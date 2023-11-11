@@ -68,7 +68,7 @@ public class VarDecNode implements BodyStmtNode {
 
     @Override
     public String convertToJott() {
-        return this.type.convertToJott() + " " + this.id.convertToJott() + ";";
+        return this.type.convertToJott() + " " + this.id.convertToJott() + ";\n";
     }
 
     @Override

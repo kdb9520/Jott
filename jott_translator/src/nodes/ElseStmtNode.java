@@ -40,9 +40,9 @@ public class ElseStmtNode implements JottTree {
 
     public String convertToJott() {
         String output = "else";
-        output  += "{";
+        output  += " {\n";
         output += body.convertToJott();
-        output += "}";
+        output += "}\n";
         return output;
     }
 

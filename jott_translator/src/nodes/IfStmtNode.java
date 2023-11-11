@@ -96,9 +96,9 @@ public class IfStmtNode implements BodyStmtNode {
     public String convertToJott() {
         String output = "if[";
         output += expr.convertToJott();
-        output  += "]{";
+        output  += "] {\n";
         output += body.convertToJott();
-        output += "}";
+        output += "}\n";
         if (elif_nodes.size() != 0) {
             for (int nodeIndex = 0; nodeIndex < elif_nodes.size(); nodeIndex++){
                 ElifStmtNode node = elif_nodes.get(nodeIndex);

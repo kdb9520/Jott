@@ -48,7 +48,7 @@ public class ReturnStmtNode extends ExpressionNode {
     public String convertToJott() {
         String output = "return ";
         output += exprNode.convertToJott();
-        output += ';';
+        output += ";\n";
         return output;
     }
 

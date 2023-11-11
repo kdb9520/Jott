@@ -43,13 +43,13 @@ public class FuncDefNode implements JottTree {
     public String convertToJott() {
         String output = "def ";
         output += funcName.convertToJott();
-        output += '[';
+        output += "[";
         output += funcDefParams.convertToJott();
         output += "]:";
         output += funcReturn.convertToJott();
-        output += '{';
+        output += " {\n";
         output += body.convertToJott();
-        output += '}';
+        output += "}\n";
         return output;
     }
 

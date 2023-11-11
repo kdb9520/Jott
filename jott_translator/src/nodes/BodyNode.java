@@ -51,7 +51,7 @@ public class BodyNode implements JottTree {
         }
         if(this.returnStmt != null){
             String returnString = this.returnStmt.convertToJott();
-            output +=  " " + returnString;
+            output += returnString;
         }
         return output;
     }
