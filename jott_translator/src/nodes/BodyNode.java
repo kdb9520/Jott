@@ -66,7 +66,8 @@ public class BodyNode implements JottTree {
             }
         }
 
-        // check that return types match funtion return
+        // check that return types match funtion return 
+        // need to fix
         if (this.returnStmt == null){
             if (!symbolTable.getVarType("Return").equals("Void")){
                 throw new SemanticException("Missing return statement in non-void function", "");
@@ -81,7 +82,7 @@ public class BodyNode implements JottTree {
         }
 
         // validate return statement
-        if (!(this.returnStmt == null)) {
+        if (this.returnStmt != null) {
             return this.returnStmt.validateTree();
         }
 
