@@ -73,8 +73,8 @@ public class VarDecNode implements BodyStmtNode {
 
     @Override
     public String convertToJava(String className) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToJava'");
+        // type id;
+        return this.type.convertToJava(className) +  this.id.convertToJava(className) + ";";
     }
 
     @Override
@@ -85,8 +85,8 @@ public class VarDecNode implements BodyStmtNode {
 
     @Override
     public String convertToPython() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToPython'");
+        // can't have a declaration without assignment in python
+        return this.id.convertToPython();
     }
 
     @Override
