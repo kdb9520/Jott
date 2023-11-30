@@ -30,18 +30,35 @@ public class While_LoopNode implements BodyStmtNode {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        String output = "while";
+        output += '(';
+        output += exprNode.convertToJava(classname);
+        output += ")";
+        output += " {\n";
+        output += bodyNode.convertToJava(classname);
+        output += "}\n";
+        return output;
     }
 
     public String convertToPython() {
         // TODO
-        return "not implemented";
+        String output = "while";
+        output += ' ';
+        output += exprNode.convertToPython();
+        output += " :\n";
+        output += bodyNode.convertToPython();
+        return output;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String output = "while";
+        output += '(';
+        output += exprNode.convertToC();
+        output += ")";
+        output += " {\n";
+        output += bodyNode.convertToC();
+        output += "}\n";
+        return output;
     }
 
     public String convertToJott() {
