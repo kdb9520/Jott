@@ -22,18 +22,24 @@ public class BoolNode extends ExpressionNode {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        if(token.getToken().equals("true")){
+            // Means you need to convert to the Java true
+            return "true";
+        }
+        else {
+            // Means you need to convert to the Java false
+            return "false";
+        }
     }
 
     public String convertToPython() {
         // TODO
-        return "not implemented";
+        return this.token.getToken();
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        // ADD IN #define true 1  and #define false 0 at the top of the program node 
+        return this.token.getToken();
     }
 
     public String convertToJott() {
