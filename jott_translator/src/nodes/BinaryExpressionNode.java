@@ -61,17 +61,32 @@ public class BinaryExpressionNode extends ExpressionNode {
 
     public String convertToJava(String classname) {
         // TODO
-        return "not implemented";
+        String stringToReturn = "";
+        // First, get the left side, then the operator, then the right
+        stringToReturn = stringToReturn.concat(leftNode.convertToJava(classname) + " ");
+        stringToReturn = stringToReturn.concat(opToken.getToken() + " ");
+        stringToReturn = stringToReturn.concat(rightNode.convertToJava(classname));
+        return stringToReturn;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String stringToReturn = "";
+        // First, get the left side, then the operator, then the right
+        stringToReturn = stringToReturn.concat(leftNode.convertToPython() + " ");
+        stringToReturn = stringToReturn.concat(opToken.getToken() + " ");
+        stringToReturn = stringToReturn.concat(rightNode.convertToPython());
+
+        return stringToReturn;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String stringToReturn = "";
+        // First, get the left side, then the operator, then the right
+        stringToReturn = stringToReturn.concat(leftNode.convertToC() + " ");
+        stringToReturn = stringToReturn.concat(opToken.getToken() + " ");
+        stringToReturn = stringToReturn.concat(rightNode.convertToC());
+
+        return stringToReturn;
     }
 
     public Token getToken() {
