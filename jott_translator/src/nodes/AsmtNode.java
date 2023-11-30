@@ -138,20 +138,50 @@ public class AsmtNode implements BodyStmtNode {
 
     @Override
     public String convertToJava(String className) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToJava'");
+        // When making this convert, check to see if the type value exists.
+        // If it does then include it in the converted string, if not, then 
+        // just make the string without it
+        String stringToReturn = "";
+        if(this.type != null){
+            // Means that there is a type to add
+            stringToReturn = stringToReturn.concat(this.type.convertToJava(className));
+            stringToReturn += " ";
+        }
+        // Now no matter what, call the convert to Jott on the ID
+        stringToReturn = stringToReturn.concat(this.varName.convertToJava(className));
+        stringToReturn = stringToReturn.concat(" = ");
+        // Call the expression node's convert 
+        stringToReturn = stringToReturn.concat(this.exprValue.convertToJava(className));
+        stringToReturn = stringToReturn.concat(";\n");
+        // The string's constructed
+        return stringToReturn;
     }
 
     @Override
     public String convertToC() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToC'");
+        // When making this convert, check to see if the type value exists.
+        // If it does then include it in the converted string, if not, then 
+        // just make the string without it
+        String stringToReturn = "";
+        if(this.type != null){
+            // Means that there is a type to add
+            stringToReturn = stringToReturn.concat(this.type.convertToC());
+            stringToReturn += " ";
+        }
+        // Now no matter what, call the convert to Jott on the ID
+        stringToReturn = stringToReturn.concat(this.varName.convertToC());
+        stringToReturn = stringToReturn.concat(" = ");
+        // Call the expression node's convert 
+        stringToReturn = stringToReturn.concat(this.exprValue.convertToC());
+        stringToReturn = stringToReturn.concat(";\n");
+        // The string's constructed
+        return stringToReturn;
     }
 
     @Override
     public String convertToPython() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToPython'");
+        // no type needed
+        return this.varName.convertToPython() + " = " + this.exprValue.convertToPython();
     }
 
     @Override
