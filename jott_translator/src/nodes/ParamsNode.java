@@ -48,18 +48,36 @@ public class ParamsNode implements JottTree {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        String output = "";
+        while (this.exprNodes.size() > 0){
+            output += this.exprNodes.remove(0).convertToJott();
+            if (this.exprNodes.size() > 0){
+                output  += ", ";
+            }
+        }
+        return output;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String output = "";
+        while (this.exprNodes.size() > 0){
+            output += this.exprNodes.remove(0).convertToJott();
+            if (this.exprNodes.size() > 0){
+                output  += ", ";
+            }
+        }
+        return output;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String output = "";
+        while (this.exprNodes.size() > 0){
+            output += this.exprNodes.remove(0).convertToJott();
+            if (this.exprNodes.size() > 0){
+                output  += ", ";
+            }
+        }
+        return output;
     }
 
     public String convertToJott() {
