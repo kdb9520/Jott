@@ -50,7 +50,7 @@ public class ParamsNode implements JottTree {
     public String convertToJava(String classname) {
         String output = "";
         while (this.exprNodes.size() > 0){
-            output += this.exprNodes.remove(0).convertToJott();
+            output += this.exprNodes.remove(0).convertToJava(classname);
             if (this.exprNodes.size() > 0){
                 output  += ", ";
             }
@@ -61,7 +61,7 @@ public class ParamsNode implements JottTree {
     public String convertToPython() {
         String output = "";
         while (this.exprNodes.size() > 0){
-            output += this.exprNodes.remove(0).convertToJott();
+            output += this.exprNodes.remove(0).convertToPython();
             if (this.exprNodes.size() > 0){
                 output  += ", ";
             }
@@ -72,7 +72,7 @@ public class ParamsNode implements JottTree {
     public String convertToC() {
         String output = "";
         while (this.exprNodes.size() > 0){
-            output += this.exprNodes.remove(0).convertToJott();
+            output += this.exprNodes.remove(0).convertToC();
             if (this.exprNodes.size() > 0){
                 output  += ", ";
             }
