@@ -28,18 +28,15 @@ public class StringLitNode extends ExpressionNode {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        return this.token.getToken();
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        return this.token.getToken();
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        return this.token.getToken();
     }
 
     public String convertToJott() {
