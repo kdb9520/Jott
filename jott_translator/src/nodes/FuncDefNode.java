@@ -28,7 +28,7 @@ public class FuncDefNode implements JottTree {
     public String convertToC() {
         String stringBuilder = "";
 
-        stringBuilder += this.funcReturn.convertToC();
+        stringBuilder += this.funcReturn.convertToC() + " ";
         stringBuilder += this.funcName.convertToC();
         stringBuilder += this.funcDefParams.convertToC();
         stringBuilder += " {\n";
@@ -41,7 +41,7 @@ public class FuncDefNode implements JottTree {
     public String convertToJava(String className) {
         String stringBuilder = "public static ";
 
-        stringBuilder += this.funcReturn.convertToJava(className);
+        stringBuilder += this.funcReturn.convertToJava(className) + " ";
         stringBuilder += this.funcName.convertToJava(className);
         stringBuilder += this.funcDefParams.convertToJava(className);
         stringBuilder += " {\n";

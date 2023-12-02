@@ -33,18 +33,30 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        stringBuilder += this.funcName.convertToJava(classname);
+        stringBuilder += this.params.convertToJava(classname);
+
+        return stringBuilder;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        stringBuilder += this.funcName.convertToPython();
+        stringBuilder += this.params.convertToPython();
+
+        return stringBuilder;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        stringBuilder += this.funcName.convertToC();
+        stringBuilder += this.params.convertToC();
+
+        return stringBuilder;
     }
 
     public Token getToken() {

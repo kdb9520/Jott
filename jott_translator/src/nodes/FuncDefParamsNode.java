@@ -21,18 +21,50 @@ public class FuncDefParamsNode implements JottTree {
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "(";
+
+        for (int i = 0; i < this.paramIds.size(); i++) {
+            IDNode param = this.paramIds.get(i);
+            TypeNode type = this.paramTypes.get(i);
+
+            stringBuilder += type.convertToC() + param.convertToC();
+            stringBuilder += ", ";
+        }
+
+        stringBuilder = stringBuilder.substring(0, stringBuilder.length()-1);
+        stringBuilder += ")";
+
+        return stringBuilder;
     }
 
     public String convertToJava(String className) {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "(";
+
+        for (int i = 0; i < this.paramIds.size(); i++) {
+            IDNode param = this.paramIds.get(i);
+            TypeNode type = this.paramTypes.get(i);
+
+            stringBuilder += type.convertToJava(className) + param.convertToJava(className);
+            stringBuilder += ", ";
+        }
+
+        stringBuilder = stringBuilder.substring(0, stringBuilder.length()-1);
+        stringBuilder += ")";
+
+        return stringBuilder;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "()";
+
+        for (IDNode idNode : paramIds) {
+            stringBuilder += idNode.convertToPython();
+            stringBuilder += ", ";
+        }
+        stringBuilder = stringBuilder.substring(0, stringBuilder.length()-1);
+        stringBuilder += ")";
+
+        return stringBuilder;
     }
 
     public String convertToJott() {
