@@ -29,25 +29,36 @@ public class ElifStmtNode implements JottTree {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        String output = "else if (";
+        output += expr.convertToJava(classname);
+        output  += ") {\n";
+        output += body.convertToJava(classname) + "\n";
+        output += "}\n";
+        return output;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String output = "elseif ";
+        output += expr.convertToPython();
+        output  += ": \n";
+        output += "\t" + body.convertToPython() + "\n";
+        return output;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String output = "else if (";
+        output += expr.convertToC();
+        output  += ") {\n";
+        output += body.convertToC() + "\n";
+        output += "}\n";
+        return output;
     }
 
     public String convertToJott() {
         String output = "elseif[";
         output += expr.convertToJott();
         output  += "]{\n";
-        output += body.convertToJott();
+        output += body.convertToJott() + "\n";
         output += "}\n";
         return output;
     }

@@ -24,24 +24,29 @@ public class ElseStmtNode implements JottTree {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        String output = "else {\n";
+        output += body.convertToJava(classname) + "\n";
+        output += "}\n";
+        return output;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String output = "else: \n";
+        output += "\t" + body.convertToPython() + "\n";
+        return output;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String output = "else {\n";
+        output += body.convertToC() + "\n";
+        output += "}\n";
+        return output;
     }
 
     public String convertToJott() {
         String output = "else";
         output  += " {\n";
-        output += body.convertToJott();
+        output += body.convertToJott() + "\n";
         output += "}\n";
         return output;
     }

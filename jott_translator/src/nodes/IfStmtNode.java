@@ -79,25 +79,63 @@ public class IfStmtNode implements BodyStmtNode {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        String output = "if (";
+        output += expr.convertToJava(classname);
+        output += ") { \n";
+        output += body.convertToJava(classname);
+        output += "} \n";
+        if (elif_nodes.size() != 0) {
+            for (int nodeIndex = 0; nodeIndex < elif_nodes.size(); nodeIndex++){
+                ElifStmtNode node = elif_nodes.get(nodeIndex);
+                output += node.convertToJava(classname);
+            }
+        }
+        if (el != null) {
+            output += el.convertToJava(classname);
+        }
+        return output;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String output = "if ";
+        output += expr.convertToPython();
+        output += ": \n";
+        output += "\t" + body.convertToPython() + "\n";
+        if (elif_nodes.size() != 0) {
+            for (int nodeIndex = 0; nodeIndex < elif_nodes.size(); nodeIndex++){
+                ElifStmtNode node = elif_nodes.get(nodeIndex);
+                output += node.convertToPython();
+            }
+        }
+        if (el != null) {
+            output += el.convertToPython();
+        }
+        return output;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String output = "if (";
+        output += expr.convertToC();
+        output += ") { \n";
+        output += body.convertToC() + "\n";
+        output += "} \n";
+        if (elif_nodes.size() != 0) {
+            for (int nodeIndex = 0; nodeIndex < elif_nodes.size(); nodeIndex++){
+                ElifStmtNode node = elif_nodes.get(nodeIndex);
+                output += node.convertToC();
+            }
+        }
+        if (el != null) {
+            output += el.convertToC();
+        }
+        return output;
     }
 
     public String convertToJott() {
         String output = "if[";
         output += expr.convertToJott();
         output  += "] {\n";
-        output += body.convertToJott();
+        output += body.convertToJott() + "\n";
         output += "}\n";
         if (elif_nodes.size() != 0) {
             for (int nodeIndex = 0; nodeIndex < elif_nodes.size(); nodeIndex++){
