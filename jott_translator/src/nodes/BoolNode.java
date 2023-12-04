@@ -22,18 +22,20 @@ public class BoolNode extends ExpressionNode {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        // Java needs lowercase true/false, so just return those
+        return token.getToken().toLowerCase();
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        // Bools in Python are the same
+        return this.token.getToken();
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        // NEED TO ADD #include <stdbool.h>
+        // For this implementation to work
+
+        return this.token.getToken().toLowerCase();
     }
 
     public String convertToJott() {

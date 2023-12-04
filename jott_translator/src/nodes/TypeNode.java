@@ -67,8 +67,20 @@ public class TypeNode implements JottTree {
 
     @Override
     public String convertToC() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToC'");
+        switch (this.type.getToken()) {
+            case "Integer":
+                return "int";
+            case "Double":
+                return "double";
+            case "String":
+                return "char *";
+            case "Boolean":
+                return "bool";
+            case "Void":
+                return "void";
+            default:
+                return "";
+        }
     }
 
     @Override

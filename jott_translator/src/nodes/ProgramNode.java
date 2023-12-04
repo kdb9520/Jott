@@ -65,13 +65,30 @@ public class ProgramNode implements JottTree {
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        for (FuncDefNode funcDefNode : functionDefinitions) {
+            stringBuilder += funcDefNode.convertToPython() + "\n";
+
+        }
+
+        // I'm pretty sure we have to manually call the main function for python
+        stringBuilder += "main()";
+
+        return stringBuilder;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        stringBuilder += "#include <stdio.h>\n";
+        stringBuilder += "#include <stdbool.h>\n";
+
+        for (FuncDefNode funcDefNode : functionDefinitions) {
+            stringBuilder += funcDefNode.convertToC() + "\n";
+        }
+
+        return stringBuilder;
     }
 
     public String convertToJott() {

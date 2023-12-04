@@ -11,10 +11,12 @@ public class BodyNode implements JottTree {
 
     private ArrayList<BodyStmtNode> bodyStmtNodes;
     private ReturnStmtNode returnStmt;
+    private int indentDepth;
 
-    public BodyNode (ArrayList<BodyStmtNode> bodyStmtNodes, ReturnStmtNode returnStmtNode) {
+    public BodyNode (ArrayList<BodyStmtNode> bodyStmtNodes, ReturnStmtNode returnStmtNode, int indentDepth) {
         this.bodyStmtNodes = bodyStmtNodes;
         this.returnStmt = returnStmtNode;
+        this.indentDepth = indentDepth;
     }
 
 
@@ -26,18 +28,54 @@ public class BodyNode implements JottTree {
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        for (BodyStmtNode node : bodyStmtNodes) {
+            for (int i = 0; i < this.indentDepth; i++) {
+                stringBuilder += "\t";
+            }
+            stringBuilder += node.convertToC();
+        }
+
+        if (this.returnStmt != null) {
+            stringBuilder += this.returnStmt.convertToC();
+        }
+
+        return stringBuilder;
     }
 
     public String convertToJava(String className) {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        for (BodyStmtNode node : bodyStmtNodes) {
+            for (int i = 0; i < this.indentDepth; i++) {
+                stringBuilder += "\t";
+            }
+            stringBuilder += node.convertToJava(className);
+        }
+
+        if (this.returnStmt != null) {
+            stringBuilder += this.returnStmt.convertToJava(className);
+        }
+
+        return stringBuilder;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        for (BodyStmtNode node : bodyStmtNodes) {
+            for (int i = 0; i < this.indentDepth; i++) {
+                stringBuilder += "\t";
+            }
+            stringBuilder += node.convertToPython();
+        }
+
+        if (this.returnStmt != null) {
+            stringBuilder += this.returnStmt.convertToPython();
+        }
+
+        return stringBuilder;
     }
 
     public String convertToJott() {
@@ -96,6 +134,7 @@ public class BodyNode implements JottTree {
     }
 
     public static BodyNode parseBodyNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
+        symbolTable.incrementIndentDepth();
         // This needs to account for the fact that all of the body_stmt's start with an ID_KEYWORD
         // And that the return statement will sometimes be null
         ArrayList<BodyStmtNode> bodyStmtNodes = new ArrayList<BodyStmtNode>();
@@ -106,8 +145,9 @@ public class BodyNode implements JottTree {
         }
         if ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken().equals("return"))) {
             ReturnStmtNode returnStmtNode = ReturnStmtNode.parseReturnStmtNode(tokenList);
-            return new BodyNode(bodyStmtNodes, returnStmtNode);
+            return new BodyNode(bodyStmtNodes, returnStmtNode, symbolTable.getIndentDepth());
         }
-        return new BodyNode(bodyStmtNodes, null);
+        symbolTable.decrementIndentDepth();
+        return new BodyNode(bodyStmtNodes, null, symbolTable.getIndentDepth());
     }
 }

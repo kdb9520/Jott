@@ -26,18 +26,42 @@ public class FuncDefNode implements JottTree {
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "";
+
+        stringBuilder += this.funcReturn.convertToC() + " ";
+        stringBuilder += this.funcName.convertToC();
+        stringBuilder += this.funcDefParams.convertToC();
+        stringBuilder += " {\n";
+        stringBuilder += this.body.convertToC();
+        stringBuilder += "\n}";
+
+        return stringBuilder;
     }
 
     public String convertToJava(String className) {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "public static ";
+
+        stringBuilder += this.funcReturn.convertToJava(className) + " ";
+        stringBuilder += this.funcName.convertToJava(className);
+        stringBuilder += this.funcDefParams.convertToJava(className);
+        stringBuilder += " {\n";
+        stringBuilder += this.body.convertToJava(className);
+        stringBuilder += "\n}";
+
+        return stringBuilder;
+
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String stringBuilder= "def ";
+
+        stringBuilder += this.funcName.convertToPython();
+        stringBuilder += this.funcDefParams.convertToPython();
+        stringBuilder += ":\n";
+        stringBuilder += this.body.convertToPython();
+        
+        return stringBuilder;
+
     }
 
     public String convertToJott() {

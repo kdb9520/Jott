@@ -27,20 +27,17 @@ public class FunctionReturnNode implements JottTree {
 
     @Override
     public String convertToJava(String className) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToJava'");
+        return this.type.convertToJava(className);
     }
 
     @Override
     public String convertToC() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToC'");
+        return this.type.convertToC();
     }
 
     @Override
     public String convertToPython() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'convertToPython'");
+        return this.type.convertToPython();
     }
 
     @Override

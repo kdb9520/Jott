@@ -27,6 +27,7 @@ public class symbolTable {
     // Used for ensuring variables aren't declared in a while loop/if.
     public static int ifWhileDepth;
     public static int whileDepth; // Kellen
+    public static int indentDepth; // Justin
 
     private static HashSet<String> keywords;
 
@@ -43,6 +44,8 @@ public class symbolTable {
 
         // check in while -- Kellen
         whileDepth = 0;
+
+        indentDepth = 0;
 
         // Add the built in function here
         // Length takes in a string as its only param
@@ -200,6 +203,19 @@ public class symbolTable {
 
     public static int getIfWhileDepth(){
         return ifWhileDepth;
+    }
+
+    // Justin
+    public static void incrementIndentDepth() {
+        indentDepth++;
+    }
+
+    public static void decrementIndentDepth() {
+        indentDepth--;
+    }
+
+    public static int getIndentDepth() {
+        return indentDepth;
     }
 
     // Kellen
