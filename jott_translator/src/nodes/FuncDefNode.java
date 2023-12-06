@@ -27,8 +27,13 @@ public class FuncDefNode implements JottTree {
 
     public String convertToC() {
         String stringBuilder = "";
-
-        stringBuilder += this.funcReturn.convertToC() + " ";
+        if(this.funcName.getToken().getToken().equals("main")){
+            // Needed because all main functions in C have an int return type
+            stringBuilder += "int ";
+        }
+        else {
+            stringBuilder += this.funcReturn.convertToC() + " ";
+        }
         stringBuilder += this.funcName.convertToC();
         stringBuilder += this.funcDefParams.convertToC();
         stringBuilder += " {\n";
