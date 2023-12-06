@@ -55,7 +55,7 @@ public class FuncDefParamsNode implements JottTree {
     }
 
     public String convertToPython() {
-        String stringBuilder = "()";
+        String stringBuilder = "(";
 
         for (IDNode idNode : paramIds) {
             stringBuilder += idNode.convertToPython();

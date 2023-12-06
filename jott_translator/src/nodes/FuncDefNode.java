@@ -43,7 +43,12 @@ public class FuncDefNode implements JottTree {
 
         stringBuilder += this.funcReturn.convertToJava(className) + " ";
         stringBuilder += this.funcName.convertToJava(className);
-        stringBuilder += this.funcDefParams.convertToJava(className);
+        if (this.funcName.getToken().getToken().equals("main")) {
+            stringBuilder += "(String args[])";
+        }
+        else {
+            stringBuilder += this.funcDefParams.convertToJava(className);
+        }
         stringBuilder += " {\n";
         stringBuilder += this.body.convertToJava(className);
         stringBuilder += "\n}";

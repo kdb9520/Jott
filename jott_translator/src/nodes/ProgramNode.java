@@ -60,8 +60,16 @@ public class ProgramNode implements JottTree {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        String stringBuilder = "public class ";
+        stringBuilder += classname + " {\n";
+
+        for (FuncDefNode funcDefNode : functionDefinitions) {
+            stringBuilder += funcDefNode.convertToJava(classname) + "\n";
+        }
+
+        stringBuilder += "\n}";
+
+        return stringBuilder;
     }
 
     public String convertToPython() {
