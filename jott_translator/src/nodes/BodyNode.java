@@ -35,6 +35,13 @@ public class BodyNode implements JottTree {
                 stringBuilder += "\t";
             }
             stringBuilder += node.convertToC();
+            if(node instanceof FunctionCallNode) {
+                // This means you'd need to append a semicolon
+                // Needed because function call has a semicolon in the body_stmt case, but NOT 
+                // the expr case, and since the func_call can't tell what's calling it's convert,
+                // you have to do this here. 
+                stringBuilder += ";";
+            }
         }
 
         if (this.returnStmt != null) {
@@ -50,8 +57,16 @@ public class BodyNode implements JottTree {
         for (BodyStmtNode node : bodyStmtNodes) {
             for (int i = 0; i < this.indentDepth; i++) {
                 stringBuilder += "\t";
+                
             }
             stringBuilder += node.convertToJava(className);
+            if(node instanceof FunctionCallNode) {
+                // This means you'd need to append a semicolon
+                // Needed because function call has a semicolon in the body_stmt case, but NOT 
+                // the expr case, and since the func_call can't tell what's calling it's convert,
+                // you have to do this here. 
+                stringBuilder += ";";
+            }
         }
 
         if (this.returnStmt != null) {
@@ -138,6 +153,7 @@ public class BodyNode implements JottTree {
 
     public static BodyNode parseBodyNode(ArrayList<Token> tokenList) throws SyntaxException, SemanticException {
         symbolTable.incrementIndentDepth();
+        int currentDepth = symbolTable.getIndentDepth();
         // This needs to account for the fact that all of the body_stmt's start with an ID_KEYWORD
         // And that the return statement will sometimes be null
         ArrayList<BodyStmtNode> bodyStmtNodes = new ArrayList<BodyStmtNode>();
@@ -148,9 +164,10 @@ public class BodyNode implements JottTree {
         }
         if ((tokenList.get(0).getTokenType() == TokenType.ID_KEYWORD) && (tokenList.get(0).getToken().equals("return"))) {
             ReturnStmtNode returnStmtNode = ReturnStmtNode.parseReturnStmtNode(tokenList);
-            return new BodyNode(bodyStmtNodes, returnStmtNode, symbolTable.getIndentDepth());
+            symbolTable.decrementIndentDepth();
+            return new BodyNode(bodyStmtNodes, returnStmtNode, currentDepth);
         }
         symbolTable.decrementIndentDepth();
-        return new BodyNode(bodyStmtNodes, null, symbolTable.getIndentDepth());
+        return new BodyNode(bodyStmtNodes, null, currentDepth);
     }
 }

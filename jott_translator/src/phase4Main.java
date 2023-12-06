@@ -52,7 +52,8 @@ public class phase4Main {
                     currentWriter.write(nodeTree.convertToPython());
                 }
                 else if (outputLanguage.equals("Java")) {
-                    String java_class = jottFilename.substring(0, jottFilename.length() - 5);
+
+                    String java_class = jottFilename.substring(jottFilename.lastIndexOf('/')+1, jottFilename.length() - 5);
                     currentWriter.write(nodeTree.convertToJava(java_class));
                 }
                 else if (outputLanguage.equals("C")) {

@@ -49,6 +49,9 @@ public class ParamsNode implements JottTree {
 
     public String convertToJava(String classname) {
         String output = "";
+        // if (this.functionName.equals("concat")) {
+        //     return this.exprNodes.get(0) + ".concat(" + this.exprNodes.get(1) + ")";
+        // }
         while (this.exprNodes.size() > 0){
             output += this.exprNodes.remove(0).convertToJava(classname);
             if (this.exprNodes.size() > 0){

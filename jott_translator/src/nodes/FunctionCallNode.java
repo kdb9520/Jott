@@ -35,7 +35,17 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     public String convertToJava(String classname) {
         String stringBuilder = "";
 
-        stringBuilder += this.funcName.convertToJava(classname);
+        String funcName = this.funcName.getToken().getToken();
+
+        if (funcName.equals("print")) {
+            stringBuilder += "System.out.println";
+        }
+        else if (funcName.equals("concat")) {
+            //
+        }
+        else {
+            stringBuilder += this.funcName.convertToJava(classname);
+        }
         stringBuilder += "(";
         stringBuilder += this.params.convertToJava(classname);
         stringBuilder += ")";
