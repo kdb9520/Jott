@@ -65,7 +65,18 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
     public String convertToC() {
         String stringBuilder = "";
 
-        stringBuilder += this.funcName.convertToC();
+        String funcName = this.funcName.getToken().getToken();
+
+        if (funcName.equals("print")) {
+            stringBuilder += "printf";
+        } else if (funcName.equals("concat")) {
+            // stuff
+        } else if (funcName.equals("length")) {
+            // stuff
+        } else {
+            stringBuilder += this.funcName.convertToC();
+        }
+        
         stringBuilder += "(";
         stringBuilder += this.params.convertToC();
         stringBuilder += ")";

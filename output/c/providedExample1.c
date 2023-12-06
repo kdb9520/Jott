@@ -2,7 +2,8 @@
 #include <stdbool.h>
 
 int main() {
-	printf("Hello World");
+	printf(5);
+	printf("foo bar");
 
 	return 0;
 }
