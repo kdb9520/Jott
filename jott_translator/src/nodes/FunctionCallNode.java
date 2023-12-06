@@ -70,7 +70,20 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         if (funcName.equals("print")) {
             stringBuilder += "printf";
         } else if (funcName.equals("concat")) {
-            // stuff
+            // get the sizes of the strings
+            String params[] = this.params.convertToC().split(",");
+            stringBuilder += "int strSize = strlen(" + params[0] + ")";
+            stringBuilder += " + strlen(" + params[1] + ") + 1;\n";
+
+            // malloc new char * of that size
+            stringBuilder += "char *resultStr = (char *)malloc(strSize);\n";
+
+            // strcpy first string into char *
+            stringBuilder += "strcpy(resultStr, " + params[0] + ");\n";
+
+            // strcat second string into char *
+            stringBuilder += "strcat(resultStr, " + params[1] + ")";
+            return stringBuilder;
         } else if (funcName.equals("length")) {
             stringBuilder += "strlen";
         } else {
