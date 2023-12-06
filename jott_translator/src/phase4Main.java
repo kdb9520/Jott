@@ -58,6 +58,9 @@ public class phase4Main {
                 else if (outputLanguage == "C") {
                     currentWriter.write(nodeTree.convertToC());
                 }
+                else {
+                    System.out.println("else language name: " + outputLanguage);
+                }
                 currentWriter.close();
                 // Will need to be removed later but is here to confirm for now
                 System.out.println("Successfully printed Jott to file: " + outputFilename);
