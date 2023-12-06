@@ -90,6 +90,7 @@ public class ProgramNode implements JottTree {
         String stringBuilder = "";
 
         stringBuilder += "#include <stdio.h>\n";
+        stringBuilder += "#include <string.h>\n";
         stringBuilder += "#include <stdbool.h>\n\n";
 
         for (FuncDefNode funcDefNode : functionDefinitions) {
