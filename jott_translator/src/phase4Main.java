@@ -45,17 +45,17 @@ public class phase4Main {
                 // write out other languages later
                 
                 FileWriter currentWriter = new FileWriter(outputFilename);
-                if (outputLanguage == "Jott") {
+                if (outputLanguage.equals("Jott")) {
                     currentWriter.write(nodeTree.convertToJott());
                 }
-                else if (outputLanguage == "Python") {
+                else if (outputLanguage.equals("Python")) {
                     currentWriter.write(nodeTree.convertToPython());
                 }
-                else if (outputLanguage == "Java") {
+                else if (outputLanguage.equals("Java")) {
                     String java_class = jottFilename.substring(0, jottFilename.length() - 5);
                     currentWriter.write(nodeTree.convertToJava(java_class));
                 }
-                else if (outputLanguage == "C") {
+                else if (outputLanguage.equals("C")) {
                     currentWriter.write(nodeTree.convertToC());
                 }
                 else {
