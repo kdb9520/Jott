@@ -72,7 +72,7 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         } else if (funcName.equals("concat")) {
             // stuff
         } else if (funcName.equals("length")) {
-            // stuff
+            stringBuilder += "strlen";
         } else {
             stringBuilder += this.funcName.convertToC();
         }
