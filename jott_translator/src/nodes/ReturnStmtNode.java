@@ -31,18 +31,24 @@ public class ReturnStmtNode extends ExpressionNode {
     }
 
     public String convertToJava(String classname) {
-        // TODO
-        return "not implemented";
+        String output = "return ";
+        output += exprNode.convertToJava(classname);
+        output += ";\n";
+        return output;
     }
 
     public String convertToPython() {
-        // TODO
-        return "not implemented";
+        String output = "return ";
+        output += exprNode.convertToPython();
+        output += "\n";
+        return output;
     }
 
     public String convertToC() {
-        // TODO
-        return "not implemented";
+        String output = "return ";
+        output += exprNode.convertToC();
+        output += ";\n";
+        return output;
     }
 
     public String convertToJott() {

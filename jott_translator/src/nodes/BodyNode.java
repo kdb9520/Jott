@@ -83,7 +83,10 @@ public class BodyNode implements JottTree {
         for (BodyStmtNode body : this.bodyStmtNodes) {
             output += body.convertToJott();
             if(body instanceof FunctionCallNode){
-                // This means you'd need to append a semicolon 
+                // This means you'd need to append a semicolon
+                // Needed because function call has a semicolon in the body_stmt case, but NOT 
+                // the expr case, and since the func_call can't tell what's calling it's convert,
+                // you have to do this here. 
                 output += ";";
             }
         }
