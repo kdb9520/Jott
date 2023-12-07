@@ -100,7 +100,7 @@ public class IfStmtNode implements BodyStmtNode {
         String output = "if ";
         output += expr.convertToPython();
         output += ": \n";
-        output += "\t" + body.convertToPython() + "\n";
+        output += body.convertToPython() + "\n";
         if (elif_nodes.size() != 0) {
             for (int nodeIndex = 0; nodeIndex < elif_nodes.size(); nodeIndex++){
                 ElifStmtNode node = elif_nodes.get(nodeIndex);
