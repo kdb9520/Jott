@@ -63,7 +63,7 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             List<String> newParams = Arrays.asList(concatParams.split(","));
             // take each node and add them
             for (int s = 0; s < newParams.size(); s++){
-                stringBuilder += newParams.get(s);
+                stringBuilder += newParams.get(s).trim();
                 if (s + 1 < newParams.size()){
                     stringBuilder += " + ";
                 }
