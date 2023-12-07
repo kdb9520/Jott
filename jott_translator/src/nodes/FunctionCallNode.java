@@ -186,9 +186,9 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
                 default:
                     // If you hit this case, some error happened.
                     // Print the symbol table so we can find out what's going on
-                    symbolTable.printSymTab();
+                    // symbolTable.printSymTab();
                     // Also check what the symbol table thinks the current func is
-                    System.out.println("Current Function in SymbolTable: ".concat(symbolTable.getCurrentFunc()));
+                    // System.out.println("Current Function in SymbolTable: ".concat(symbolTable.getCurrentFunc()));
                     return "something broke";
             }
         }

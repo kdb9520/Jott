@@ -27,6 +27,8 @@ public class FuncDefNode implements JottTree {
 
     public String convertToC() {
         String stringBuilder = "";
+        symbolTable.setFunc(this.funcName.getToken().getToken());
+
         boolean isMain = this.funcName.getToken().getToken().equals("main");
 
         if(isMain) {
