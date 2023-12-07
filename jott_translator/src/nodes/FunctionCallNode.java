@@ -43,7 +43,13 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             stringBuilder += "System.out.println";
         }
         else if (funcName.equals("concat")) {
-            //
+            String concatParams = params.convertToJava(classname);
+            List<String> newParams = Arrays.asList(concatParams.split(","));
+            // take each node and add them
+            stringBuilder += newParams.get(0).trim();
+            stringBuilder += ".concat(";
+            stringBuilder += newParams.get(1).trim();
+            return stringBuilder;
         }
         else {
             stringBuilder += this.funcName.convertToJava(classname);
