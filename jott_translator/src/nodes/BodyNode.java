@@ -84,9 +84,14 @@ public class BodyNode implements JottTree {
                 stringBuilder += "\t";
             }
             stringBuilder += node.convertToPython();
+            // Add in a new line to prevent python related errors
+            stringBuilder += "\n";
         }
 
         if (this.returnStmt != null) {
+            for (int i = 0; i < this.indentDepth; i++) {
+                stringBuilder += "\t";
+            }
             stringBuilder += this.returnStmt.convertToPython();
         }
 

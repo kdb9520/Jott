@@ -182,7 +182,10 @@ public class AsmtNode implements BodyStmtNode {
     @Override
     public String convertToPython() {
         // no type needed
-        return this.varName.convertToPython() + " = " + this.exprValue.convertToPython();
+        String stringToReturn = this.varName.convertToPython() + " = " + this.exprValue.convertToPython();
+        // Python NEEDs this extra new line or it'll break
+        stringToReturn = stringToReturn.concat("\n");
+        return stringToReturn;
     }
 
     @Override
