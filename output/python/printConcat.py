@@ -1,4 +1,4 @@
 def main():
-	print(concat("foo", "bar"))
+	print("foo" +  "bar")
 
 main()

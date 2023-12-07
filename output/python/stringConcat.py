@@ -1,12 +1,12 @@
 def main():
-	s = concat("foo", "bar")
+	s = "foo" +  "bar"
 
 	print(s)
 	s1 = "foo"
 
-	s2 = concat("bar", s1)
+	s2 = "bar" +  s1
 
 	print(s2)
-	print(concat("foo", concat("bar", "baz")))
+	print("foo" +  "bar" +  "baz")
 
 main()
