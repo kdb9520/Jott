@@ -13,6 +13,8 @@ do
         then
             gcc $FILE -o "$dotarr[0]"
             c_out = ./"$dotarr[0]"
+            echo "C output:"
+            echo "$c_out"
         fi
     fi
 done
@@ -31,6 +33,8 @@ do
         then
             javac $FILE
             j_out = java "$dotarr[0]"
+            echo "Java output:"
+            echo "$j_out"
         fi
     fi
 done
@@ -48,6 +52,8 @@ do
         if [[ "$dotarr[1]" == "py" ]]
         then
             p_out = python "$FILE"
+            echo "Python output:"
+            echo "$p_out"
         fi
     fi
 done
