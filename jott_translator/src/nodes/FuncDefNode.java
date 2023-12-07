@@ -43,7 +43,7 @@ public class FuncDefNode implements JottTree {
         stringBuilder += " {\n";
         stringBuilder += this.body.convertToC();
 
-        if (isMain) { stringBuilder += "\n\treturn 0;"; }
+        if (isMain) { stringBuilder += "\n\treturn 1;"; }
         
         stringBuilder += "\n}";
 
