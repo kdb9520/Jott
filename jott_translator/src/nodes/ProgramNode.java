@@ -136,7 +136,7 @@ public class ProgramNode implements JottTree {
         }
 
         // Add a check to see if token list is empty? 
-        symbolTable.printSymTab();
+        // symbolTable.printSymTab();
 
         return new ProgramNode(funcDefList);
     }

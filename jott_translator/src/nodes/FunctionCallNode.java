@@ -110,7 +110,14 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         String funcName = this.funcName.getToken().getToken();
 
         if (funcName.equals("print")) {
-            return printC(stringBuilder);
+            // Before anything, grab the current func in the symbol table and set it to
+            // this function.  And then reset it before returning.
+            //String previousCurrentFunc = symbolTable.getCurrentFunc();
+            //symbolTable.setFunc(funcName);
+            String printCReturn = printC(stringBuilder);
+            // Set the function back here
+            // symbolTable.setFunc(previousCurrentFunc);
+            return printCReturn;
         } else if (funcName.equals("concat")) {
             stringBuilder += "concat";
         } else if (funcName.equals("length")) {
@@ -177,6 +184,11 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
                     return "printf(\"%s\\n\", " + p + ")";
                 case "Void":
                 default:
+                    // If you hit this case, some error happened.
+                    // Print the symbol table so we can find out what's going on
+                    symbolTable.printSymTab();
+                    // Also check what the symbol table thinks the current func is
+                    System.out.println("Current Function in SymbolTable: ".concat(symbolTable.getCurrentFunc()));
                     return "something broke";
             }
         }
