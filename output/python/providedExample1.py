@@ -1,3 +1,5 @@
 def main():
-	print(5)	print("foo bar")
+	print(5)
+	print("foo bar")
+
 main()
