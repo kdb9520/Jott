@@ -1,1 +1,0 @@
-You have to link to concat.c when you compile your c code
