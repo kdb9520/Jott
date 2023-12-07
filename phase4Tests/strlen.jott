@@ -1,0 +1,9 @@
+#this is string len test in Jott
+
+def main[]:Void{
+    String str = "Hello World";
+    Integer len = ::length[str];
+
+    ::print[len];
+    ::print[::length["Hello World"]];
+}
