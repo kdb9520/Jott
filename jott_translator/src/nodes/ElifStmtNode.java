@@ -41,7 +41,7 @@ public class ElifStmtNode implements JottTree {
         String output = "elseif ";
         output += expr.convertToPython();
         output  += ": \n";
-        output += "\t" + body.convertToPython() + "\n";
+        output += body.convertToPython() + "\n";
         return output;
     }
 

@@ -32,7 +32,7 @@ public class ElseStmtNode implements JottTree {
 
     public String convertToPython() {
         String output = "else: \n";
-        output += "\t" + body.convertToPython() + "\n";
+        output += body.convertToPython() + "\n";
         return output;
     }
 
