@@ -53,6 +53,16 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             stringBuilder += ")";
             return stringBuilder;
         }
+        else if (funcName.equals("length")){
+            // Need to do something similar to concat, as the format is
+            // String.length()
+            // First, grab the params, then get the first one to get the string to get the length of
+            String concatParams = params.convertToJava(classname);
+            List<String> newParams = Arrays.asList(concatParams.split(","));
+            stringBuilder += newParams.get(0).trim();
+            stringBuilder += ".length()";
+            return stringBuilder;
+        }
         else {
             stringBuilder += this.funcName.convertToJava(classname);
         }
