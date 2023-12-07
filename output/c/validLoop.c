@@ -1,3 +1,4 @@
+#include "concat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -11,7 +12,7 @@ int main() {
 	int x = 0;
 	while(x < 10) {
 		x = foo(x);
-		printf(x);
+		printf("%d", x);
 }
 
 	return 0;

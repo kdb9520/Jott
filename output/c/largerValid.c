@@ -1,10 +1,11 @@
+#include "concat.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
 void foo(int x) {
-	printf(x);
+	printf("%d", x);
 
 }
 void baz() {
@@ -25,7 +26,7 @@ int main() {
 	int x = 5;
 	while(x > 0) {
 		foo(x);
-		printf(bar(y));
+		printf("%s", bar(y));
 		x = x - 1;
 		y = y + 1.1;
 }

@@ -1,0 +1,5 @@
+#this tests the string concat functions
+
+def main[]:Void{
+    ::print[::concat["foo", "bar"]];
+}

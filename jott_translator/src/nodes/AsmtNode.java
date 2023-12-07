@@ -163,6 +163,7 @@ public class AsmtNode implements BodyStmtNode {
         // If it does then include it in the converted string, if not, then 
         // just make the string without it
         String stringToReturn = "";
+
         if(this.type != null){
             // Means that there is a type to add
             stringToReturn = stringToReturn.concat(this.type.convertToC());

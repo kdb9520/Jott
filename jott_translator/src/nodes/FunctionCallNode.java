@@ -68,22 +68,9 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         String funcName = this.funcName.getToken().getToken();
 
         if (funcName.equals("print")) {
-            stringBuilder += "printf";
+            return printC(stringBuilder);
         } else if (funcName.equals("concat")) {
-            // get the sizes of the strings
-            String params[] = this.params.convertToC().split(",");
-            stringBuilder += "int strSize = strlen(" + params[0] + ")";
-            stringBuilder += " + strlen(" + params[1] + ") + 1;\n";
-
-            // malloc new char * of that size
-            stringBuilder += "char *resultStr = (char *)malloc(strSize);\n";
-
-            // strcpy first string into char *
-            stringBuilder += "strcpy(resultStr, " + params[0] + ");\n";
-
-            // strcat second string into char *
-            stringBuilder += "strcat(resultStr, " + params[1] + ")";
-            return stringBuilder;
+            stringBuilder += "concat";
         } else if (funcName.equals("length")) {
             stringBuilder += "strlen";
         } else {
@@ -93,6 +80,54 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
         stringBuilder += "(";
         stringBuilder += this.params.convertToC();
         stringBuilder += ")";
+        return stringBuilder;
+    }
+
+    private String printC(String stringBuilder) {
+        // convert the params
+        String p = this.params.convertToC().trim();
+
+        boolean isStringLit = p.split("\"").length == 2 && p.split("\"")[0].equals("");
+        if (isStringLit) {
+            return "printf(" + p + ")";
+        }
+        
+        boolean isNumber = Character.isDigit(p.charAt(0));
+        if (isNumber) {
+            boolean isDouble = p.split(".").length > 1;
+
+            if (isDouble) {
+                return "printf(\"%f\", " + p + ")";
+            }
+
+            return "printf(\"%d\", " + p + ")";
+        }
+
+        boolean isVar = p.split(" ").length == 1;
+        boolean isFunc = p.split("\\(").length > 1;
+        if (isVar || isFunc) {
+            String type;
+
+            if (isFunc) {
+                type = symbolTable.getFunctionReturnType(p.split("\\(")[0]);
+            } else {
+                type = symbolTable.getVarType(p);
+            }
+
+            switch (type) {
+                case "Integer":
+                case "Boolean":
+                    return "printf(\"%d\", " + p + ")";
+                case "Double":
+                    return "printf(\"%f\", " + p + ")";
+                case "String":
+                    return "printf(\"%s\", " + p + ")";
+                case "Void":
+                default:
+                    return "something broke";
+            }
+        }
+
         return stringBuilder;
     }
 

@@ -89,6 +89,7 @@ public class ProgramNode implements JottTree {
     public String convertToC() {
         String stringBuilder = "";
 
+        stringBuilder += "#include \"concat.h\"\n";
         stringBuilder += "#include <stdio.h>\n";
         stringBuilder += "#include <stdlib.h>\n";
         stringBuilder += "#include <string.h>\n";
