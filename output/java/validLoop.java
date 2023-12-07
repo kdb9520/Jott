@@ -1,5 +1,5 @@
 public class validLoop {
-public static int foo(intx,) {
+public static int foo(int x) {
 return x + 1;
 
 }

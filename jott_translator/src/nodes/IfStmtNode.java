@@ -104,11 +104,11 @@ public class IfStmtNode implements BodyStmtNode {
         if (elif_nodes.size() != 0) {
             for (int nodeIndex = 0; nodeIndex < elif_nodes.size(); nodeIndex++){
                 ElifStmtNode node = elif_nodes.get(nodeIndex);
-                output += node.convertToPython();
+                output += "\t" + node.convertToPython();
             }
         }
         if (el != null) {
-            output += el.convertToPython();
+            output += "\t" + el.convertToPython();
         }
         return output;
     }
