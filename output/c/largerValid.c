@@ -5,13 +5,11 @@
 #include <stdbool.h>
 
 void foo(int x) {
-	printf("%d
-", x);
+	printf("%d\n", x);
 
 }
 void baz() {
-	printf("Hello World"
-);
+	printf("Hello World\n");
 
 }
 char * bar(double x) {
@@ -28,8 +26,7 @@ int main() {
 	int x = 5;
 	while(x > 0) {
 		foo(x);
-		printf("%s
-", bar(y));
+		printf("%s\n", bar(y));
 		x = x - 1;
 		y = y + 1.1;
 }

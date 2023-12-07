@@ -12,8 +12,7 @@ int main() {
 	int x = 0;
 	while(x < 10) {
 		x = foo(x);
-		printf("%d
-", x);
+		printf("%d\n", x);
 }
 
 	return 0;

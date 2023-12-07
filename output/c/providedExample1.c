@@ -5,10 +5,8 @@
 #include <stdbool.h>
 
 int main() {
-	printf("%d
-", 5);
-	printf("foo bar"
-);
+	printf("%d\n", 5);
+	printf("foo bar\n");
 
 	return 0;
 }

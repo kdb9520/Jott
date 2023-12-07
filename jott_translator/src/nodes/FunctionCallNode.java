@@ -89,7 +89,9 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
 
         boolean isStringLit = p.split("\"").length == 2 && p.split("\"")[0].equals("");
         if (isStringLit) {
-            return "printf(" + p + "\n)";
+            p = p.substring(0, p.length() - 1);
+            p += "\\n\"";
+            return "printf(" + p + ")";
         }
         
         boolean isNumber = Character.isDigit(p.charAt(0));
@@ -97,10 +99,10 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             boolean isDouble = p.split(".").length > 1;
 
             if (isDouble) {
-                return "printf(\"%f\n\", " + p + ")";
+                return "printf(\"%f\\n\", " + p + ")";
             }
 
-            return "printf(\"%d\n\", " + p + ")";
+            return "printf(\"%d\\n\", " + p + ")";
         }
 
         boolean isVar = p.split(" ").length == 1;
@@ -117,11 +119,11 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             switch (type) {
                 case "Integer":
                 case "Boolean":
-                    return "printf(\"%d\n\", " + p + ")";
+                    return "printf(\"%d\\n\", " + p + ")";
                 case "Double":
-                    return "printf(\"%f\n\", " + p + ")";
+                    return "printf(\"%f\\n\", " + p + ")";
                 case "String":
-                    return "printf(\"%s\n\", " + p + ")";
+                    return "printf(\"%s\\n\", " + p + ")";
                 case "Void":
                 default:
                     return "something broke";
