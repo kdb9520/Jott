@@ -6,7 +6,7 @@ def baz():
 
 def bar(x,):
 	if x > 5.1: 
-			return "bar"
+		return "bar"
 
 
 	baz()

@@ -27,3 +27,9 @@ hs_err_pid*
 replay_pid*
 
 output.jott
+
+
+output/c/
+output/python/
+output/java/
+output/jott/

@@ -2,11 +2,11 @@ def foo():
 	x = 5
 
 	if x > 5: 
-			x = x - 1
+		x = x - 1
 
 		return x
 
-else: 
+	else: 
 			return x
 
 
