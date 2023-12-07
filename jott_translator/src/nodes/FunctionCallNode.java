@@ -1,6 +1,8 @@
 package nodes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import provided.Token;
 import provided.TokenType;
@@ -54,11 +56,33 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
 
     public String convertToPython() {
         String stringBuilder = "";
-
-        stringBuilder += this.funcName.convertToPython();
-        stringBuilder += "(";
-        stringBuilder += this.params.convertToPython();
-        stringBuilder += ")";
+        String funcName = this.funcName.getToken().getToken();
+        if (funcName.equals("concat")) {
+            // convert all params to expr nodes
+            String concatParams = params.convertToPython();
+            List<String> newParams = Arrays.asList(concatParams.split(","));
+            // take each node and add them
+            for (int s = 0; s < newParams.size(); s++){
+                stringBuilder += newParams.get(s);
+                if (s + 1 < newParams.size()){
+                    stringBuilder += " + ";
+                }
+            } 
+            return stringBuilder;
+        }
+        else if (funcName.equals("length")) {
+            stringBuilder += "len";
+            stringBuilder += "(";
+            stringBuilder += this.params.convertToPython();
+            stringBuilder += ")";                
+            return stringBuilder;
+        }
+        else{
+            stringBuilder += this.funcName.convertToPython();
+            stringBuilder += "(";
+            stringBuilder += this.params.convertToPython();
+            stringBuilder += ")";
+        }
         return stringBuilder;
     }
 
