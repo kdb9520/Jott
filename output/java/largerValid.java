@@ -1,11 +1,11 @@
 public class largerValid {
-public static void foo(intx,) {
+public static void foo(int x) {
 	System.out.println(x);
 }
 public static void baz() {
 	System.out.println("Hello World");
 }
-public static String bar(doublex,) {
+public static String bar(double x) {
 	if (x > 5.1) { 
 return "bar";
 } 
