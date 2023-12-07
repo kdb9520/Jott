@@ -12,7 +12,7 @@ do
         if [[ "$dotarr[1]" == "c" ]]
         then
             gcc $FILE -o "$dotarr[0]"
-            c_out = ./"$dotarr[0]"
+            c_out = $(./"$dotarr[0]")
             echo "C output:"
             echo "$c_out"
         fi
@@ -32,7 +32,7 @@ do
         if [[ "$dotarr[1]" == "java" ]]
         then
             javac $FILE
-            j_out = java "$dotarr[0]"
+            j_out = $(java "$dotarr[0]")
             echo "Java output:"
             echo "$j_out"
         fi
@@ -51,7 +51,7 @@ do
     then
         if [[ "$dotarr[1]" == "py" ]]
         then
-            p_out = python "$FILE"
+            p_out = $(python "$FILE")
             echo "Python output:"
             echo "$p_out"
         fi
