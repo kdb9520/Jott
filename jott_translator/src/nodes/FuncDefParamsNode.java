@@ -44,12 +44,12 @@ public class FuncDefParamsNode implements JottTree {
             IDNode param = this.paramIds.get(i);
             TypeNode type = this.paramTypes.get(i);
 
-            stringBuilder += type.convertToJava(className) + param.convertToJava(className);
+            stringBuilder += type.convertToJava(className) + " " + param.convertToJava(className);
             stringBuilder += ", ";
         }
 
         if (this.paramIds.size() != 0) {
-            stringBuilder = stringBuilder.substring(0, stringBuilder.length()-1);    
+            stringBuilder = stringBuilder.substring(0, stringBuilder.length()-2);    
         }
         stringBuilder += ")";
 

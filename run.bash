@@ -7,7 +7,8 @@ do
     IFS='/'
     read -ra splitarr <<< "$FILE"
     IFS='.'
-    read -ra dotarr <<< "${splitarr[-1]}"
+    LEN="${#splitarr[@]}"
+    read -ra dotarr <<< "${splitarr[$LEN-1]}"
 
     if [[ $1 == "c" ]]
     then
