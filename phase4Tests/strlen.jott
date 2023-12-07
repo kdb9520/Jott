@@ -2,8 +2,8 @@
 
 def main[]:Void{
     String str = "Hello World";
-    Integer len = ::length[str];
+    Integer l = ::length[str];
 
-    ::print[len];
+    ::print[l];
     ::print[::length["Hello World"]];
 }
