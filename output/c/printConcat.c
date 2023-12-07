@@ -5,7 +5,8 @@
 #include <stdbool.h>
 
 int main() {
-	printf("%s", concat("foo", "bar"));
+	printf("%s
+", concat("foo", "bar"));
 
 	return 0;
 }

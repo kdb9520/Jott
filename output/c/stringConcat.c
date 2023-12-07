@@ -6,11 +6,14 @@
 
 int main() {
 	char * s = concat("foo", "bar");
-	printf("%s", s);
+	printf("%s
+", s);
 	char * s1 = "foo";
 	char * s2 = concat("bar", s1);
-	printf("%s", s2);
-	printf("%s", concat("foo", concat("bar", "baz")));
+	printf("%s
+", s2);
+	printf("%s
+", concat("foo", concat("bar", "baz")));
 
 	return 0;
 }
