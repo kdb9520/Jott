@@ -135,9 +135,18 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             String type;
 
             if (isFunc) {
-                type = symbolTable.getFunctionReturnType(p.split("\\(")[0]);
+                String funcName = p.split("\\(")[0];
+                if (funcName.equals("strlen")) {
+                    type = "Integer";
+                } else if (funcName.equals("concat")) {
+                    type = "String";
+                } else {
+                    type = symbolTable.getFunctionReturnType(funcName);
+                }
             } else {
-                type = symbolTable.getVarType(p);
+                if (symbolTable.hasVar(p)) { type = symbolTable.getVarType(p); }
+                // error here bc params aren't being picked up for some reason
+                else { type = "None"; }
             }
 
             switch (type) {
