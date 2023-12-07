@@ -45,6 +45,9 @@ public class BodyNode implements JottTree {
         }
 
         if (this.returnStmt != null) {
+            for (int i = 0; i < this.indentDepth; i++) {
+                stringBuilder += "\t";
+            }
             stringBuilder += this.returnStmt.convertToC();
         }
 
@@ -65,11 +68,14 @@ public class BodyNode implements JottTree {
                 // Needed because function call has a semicolon in the body_stmt case, but NOT 
                 // the expr case, and since the func_call can't tell what's calling it's convert,
                 // you have to do this here. 
-                stringBuilder += ";";
+                stringBuilder += ";\n";
             }
         }
 
         if (this.returnStmt != null) {
+            for (int i = 0; i < this.indentDepth; i++) {
+                stringBuilder += "\t";
+            }
             stringBuilder += this.returnStmt.convertToJava(className);
         }
 
