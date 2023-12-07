@@ -49,6 +49,8 @@ public class FunctionCallNode extends ExpressionNode implements BodyStmtNode {
             stringBuilder += newParams.get(0).trim();
             stringBuilder += ".concat(";
             stringBuilder += newParams.get(1).trim();
+            // Add the ending parens given you're returning immediately
+            stringBuilder += ")";
             return stringBuilder;
         }
         else {
