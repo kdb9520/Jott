@@ -14,11 +14,11 @@ void baz() {
 }
 char * bar(double x) {
 	if (x > 5.1) { 
-return "bar";
+		return "bar";
 
 } 
 	baz();
-return "foo";
+	return "foo";
 
 }
 int main() {
