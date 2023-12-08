@@ -30,7 +30,8 @@ Specifically, the instructions to compile and run will have \ characters that, i
 ### Instructions to Compile and Run: 
 1. An empty folder named "classes" needs to be created inside of the src folder before the below commands to compile and run can function properly.
 2. The nodes, provided, and validate packages are all required to be compiled so that the phase 3 main can properly run.  One method of doing this is to go into the src folder in the phase3 folder, and run the following command on the command line: 
-javac nodes/\*.java provided/\*.java validate/\*.java -d classes
+javac nodes/*.java provided/*.java phase4Main.java -d classes
 3. This will create the classes folder inside of the src folder. 
-4. Navigate to the classes folder on the command line, and run the following command in that folder to run phase: java validate/phase3Main [inputJottFilename] [outputJottFilename]
-5. The inputJottFilename and outputJottFilename need to include either the relative path or the absolute path to the files to be run.  
+4. Ensure that you have the concat.c and concat.h files in the folder you intend to output your C code to.  We have provided these files in the output/c folder.  It is recommended that you output your C files there.
+5. Navigate to the top level src folder on the command line, and run the following command in that folder to run phase: java phase4Main [inputJottFilename] [outputJottFilename]
+6. The inputJottFilename and outputJottFilename need to include either the relative path or the absolute path to the files to be run.
