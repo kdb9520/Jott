@@ -43,20 +43,21 @@ public class phase4Main {
             try{
                 // For now this will only write Jott. Will need to be changed to 
                 // write out other languages later
+                outputLanguage = outputLanguage.toLowerCase();
                 
                 FileWriter currentWriter = new FileWriter(outputFilename);
-                if (outputLanguage.equals("Jott")) {
+                if (outputLanguage.equals("jott")) {
                     currentWriter.write(nodeTree.convertToJott());
                 }
-                else if (outputLanguage.equals("Python")) {
+                else if (outputLanguage.equals("python")) {
                     currentWriter.write(nodeTree.convertToPython());
                 }
-                else if (outputLanguage.equals("Java")) {
+                else if (outputLanguage.equals("java")) {
 
                     String java_class = jottFilename.substring(jottFilename.lastIndexOf('/')+1, jottFilename.length() - 5);
                     currentWriter.write(nodeTree.convertToJava(java_class));
                 }
-                else if (outputLanguage.equals("C")) {
+                else if (outputLanguage.equals("c")) {
                     currentWriter.write(nodeTree.convertToC());
                 }
                 else {
