@@ -34,6 +34,6 @@ Any extra \ need to be removed from the command to compile.
 javac nodes/\*.java provided/\*.java validate/\*.java phase4Main.java -d classes
 3. This will create the classes folder inside of the src folder. 
 4. Ensure that you have the concat.c and concat.h files in the folder you intend to output your C code to.  We have provided these files in the output/c folder.  It is recommended that you output your C files there.  These files are needed so that the concat builtin function can work in C.
-5. Navigate to the top level src folder on the command line, and run the following command in that folder to run phase: java phase4Main [inputJottFilename] [outputFilename] [languageToOutput]
+5. Navigate to the classes folder on the command line, and run the following command in that folder to run phase: java phase4Main [inputJottFilename] [outputFilename] [languageToOutput]
 6. The inputJottFilename and outputFilename need to include either the relative path or the absolute path to the files to be run.
 7. Language to output will be the language of the outputfile.  It must be one of the following: Jott, Python, Java, or C.  The outputFilename's extension needs to match the languageToOutput selected for the output program to work. 
