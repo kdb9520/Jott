@@ -64,7 +64,7 @@ public class FuncDefParamsNode implements JottTree {
             stringBuilder += ", ";
         }
         if (this.paramIds.size() != 0) {
-            stringBuilder = stringBuilder.substring(0, stringBuilder.length()-1);    
+            stringBuilder = stringBuilder.substring(0, stringBuilder.length()-2);    
         }
         stringBuilder += ")";
 
