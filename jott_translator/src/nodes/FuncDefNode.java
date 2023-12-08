@@ -39,7 +39,9 @@ public class FuncDefNode implements JottTree {
             stringBuilder += this.funcReturn.convertToC() + " ";
         }
         stringBuilder += this.funcName.convertToC();
-        stringBuilder += this.funcDefParams.convertToC();
+
+        if (isMain) { stringBuilder += "(void)"; }
+        else { stringBuilder += this.funcDefParams.convertToC(); }
         stringBuilder += " {\n";
         stringBuilder += this.body.convertToC();
 
