@@ -31,7 +31,7 @@ Any extra \ need to be removed from the command to compile.
 ### Instructions to Compile and Run: 
 1. An empty folder named "classes" needs to be created inside of the src folder before the below commands to compile and run can function properly.
 2. The nodes, provided, and validate packages are all required to be compiled alongside phase4Main.java.  One method of doing this is to go into the src folder in the phase4 folder, and run the following command on the command line: 
-javac nodes/\*.java provided/\*.java phase4Main.java -d classes
+javac nodes/\*.java provided/\*.java validate/\*.java phase4Main.java -d classes
 3. This will create the classes folder inside of the src folder. 
 4. Ensure that you have the concat.c and concat.h files in the folder you intend to output your C code to.  We have provided these files in the output/c folder.  It is recommended that you output your C files there.  These files are needed so that the concat builtin function can work in C.
 5. Navigate to the top level src folder on the command line, and run the following command in that folder to run phase: java phase4Main [inputJottFilename] [outputFilename] [languageToOutput]
