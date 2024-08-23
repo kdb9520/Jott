@@ -33,3 +33,4 @@ output/c/
 output/python/
 output/java/
 output/jott/
+/jott_translator/src/output/python
