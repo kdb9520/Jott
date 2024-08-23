@@ -2,8 +2,6 @@ package validate;
 
 import java.util.ArrayList;
 
-import provided.*;
-
 public class phase3Tester {
     // Basically this is going to replicate what the prof did in his own testers
 

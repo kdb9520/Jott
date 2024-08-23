@@ -138,12 +138,7 @@ public class symbolTable {
         HashMap<String, String> currentParams = funcParams.get(current_function);
         // This array list should have a sequence of the return types of the params.
         ArrayList<String> returnTypes = new ArrayList<String>(currentParams.values());
-        // System.out.println("Calling getParamTypes, results in list of length " + returnTypes.size() + " and this output: ");
-        int paramIndex = -1;
-        for(String currentType : returnTypes){
-            paramIndex++;
-            // System.out.println("Param Has Type " + currentType + " at index " + paramIndex);
-        }
+
         return returnTypes;
     }
     // returns an ArrayList containing the types of all params for curr_function, length of list is how many params should be present
@@ -151,12 +146,7 @@ public class symbolTable {
         HashMap<String, String> currentParams = funcParams.get(functionName);
         // This array list should have a sequence of the return types of the params.
         ArrayList<String> returnTypes = new ArrayList<String>(currentParams.values());
-        // System.out.println("Calling getParamTypes, results in list of length " + returnTypes.size() + " and this output: ");
-        int paramIndex = -1;
-        for(String currentType : returnTypes){
-            paramIndex++;
-            // System.out.println("Param Has Type " + currentType + " at index " + paramIndex);
-        }
+
         return returnTypes;
     }
 

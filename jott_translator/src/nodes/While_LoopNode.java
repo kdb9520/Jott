@@ -8,7 +8,6 @@ import provided.TokenType;
 import validate.symbolTable;
 
 public class While_LoopNode implements BodyStmtNode {
-    private Token token;
     ExpressionNode exprNode;
     BodyNode bodyNode;
 
